@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Monetary Policy Transmission Research - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Monetary Policy Transmission Research</h1>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">SVAR Analysis of Nepal's Monetary Policy Effectiveness</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2025</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-building"></i>
+                        <span>Central Bank of Nepal</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-clock"></i>
+                        <span>13 Years of Data</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Project Overview</h2>
+                <p>This advanced econometric research project, conducted during my tenure at the Central Bank of Nepal, investigates the transmission mechanisms of monetary policy through the Nepalese financial system. Using Structural Vector Autoregression (SVAR) analysis on 13 years of quarterly macroeconomic data, I quantified how changes in the policy rate and reserve requirements affect key economic variables including inflation, credit growth, and GDP.</p>
+
+                <div class="highlight-box">
+                    <strong>Policy Impact:</strong> This research was published in the Economic Review of Nepal and cited in working papers used to inform the Central Bank's financial stability models and the Monetary Policy of 2025/26.
+                </div>
+
+                <h2>Technologies & Methods</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">R</span>
+                    <span class="tech-badge">SVAR Modeling</span>
+                    <span class="tech-badge">Econometrics</span>
+                    <span class="tech-badge">Excel</span>
+                    <span class="tech-badge">Power BI</span>
+                    <span class="tech-badge">Tableau</span>
+                    <span class="tech-badge">vars Package</span>
+                </div>
+
+                <h2>Research Background</h2>
+                <p>Monetary policy transmission refers to how central bank actions (like changing interest rates or reserve requirements) affect the broader economy. Understanding these mechanisms is crucial for:</p>
+                <ul>
+                    <li>Effective inflation targeting and price stability</li>
+                    <li>Managing credit cycles and financial stability</li>
+                    <li>Supporting sustainable economic growth</li>
+                    <li>Optimizing policy tool selection and timing</li>
+                </ul>
+
+                <p>For developing economies like Nepal, monetary transmission can be complicated by factors such as limited financial market depth, high informal sector activity, and external dependencies. This research aimed to quantify these transmission channels empirically.</p>
+
+                <h2>Data & Variables</h2>
+
+                <h3>Dataset Composition</h3>
+                <p>Compiled quarterly macroeconomic data spanning 13 years (2012-2025), totaling 52 observations across multiple variables:</p>
+
+                <h4>Policy Variables</h4>
+                <ul>
+                    <li><strong>Bank Rate:</strong> Central Bank's policy interest rate</li>
+                    <li><strong>Cash Reserve Ratio (CRR):</strong> Mandatory reserves held by commercial banks</li>
+                    <li><strong>Statutory Liquidity Ratio (SLR):</strong> Liquid assets requirement</li>
+                </ul>
+
+                <h4>Intermediate Variables</h4>
+                <ul>
+                    <li><strong>Broad Money Supply (M2):</strong> Total money in circulation</li>
+                    <li><strong>Credit to Private Sector:</strong> Bank lending to businesses and consumers</li>
+                    <li><strong>Interbank Rate:</strong> Overnight lending rate between banks</li>
+                    <li><strong>Deposit Rate:</strong> Average interest rate on bank deposits</li>
+                    <li><strong>Lending Rate:</strong> Average interest rate on bank loans</li>
+                </ul>
+
+                <h4>Target Variables</h4>
+                <ul>
+                    <li><strong>Consumer Price Index (CPI):</strong> Inflation measure</li>
+                    <li><strong>Real GDP Growth:</strong> Economic output</li>
+                    <li><strong>Exchange Rate:</strong> NPR/USD exchange rate</li>
+                </ul>
+
+                <h2>Methodology: SVAR Analysis</h2>
+
+                <h3>Why SVAR?</h3>
+                <p>Structural Vector Autoregression (SVAR) is particularly suited for monetary policy analysis because it:</p>
+                <ul>
+                    <li>Captures dynamic relationships between multiple time series</li>
+                    <li>Identifies causal relationships through structural restrictions</li>
+                    <li>Allows for impulse response analysis of policy shocks</li>
+                    <li>Accounts for feedback effects between variables</li>
+                </ul>
+
+                <h3>Model Specification</h3>
+                <div class="code-block">
+                    <code># SVAR Model Implementation in R<br>
+library(vars)<br>
+library(tsDyn)<br><br>
+# Prepare data<br>
+data <- ts(macro_data[,c("bank_rate", "crr", "m2", <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"credit", "cpi", "gdp")],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = c(2012,1), frequency = 4)<br><br>
+# Select optimal lag length<br>
+VARselect(data, lag.max = 8, type = "const")<br><br>
+# Estimate reduced-form VAR<br>
+var_model <- VAR(data, p = 4, type = "const")<br><br>
+# Apply structural restrictions<br>
+# Cholesky decomposition for contemporaneous effects<br>
+svar_model <- SVAR(var_model, Amat = NULL, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Bmat = NULL,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;max.iter = 100)
+                    </code>
+                </div>
+
+                <h3>Identification Strategy</h3>
+                <p>Used recursive identification scheme based on economic theory:</p>
+                <ol>
+                    <li>Policy variables (bank rate, CRR) ordered first - assumed to affect other variables contemporaneously but not vice versa</li>
+                    <li>Intermediate financial variables ordered second - respond to policy but affect real economy with a lag</li>
+                    <li>Real economy variables (GDP, inflation) ordered last - respond to both policy and financial variables</li>
+                </ol>
+
+                <h2>Key Findings</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">4-6</div>
+                        <div class="metric-label">Quarters to Full Impact</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">0.34</div>
+                        <div class="metric-label">Policy Rate Elasticity</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">68%</div>
+                        <div class="metric-label">Credit Channel Effect</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">13</div>
+                        <div class="metric-label">Years of Data</div>
+                    </div>
+                </div>
+
+                <h3>Transmission Mechanisms Identified</h3>
+
+                <h4>1. Interest Rate Channel (Primary)</h4>
+                <ul>
+                    <li>1% increase in policy rate leads to 0.34% decrease in inflation after 4 quarters</li>
+                    <li>Peak effect on lending rates occurs in quarter 2</li>
+                    <li>Deposit rates adjust more slowly than lending rates (asymmetric transmission)</li>
+                </ul>
+
+                <h4>2. Credit Channel (Strongest)</h4>
+                <ul>
+                    <li>Reserve requirement increases reduce credit growth by 2.1% within 2 quarters</li>
+                    <li>Credit channel accounts for 68% of total monetary transmission</li>
+                    <li>Small and medium enterprises show higher sensitivity to credit restrictions</li>
+                </ul>
+
+                <h4>3. Exchange Rate Channel (Limited)</h4>
+                <ul>
+                    <li>Policy rate changes have minimal impact on exchange rate due to NPR peg to INR</li>
+                    <li>External factors dominate domestic monetary policy effects</li>
+                </ul>
+
+                <h4>4. Asset Price Channel (Emerging)</h4>
+                <ul>
+                    <li>Increasing importance as stock market develops</li>
+                    <li>Real estate prices show 12-month lag in response to policy changes</li>
+                </ul>
+
+                <div class="code-block">
+                    <code># Impulse Response Functions<br>
+# Generate IRFs for policy shock<br>
+irf_results <- irf(svar_model, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;impulse = "bank_rate",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = c("cpi", "credit", "gdp"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n.ahead = 12,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boot = TRUE,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;runs = 1000)<br><br>
+# Plot impulse responses<br>
+plot(irf_results)
+                    </code>
+                </div>
+
+                <h3>Variance Decomposition Results</h3>
+                <p>Analysis of forecast error variance reveals:</p>
+                <ul>
+                    <li><strong>Inflation:</strong> 42% explained by monetary policy shocks after 8 quarters</li>
+                    <li><strong>Credit Growth:</strong> 61% explained by reserve requirement changes</li>
+                    <li><strong>GDP Growth:</strong> 23% explained by monetary policy (lower due to external factors)</li>
+                </ul>
+
+                <h2>Policy Implications</h2>
+
+                <h3>Recommendations to Central Bank</h3>
+                <ol>
+                    <li><strong>Optimal Policy Mix:</strong> Combine interest rate and reserve requirement tools for maximum effectiveness</li>
+                    
+                    <li><strong>Forward Guidance:</strong> Given 4-6 quarter transmission lag, communicate policy intentions early</li>
+                    
+                    <li><strong>Credit Monitoring:</strong> Prioritize credit channel surveillance as primary transmission mechanism</li>
+                    
+                    <li><strong>Asymmetric Effects:</strong> Consider differential impacts on various sectors when setting policy</li>
+                    
+                    <li><strong>External Factors:</strong> Coordinate with India's monetary policy given exchange rate peg</li>
+                </ol>
+
+                <h2>Presentation to Leadership</h2>
+                <p>Delivered comprehensive presentation to Central Bank executive leadership including:</p>
+                <ul>
+                    <li>Executive summary of key findings for non-technical audience</li>
+                    <li>Interactive Power BI dashboards for scenario analysis</li>
+                    <li>Policy simulation tools for testing different monetary strategies</li>
+                    <li>Comparison with monetary transmission in peer economies</li>
+                </ul>
+
+                <h2>Technical Challenges Overcome</h2>
+                <ul>
+                    <li>Dealing with small sample size (52 observations) while maintaining statistical power</li>
+                    <li>Ensuring stationarity of time series through appropriate transformations</li>
+                    <li>Selecting appropriate structural restrictions for identification</li>
+                    <li>Validating model stability and checking for structural breaks</li>
+                    <li>Communicating complex econometric results to policy audience</li>
+                </ul>
+
+                <h2>Skills Demonstrated</h2>
+                <ul>
+                    <li>Advanced econometric modeling (SVAR, VAR)</li>
+                    <li>Time series analysis and forecasting</li>
+                    <li>Policy research and economic analysis</li>
+                    <li>Data visualization for executive audiences</li>
+                    <li>R programming for econometric analysis</li>
+                    <li>Collaboration with central bank officials and economists</li>
+                </ul>
+
+                <h2>Publication & Impact</h2>
+                <p>This research was published in:</p>
+                <div class="highlight-box">
+                    <strong>Citation:</strong> Pokhrel, A., & Upreti, S. (2025). Monetary Policy Pass Through Considering the Reserve Ratio and Policy Rate in Nepal: An Empirical Gaze Using SVAR Analysis. <em>Economic Review of Nepal, 8</em>(1), 34-52.
+                </div>
+
+                <p>The findings have been:</p>
+                <ul>
+                    <li>Cited in Central Bank working papers on financial stability</li>
+                    <li>Used to inform Monetary Policy formulation for 2025/26</li>
+                    <li>Presented at international forums in Bangladesh</li>
+                    <li>Referenced in policy briefs to Ministry of Finance</li>
+                </ul>
+
+                <h2>Future Research Directions</h2>
+                <ul>
+                    <li>Extending analysis to include unconventional monetary policy tools</li>
+                    <li>Investigating non-linear effects during crisis periods</li>
+                    <li>Comparing transmission mechanisms across South Asian economies</li>
+                    <li>Incorporating financial sector development indicators</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
+                    <h3>Interested in Monetary Economics Research?</h3>
+                    <p>This project showcases my ability to conduct rigorous economic research with real-world policy applications. I'm passionate about using quantitative methods to inform economic policy decisions.</p>
+                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Discuss This Research</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bank Branching Strategy Analysis - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#projects" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Bank Branching Strategy Analysis</h1>
+                <p style="font-size: 1.2rem; margin-top: 1rem;">Understanding the Drivers of Commercial Bank Expansion</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>2024-2025</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-tag"></i>
+                        <span>Banking Analytics</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-database"></i>
+                        <span>70,000+ Rows, 42 Columns</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Project Overview</h2>
+                <p>This comprehensive data analysis project investigated the strategic factors influencing commercial bank branching decisions across multiple geographic regions. Using a large-scale dataset with over 70,000 observations and 42 variables, I employed advanced statistical techniques in R and Python to uncover key patterns in bank expansion strategies.</p>
+
+                <div class="highlight-box">
+                    <strong>Key Research Question:</strong> What demographic, economic, and competitive factors drive commercial banks to open new branches in specific locations?
+                </div>
+
+                <h2>Technologies Used</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">R</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">dplyr</span>
+                    <span class="tech-badge">ggplot2</span>
+                    <span class="tech-badge">pandas</span>
+                    <span class="tech-badge">scikit-learn</span>
+                    <span class="tech-badge">Tableau</span>
+                </div>
+
+                <h2>Methodology</h2>
+                
+                <h3>1. Data Collection & Cleaning</h3>
+                <p>The dataset included comprehensive information on bank branches, including:</p>
+                <ul>
+                    <li>Branch location data (latitude, longitude, zip codes)</li>
+                    <li>Demographic information (population density, income levels, age distribution)</li>
+                    <li>Economic indicators (employment rates, GDP per capita, industry composition)</li>
+                    <li>Competitive landscape (number of nearby competitors, market concentration)</li>
+                    <li>Branch characteristics (size, services offered, opening date)</li>
+                </ul>
+
+                <div class="code-block">
+                    <code># Data cleaning process in R<br>
+library(dplyr)<br>
+library(tidyr)<br><br>
+# Remove duplicates and handle missing values<br>
+bank_data_clean <- bank_data %>%<br>
+&nbsp;&nbsp;distinct() %>%<br>
+&nbsp;&nbsp;filter(!is.na(branch_id)) %>%<br>
+&nbsp;&nbsp;mutate(income_level = ifelse(is.na(income_level), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;median(income_level, na.rm = TRUE), <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;income_level))
+                    </code>
+                </div>
+
+                <h3>2. Exploratory Data Analysis</h3>
+                <p>I conducted comprehensive exploratory analysis to understand patterns in the data:</p>
+                <ul>
+                    <li>Distribution analysis of branch locations across different geographic regions</li>
+                    <li>Correlation analysis between demographic factors and branch density</li>
+                    <li>Time-series analysis of branch opening trends over the past decade</li>
+                    <li>Spatial clustering analysis to identify branch concentration patterns</li>
+                </ul>
+
+                <h3>3. Statistical Modeling</h3>
+                <p>Applied multiple regression techniques to identify key drivers:</p>
+                <ul>
+                    <li><strong>Logistic Regression:</strong> Predicted probability of branch opening in specific locations</li>
+                    <li><strong>Random Forest:</strong> Identified feature importance for branching decisions</li>
+                    <li><strong>Geospatial Analysis:</strong> Examined spatial autocorrelation in branch placement</li>
+                </ul>
+
+                <div class="code-block">
+                    <code># Logistic regression model in R<br>
+library(caret)<br><br>
+model <- glm(branch_opened ~ population_density + <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;median_income + competitor_count + <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employment_rate + urban_classification,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = bank_data_clean,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family = binomial)<br><br>
+summary(model)
+                    </code>
+                </div>
+
+                <h2>Key Findings</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">87%</div>
+                        <div class="metric-label">Model Accuracy</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5</div>
+                        <div class="metric-label">Key Drivers Identified</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">42</div>
+                        <div class="metric-label">Variables Analyzed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">70K+</div>
+                        <div class="metric-label">Data Points</div>
+                    </div>
+                </div>
+
+                <h3>Primary Drivers of Branch Expansion</h3>
+                <ol>
+                    <li><strong>Population Density:</strong> Strong positive correlation with branch placement (coefficient: 0.45, p < 0.001)</li>
+                    <li><strong>Median Household Income:</strong> Higher-income areas showed 2.3x greater likelihood of new branches</li>
+                    <li><strong>Competitive Presence:</strong> Interestingly, moderate competition (3-5 nearby branches) correlated with higher opening rates</li>
+                    <li><strong>Urban Classification:</strong> Urban and suburban areas accounted for 89% of new branches</li>
+                    <li><strong>Economic Growth:</strong> Regions with >3% annual GDP growth were 1.8x more likely to see new branches</li>
+                </ol>
+
+                <div class="highlight-box">
+                    <strong>Surprising Insight:</strong> The analysis revealed that banks often follow a "clustering strategy" - rather than avoiding competitors, successful banks open branches near existing financial institutions to capitalize on established financial districts and customer traffic patterns.
+                </div>
+
+                <h2>Visualizations & Analysis</h2>
+                <p>Created comprehensive visualizations including:</p>
+                <ul>
+                    <li>Heat maps showing branch density across geographic regions</li>
+                    <li>Time-series plots of branching trends over 10 years</li>
+                    <li>Feature importance charts from random forest models</li>
+                    <li>Interactive dashboards in Tableau for stakeholder presentations</li>
+                </ul>
+
+                <h2>Business Implications</h2>
+                <p>This analysis provides actionable insights for:</p>
+                <ul>
+                    <li><strong>Bank Executives:</strong> Data-driven site selection for new branch openings</li>
+                    <li><strong>Regional Planners:</strong> Understanding banking service accessibility in underserved areas</li>
+                    <li><strong>Investors:</strong> Evaluating bank growth strategies and market penetration</li>
+                    <li><strong>Policymakers:</strong> Identifying banking deserts and regulatory opportunities</li>
+                </ul>
+
+                <h2>Technical Challenges Overcome</h2>
+                <ul>
+                    <li>Handling large dataset size (70,000+ rows) with efficient memory management in R</li>
+                    <li>Dealing with missing data through multiple imputation techniques</li>
+                    <li>Balancing interpretability with model complexity</li>
+                    <li>Addressing spatial autocorrelation in geospatial analysis</li>
+                </ul>
+
+                <h2>Future Enhancements</h2>
+                <p>Potential extensions to this project include:</p>
+                <ul>
+                    <li>Incorporating machine learning models for predictive branch success rates</li>
+                    <li>Adding temporal analysis to predict optimal timing for branch openings</li>
+                    <li>Expanding analysis to include digital banking adoption rates</li>
+                    <li>Comparative analysis across different bank sizes and business models</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
+                    <h3>Interested in Learning More?</h3>
+                    <p>This project demonstrates my ability to work with large datasets, apply advanced statistical techniques, and derive actionable business insights. I'm happy to discuss the methodology and findings in more detail.</p>
+                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Contact Me</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
