@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UNICEF Research Experience - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#experience" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Research Analyst</h1>
+                <p style="font-size: 1.3rem; margin-top: 0.5rem;">Smart WASH Solutions (UNICEF Partnership)</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>June - August 2025</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lalitpur, Nepal (Hybrid)</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-water"></i>
+                        <span>Water & Sanitation Sector</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Organization Background</h2>
+                <p>Smart WASH Solutions is a research and consulting organization working in partnership with UNICEF Nepal to improve water, sanitation, and hygiene (WASH) infrastructure and access across the country. The organization conducts market research, regulatory analysis, and feasibility studies to inform WASH policy and investment decisions.</p>
+
+                <div class="highlight-box">
+                    <strong>Project Focus:</strong> Comprehensive market analysis of Nepal's $160 million bottled water industry to identify regulatory gaps, market inefficiencies, and opportunities for improved water access and quality standards.
+                </div>
+
+                <h2>Role Overview</h2>
+                <p>As a Research Analyst, I designed and executed a comprehensive field research project examining Nepal's bottled water market from both supply and demand perspectives. The research combined quantitative data collection with qualitative interviews to provide actionable insights for policy recommendations and market strategy development.</p>
+
+                <h2>Core Responsibilities</h2>
+
+                <h3>1. Research Design & Planning</h3>
+                <p>Developed comprehensive research methodology for multi-stakeholder market analysis:</p>
+                <ul>
+                    <li>Designed sampling strategy covering urban, peri-urban, and rural markets</li>
+                    <li>Created structured questionnaires for factory owners and retailers</li>
+                    <li>Developed interview protocols ensuring consistent data collection</li>
+                    <li>Planned logistics for field visits across Kathmandu Valley and surrounding districts</li>
+                    <li>Established data validation procedures and quality control measures</li>
+                </ul>
+
+                <h3>2. Field Data Collection</h3>
+                <p>Led primary data collection through site visits and stakeholder interviews:</p>
+
+                <h4>Factory-Level Research (10+ Facilities)</h4>
+                <ul>
+                    <li>Conducted on-site visits to bottled water production facilities</li>
+                    <li>Interviewed factory owners and operations managers</li>
+                    <li>Collected data on production capacity, technology, and quality control</li>
+                    <li>Documented regulatory compliance levels and certification status</li>
+                    <li>Assessed infrastructure, distribution networks, and market reach</li>
+                </ul>
+
+                <h4>Retail-Level Research (50+ Retailers)</h4>
+                <ul>
+                    <li>Surveyed diverse retail outlets (supermarkets, convenience stores, street vendors)</li>
+                    <li>Gathered pricing data, sales volumes, and consumer preference information</li>
+                    <li>Documented product variety, brand dominance, and distribution patterns</li>
+                    <li>Collected retailer perspectives on demand trends and supply constraints</li>
+                    <li>Investigated informal market dynamics and unregistered products</li>
+                </ul>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">10+</div>
+                        <div class="metric-label">Factory Visits</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">50+</div>
+                        <div class="metric-label">Retailer Surveys</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">$160M</div>
+                        <div class="metric-label">Market Size</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">80+</div>
+                        <div class="metric-label">Data Points Collected</div>
+                    </div>
+                </div>
+
+                <h3>3. Data Management & Analysis</h3>
+
+                <h4>Data Pipeline Development in R</h4>
+                <div class="code-block">
+                    <code># Data cleaning and structuring pipeline<br>
+library(dplyr)<br>
+library(tidyr)<br>
+library(stringr)<br><br>
+# Import and clean survey data<br>
+factory_data <- read.csv("factory_surveys.csv") %>%<br>
+&nbsp;&nbsp;mutate(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;production_capacity = as.numeric(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;str_remove_all(production_capacity, "[^0-9.]")<br>
+&nbsp;&nbsp;&nbsp;&nbsp;),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;district = str_to_title(str_trim(district)),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;certified = ifelse(certification_status == "Yes", 1, 0)<br>
+&nbsp;&nbsp;) %>%<br>
+&nbsp;&nbsp;filter(!is.na(factory_id))<br><br>
+# Merge supply and demand datasets<br>
+market_analysis <- factory_data %>%<br>
+&nbsp;&nbsp;left_join(retailer_data, by = "brand_name") %>%<br>
+&nbsp;&nbsp;mutate(<br>
+&nbsp;&nbsp;&nbsp;&nbsp;market_share = sales_volume / sum(sales_volume),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;price_per_liter = price / bottle_size<br>
+&nbsp;&nbsp;)
+                    </code>
+                </div>
+
+                <h4>Analysis Conducted</h4>
+                <ul>
+                    <li><strong>Market Structure Analysis:</strong> Examined market concentration, competitive dynamics, and barriers to entry</li>
+                    <li><strong>Regulatory Gap Analysis:</strong> Identified inconsistencies between regulations and actual compliance</li>
+                    <li><strong>Supply Chain Mapping:</strong> Traced product flow from production to end consumers</li>
+                    <li><strong>Pricing Analysis:</strong> Analyzed price variations across brands, regions, and distribution channels</li>
+                    <li><strong>Quality Assessment:</strong> Compared stated vs. actual quality standards and testing procedures</li>
+                </ul>
+
+                <h3>4. Visualization & Reporting</h3>
+                <p>Transformed complex data into accessible insights:</p>
+
+                <h4>Python & Tableau Dashboards</h4>
+                <div class="code-block">
+                    <code># Python visualization example<br>
+import pandas as pd<br>
+import matplotlib.pyplot as plt<br>
+import seaborn as sns<br><br>
+# Market share visualization<br>
+market_data = pd.read_csv('market_analysis.csv')<br><br>
+plt.figure(figsize=(12, 6))<br>
+sns.barplot(x='brand', y='market_share', <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data=market_data.sort_values('market_share', <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ascending=False))<br>
+plt.title('Bottled Water Market Share by Brand')<br>
+plt.xticks(rotation=45)<br>
+plt.tight_layout()<br>
+plt.savefig('market_share.png', dpi=300)
+                    </code>
+                </div>
+
+                <p>Created comprehensive dashboards including:</p>
+                <ul>
+                    <li>Interactive maps showing factory locations and distribution networks</li>
+                    <li>Market share breakdowns by brand and region</li>
+                    <li>Pricing trend visualizations across different market segments</li>
+                    <li>Regulatory compliance scorecards for different facilities</li>
+                    <li>Supply-demand gap analysis by geographic area</li>
+                </ul>
+
+                <h2>Key Findings</h2>
+
+                <h3>Market Structure Insights</h3>
+                <ol>
+                    <li><strong>High Fragmentation:</strong> Market dominated by 3-4 large players (65% market share) with 20+ smaller regional brands</li>
+                    
+                    <li><strong>Geographic Concentration:</strong> 70% of production facilities located in Kathmandu Valley despite growing demand in other regions</li>
+                    
+                    <li><strong>Informal Market Presence:</strong> Estimated 15-20% of market consists of unregistered or non-compliant products</li>
+                    
+                    <li><strong>Price Variations:</strong> 300% price differential between economy brands and premium brands, not fully explained by quality differences</li>
+                </ol>
+
+                <h3>Regulatory Gaps Identified</h3>
+                <ul>
+                    <li><strong>Inconsistent Enforcement:</strong> Only 40% of visited factories had up-to-date quality certifications despite legal requirements</li>
+                    <li><strong>Testing Infrastructure:</strong> Limited laboratory capacity for regular water quality testing</li>
+                    <li><strong>Labeling Issues:</strong> 30% of products lacked complete ingredient/source information</li>
+                    <li><strong>License Verification:</strong> Difficulty for consumers to verify product authenticity</li>
+                    <li><strong>Cross-District Oversight:</strong> Gaps in regulatory coordination across jurisdictions</li>
+                </ul>
+
+                <h3>Market Inefficiencies</h3>
+                <ul>
+                    <li><strong>Distribution Bottlenecks:</strong> Rural areas face 2-3x higher prices due to distribution constraints</li>
+                    <li><strong>Information Asymmetry:</strong> Consumers lack reliable information to assess product quality</li>
+                    <li><strong>Seasonal Demand Spikes:</strong> Production capacity underutilized 6 months/year, shortages during peak season</li>
+                    <li><strong>Capital Constraints:</strong> Small producers unable to invest in modern equipment and quality systems</li>
+                </ul>
+
+                <h2>Recommendations Developed</h2>
+
+                <h3>For Policymakers</h3>
+                <ol>
+                    <li><strong>Strengthen Enforcement:</strong> Increase inspection frequency and penalties for non-compliance</li>
+                    <li><strong>Expand Testing Infrastructure:</strong> Establish regional water quality testing laboratories</li>
+                    <li><strong>Consumer Protection:</strong> Implement QR code system for product verification and traceability</li>
+                    <li><strong>Regional Development:</strong> Incentivize production facility development outside Kathmandu</li>
+                </ol>
+
+                <h3>For Market Participants</h3>
+                <ol>
+                    <li><strong>Quality Differentiation:</strong> Invest in certification and transparent quality communication</li>
+                    <li><strong>Distribution Expansion:</strong> Develop partnerships for rural market penetration</li>
+                    <li><strong>Collective Action:</strong> Form industry associations for standards development and self-regulation</li>
+                    <li><strong>Technology Adoption:</strong> Upgrade production technology to improve efficiency and quality</li>
+                </ol>
+
+                <h3>For UNICEF/Development Partners</h3>
+                <ol>
+                    <li><strong>Capacity Building:</strong> Support training programs for small producers on quality management</li>
+                    <li><strong>Infrastructure Investment:</strong> Co-invest in testing laboratories and certification systems</li>
+                    <li><strong>Public Awareness:</strong> Consumer education campaigns on water quality and safety</li>
+                    <li><strong>Policy Advocacy:</strong> Support regulatory reform for improved market oversight</li>
+                </ol>
+
+                <h2>Skills Applied & Developed</h2>
+
+                <h3>Research Skills</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Field Research</span>
+                    <span class="tech-badge">Survey Design</span>
+                    <span class="tech-badge">Qualitative Interviews</span>
+                    <span class="tech-badge">Data Validation</span>
+                    <span class="tech-badge">Market Analysis</span>
+                </div>
+
+                <h3>Technical Skills</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">R</span>
+                    <span class="tech-badge">Python</span>
+                    <span class="tech-badge">Tableau</span>
+                    <span class="tech-badge">Data Wrangling</span>
+                    <span class="tech-badge">Statistical Analysis</span>
+                </div>
+
+                <h3>Domain Knowledge</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Market Research</span>
+                    <span class="tech-badge">Regulatory Analysis</span>
+                    <span class="tech-badge">WASH Sector</span>
+                    <span class="tech-badge">Contract Law</span>
+                </div>
+
+                <h2>Unique Learning Experiences</h2>
+
+                <h3>Legal & Regulatory Exposure</h3>
+                <p>Gained practical understanding of business law through investigation of market disputes:</p>
+                <ul>
+                    <li>Documented cases of contract breaches between distributors and manufacturers</li>
+                    <li>Studied dispute resolution mechanisms in informal market settings</li>
+                    <li>Understood challenges of regulatory enforcement in developing economy context</li>
+                    <li>Learned about intellectual property issues (trademark violations, brand imitation)</li>
+                    <li>Exposure to arbitration processes in commercial disputes</li>
+                </ul>
+
+                <p><em>This experience sparked interest in applying data-driven insights to legal and financial disputes, particularly relevant for future work in auto-finance or commercial banking.</em></p>
+
+                <h3>Development Sector Perspective</h3>
+                <ul>
+                    <li>Understanding UNICEF's approach to WASH programming and market facilitation</li>
+                    <li>Learning how development organizations partner with private sector</li>
+                    <li>Exposure to public-private partnership models in infrastructure</li>
+                    <li>Insights into balancing social impact with commercial viability</li>
+                </ul>
+
+                <h2>Challenges & Solutions</h2>
+
+                <h3>Challenge 1: Data Quality & Validation</h3>
+                <p><strong>Problem:</strong> Inconsistent self-reported data from factory owners and retailers</p>
+                <p><strong>Solution:</strong> Implemented triangulation approach cross-referencing multiple data sources and conducting verification visits</p>
+
+                <h3>Challenge 2: Access to Informal Markets</h3>
+                <p><strong>Problem:</strong> Difficulty reaching unregistered producers and informal distributors</p>
+                <p><strong>Solution:</strong> Built trust through local contacts and community networks, emphasizing research (not enforcement) purpose</p>
+
+                <h3>Challenge 3: Heterogeneous Data Formats</h3>
+                <p><strong>Problem:</strong> 80+ survey responses in varying formats and levels of completeness</p>
+                <p><strong>Solution:</strong> Developed robust data cleaning pipeline in R with automated validation checks and standardization routines</p>
+
+                <h3>Challenge 4: Stakeholder Management</h3>
+                <p><strong>Problem:</strong> Balancing interests of multiple stakeholders (factories, retailers, consumers, regulators)</p>
+                <p><strong>Solution:</strong> Maintained neutrality in research approach and presented findings objectively with balanced recommendations</p>
+
+                <h2>Professional Growth</h2>
+
+                <h3>Hard Skills</h3>
+                <ul>
+                    <li>Mastered full research cycle from design through field work to analysis and reporting</li>
+                    <li>Advanced proficiency in R for complex data wrangling and pipeline development</li>
+                    <li>Learned Python visualization libraries (matplotlib, seaborn) for dashboard creation</li>
+                    <li>Developed expertise in Tableau for interactive data visualization</li>
+                    <li>Gained experience in market research and competitive analysis methodologies</li>
+                </ul>
+
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Cross-cultural communication with diverse stakeholders (business owners, street vendors, officials)</li>
+                    <li>Adaptability in field research environment with logistical challenges</li>
+                    <li>Stakeholder management and relationship building</li>
+                    <li>Problem-solving under resource constraints</li>
+                    <li>Professional communication of technical findings to non-technical audiences</li>
+                </ul>
+
+                <h2>Career Relevance</h2>
+
+                <h3>Applications to Finance & Banking</h3>
+                <p>Skills developed directly applicable to roles in auto-finance and banking sectors:</p>
+                <ul>
+                    <li><strong>Credit Risk Assessment:</strong> Field research skills translate to assessing borrower credibility and market conditions</li>
+                    <li><strong>Market Analysis:</strong> Identifying supply-demand gaps relevant for lending opportunities</li>
+                    <li><strong>Data Pipeline Development:</strong> Critical for managing large-scale financial datasets</li>
+                    <li><strong>Regulatory Understanding:</strong> Experience with compliance issues and enforcement challenges</li>
+                    <li><strong>Contract Disputes:</strong> Exposure to breach of contract situations relevant for loan recovery and dispute resolution</li>
+                </ul>
+
+                <h3>Applications to Development Economics</h3>
+                <ul>
+                    <li>Understanding private sector role in achieving development goals</li>
+                    <li>Market-based approaches to improving social outcomes</li>
+                    <li>Regulatory frameworks in developing economy contexts</li>
+                    <li>Impact measurement and evaluation methodologies</li>
+                </ul>
+
+                <h2>Project Impact</h2>
+                <p>Research outputs used by Smart WASH Solutions and UNICEF for:</p>
+                <ul>
+                    <li>Advocacy with Government of Nepal on regulatory reform</li>
+                    <li>Design of capacity building programs for small producers</li>
+                    <li>Investment prioritization decisions for water quality infrastructure</li>
+                    <li>Consumer awareness campaign development</li>
+                    <li>Partnership strategies with private sector actors</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
+                    <h3>Interested in My Research Approach?</h3>
+                    <p>This experience demonstrates my ability to conduct rigorous field research, manage complex datasets, and translate findings into actionable recommendations. Whether for market research, credit analysis, or policy evaluation, I bring a data-driven and practical approach to problem-solving.</p>
+                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Let's Discuss</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

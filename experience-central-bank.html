@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Central Bank of Nepal Experience - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#experience" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Economic Research Summer Analyst</h1>
+                <p style="font-size: 1.3rem; margin-top: 0.5rem;">Central Bank of Nepal</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>May - June 2025</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Kathmandu, Nepal (Onsite)</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-briefcase"></i>
+                        <span>Economic Research Department</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Position Overview</h2>
+                <p>As an Economic Research Summer Analyst at Nepal Rastra Bank (Central Bank of Nepal), I conducted high-level quantitative policy research directly contributing to the nation's monetary policy framework. Working within the Economic Research Department, I collaborated with senior economists and policy advisors to analyze macroeconomic trends, model monetary transmission mechanisms, and present findings to executive leadership.</p>
+
+                <div class="highlight-box">
+                    <strong>Key Achievement:</strong> Published research in peer-reviewed journal and working papers cited in the formulation of Monetary Policy 2025/26, directly influencing Nepal's economic policy decisions.
+                </div>
+
+                <h2>Core Responsibilities</h2>
+
+                <h3>1. Quantitative Policy Research</h3>
+                <p>Led comprehensive econometric analysis examining monetary policy transmission:</p>
+                <ul>
+                    <li>Developed Structural Vector Autoregression (SVAR) models in R to analyze 13 years of quarterly macroeconomic data</li>
+                    <li>Examined effectiveness of policy instruments including bank rate, cash reserve ratio, and statutory liquidity ratio</li>
+                    <li>Conducted impulse response analysis to quantify time lags in policy transmission</li>
+                    <li>Performed variance decomposition to identify dominant transmission channels</li>
+                    <li>Validated findings through robustness checks and sensitivity analysis</li>
+                </ul>
+
+                <div class="code-block">
+                    <code># Sample analysis performed<br>
+library(vars)<br>
+library(urca)<br><br>
+# Data preparation and stationarity testing<br>
+data_ts <- ts(macro_data, start = c(2012,1), freq = 4)<br>
+adf_tests <- lapply(data_ts, ur.df, type = "trend")<br><br>
+# SVAR estimation<br>
+var_est <- VAR(data_ts, p = 4, type = "const")<br>
+svar_model <- SVAR(var_est)<br><br>
+# Generate policy insights<br>
+irf_policy <- irf(svar_model, n.ahead = 12)
+                    </code>
+                </div>
+
+                <h3>2. Excel-Based Financial Modeling</h3>
+                <p>Constructed sophisticated financial models for policy simulation:</p>
+                <ul>
+                    <li>Built dynamic Excel models linking monetary policy instruments to macroeconomic outcomes</li>
+                    <li>Developed scenario analysis frameworks testing policy responses to various economic shocks</li>
+                    <li>Created automated data pipelines processing monthly financial stability indicators</li>
+                    <li>Designed sensitivity analysis tools for stress testing banking sector resilience</li>
+                    <li>Maintained and updated historical macroeconomic databases (156+ months of data)</li>
+                </ul>
+
+                <h3>3. Strategic Policy Briefs & Presentations</h3>
+                <p>Communicated complex analytical findings to central bank leadership:</p>
+                <ul>
+                    <li>Authored comprehensive policy briefs summarizing research findings and recommendations</li>
+                    <li>Presented analytical results to Deputy Governors and department heads</li>
+                    <li>Developed executive dashboards in Power BI visualizing key policy indicators</li>
+                    <li>Created Tableau visualizations analyzing commercial bank growth patterns and risk factors</li>
+                    <li>Contributed to the evidence base for Monetary Policy 2025/26 formulation</li>
+                </ul>
+
+                <h3>4. International Economic Analysis</h3>
+                <p>Supported Nepal's engagement with regional economic forums:</p>
+                <ul>
+                    <li>Translated complex financial models for 7 South Asian economies into strategic insights</li>
+                    <li>Developed comparative analysis of monetary policy frameworks across the region</li>
+                    <li>Created infographics and presentation materials for international forums in Bangladesh</li>
+                    <li>Supported bilateral economic discussions and international arbitration processes</li>
+                    <li>Analyzed cross-border financial linkages and spillover effects</li>
+                </ul>
+
+                <h2>Major Projects & Deliverables</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">1</div>
+                        <div class="metric-label">Published Paper</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">13</div>
+                        <div class="metric-label">Years of Data Analyzed</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">5+</div>
+                        <div class="metric-label">Policy Briefs</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">7</div>
+                        <div class="metric-label">South Asian Economies</div>
+                    </div>
+                </div>
+
+                <h3>Project 1: Monetary Policy Transmission Study</h3>
+                <p><strong>Objective:</strong> Quantify effectiveness of Nepal's monetary policy instruments</p>
+                <p><strong>Methodology:</strong> SVAR analysis with recursive identification scheme</p>
+                <p><strong>Key Findings:</strong></p>
+                <ul>
+                    <li>Reserve requirements show strongest transmission (68% of total effect)</li>
+                    <li>4-6 quarter lag between policy action and full economic impact</li>
+                    <li>Asymmetric response across different sectors of the economy</li>
+                </ul>
+                <p><strong>Impact:</strong> Published in Economic Review of Nepal and cited in central bank working papers</p>
+
+                <h3>Project 2: Banking Sector Stability Analysis</h3>
+                <p><strong>Objective:</strong> Assess commercial banking sector resilience and growth patterns</p>
+                <p><strong>Approach:</strong></p>
+                <ul>
+                    <li>Analyzed capital adequacy ratios, liquidity positions, and asset quality indicators</li>
+                    <li>Developed early warning indicators for banking sector stress</li>
+                    <li>Created interactive dashboards for real-time monitoring</li>
+                </ul>
+                <p><strong>Deliverable:</strong> Comprehensive report informing financial stability assessment for Monetary Policy 2025/26</p>
+
+                <h3>Project 3: Regional Economic Comparison</h3>
+                <p><strong>Scope:</strong> Comparative analysis of monetary frameworks across South Asia</p>
+                <p><strong>Countries Analyzed:</strong> India, Bangladesh, Sri Lanka, Pakistan, Bhutan, Maldives, Afghanistan</p>
+                <p><strong>Output:</strong> Infographics and presentation materials for SAARC economic forums</p>
+
+                <h2>Technical Skills Applied</h2>
+
+                <h3>Programming & Analysis</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">R</span>
+                    <span class="tech-badge">SVAR Modeling</span>
+                    <span class="tech-badge">Time Series Analysis</span>
+                    <span class="tech-badge">Econometrics</span>
+                    <span class="tech-badge">Statistical Testing</span>
+                </div>
+
+                <h3>Data Visualization & Communication</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Power BI</span>
+                    <span class="tech-badge">Tableau</span>
+                    <span class="tech-badge">Excel</span>
+                    <span class="tech-badge">ggplot2</span>
+                </div>
+
+                <h3>Domain Expertise</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">Monetary Policy</span>
+                    <span class="tech-badge">Financial Stability</span>
+                    <span class="tech-badge">Macroeconomics</span>
+                    <span class="tech-badge">Banking Regulation</span>
+                </div>
+
+                <h2>Key Accomplishments</h2>
+
+                <h3>Research Publication</h3>
+                <div class="highlight-box">
+                    <p><strong>Pokhrel, A., & Upreti, S. (2025).</strong> Monetary Policy Pass Through Considering the Reserve Ratio and Policy Rate in Nepal: An Empirical Gaze Using SVAR Analysis. <em>Economic Review of Nepal, 8</em>(1), 34-52.</p>
+                </div>
+
+                <h3>Policy Impact</h3>
+                <ul>
+                    <li>Research findings incorporated into Monetary Policy 2025/26 deliberations</li>
+                    <li>Contributed to evidence base for reserve requirement adjustments</li>
+                    <li>Supported development of forward guidance communication strategy</li>
+                </ul>
+
+                <h3>Stakeholder Engagement</h3>
+                <ul>
+                    <li>Presented to executive leadership including Deputy Governors</li>
+                    <li>Briefed economic research team on methodological approaches</li>
+                    <li>Collaborated with international relations department on regional analysis</li>
+                </ul>
+
+                <h2>Learning & Professional Development</h2>
+
+                <h3>Technical Growth</h3>
+                <ul>
+                    <li>Mastered advanced econometric techniques (SVAR, impulse response analysis)</li>
+                    <li>Developed expertise in central banking operations and monetary policy frameworks</li>
+                    <li>Enhanced data visualization skills for executive communication</li>
+                    <li>Gained proficiency in financial stability assessment methodologies</li>
+                </ul>
+
+                <h3>Professional Skills</h3>
+                <ul>
+                    <li>Learned to communicate technical analysis to non-technical policy audiences</li>
+                    <li>Developed understanding of policy formulation processes in government institutions</li>
+                    <li>Enhanced ability to work under tight deadlines with high-stakes deliverables</li>
+                    <li>Built collaborative relationships across organizational hierarchies</li>
+                </ul>
+
+                <h3>Exposure to Central Banking</h3>
+                <ul>
+                    <li>Observed Monetary Policy Committee deliberations and decision-making processes</li>
+                    <li>Understood coordination between monetary policy and fiscal policy authorities</li>
+                    <li>Gained insights into financial sector supervision and regulation</li>
+                    <li>Learned about international economic cooperation in South Asian context</li>
+                </ul>
+
+                <h2>Work Environment & Culture</h2>
+                <p>The Central Bank of Nepal provided a rigorous, professional environment:</p>
+                <ul>
+                    <li><strong>Collaborative:</strong> Worked closely with senior economists, policy advisors, and department heads</li>
+                    <li><strong>High-Impact:</strong> Research directly influenced national economic policy decisions</li>
+                    <li><strong>Intellectually Stimulating:</strong> Engaged with cutting-edge economic research and policy debates</li>
+                    <li><strong>Professional Standards:</strong> Maintained confidentiality and adhered to central bank protocols</li>
+                    <li><strong>Mentorship:</strong> Received guidance from experienced economists and researchers</li>
+                </ul>
+
+                <h2>Challenges Overcome</h2>
+
+                <h3>Technical Challenges</h3>
+                <ul>
+                    <li>Working with limited sample size (52 quarterly observations) while maintaining statistical rigor</li>
+                    <li>Selecting appropriate structural restrictions for SVAR identification</li>
+                    <li>Balancing model complexity with interpretability for policy audience</li>
+                    <li>Validating findings across multiple robustness checks</li>
+                </ul>
+
+                <h3>Professional Challenges</h3>
+                <ul>
+                    <li>Translating complex econometric results into actionable policy recommendations</li>
+                    <li>Meeting tight deadlines for policy briefings and presentations</li>
+                    <li>Adapting communication style for different audiences (technical vs. executive)</li>
+                    <li>Navigating organizational dynamics in government institution</li>
+                </ul>
+
+                <h2>Skills Developed</h2>
+
+                <h3>Hard Skills</h3>
+                <ul>
+                    <li>Advanced econometric modeling (SVAR, VAR, cointegration analysis)</li>
+                    <li>Time series analysis and forecasting</li>
+                    <li>Financial stability assessment and banking sector analysis</li>
+                    <li>Excel financial modeling and scenario analysis</li>
+                    <li>Data visualization for policy communication</li>
+                    <li>Academic research and publication</li>
+                </ul>
+
+                <h3>Soft Skills</h3>
+                <ul>
+                    <li>Policy communication and stakeholder management</li>
+                    <li>Executive presentation and briefing</li>
+                    <li>Cross-cultural collaboration (international context)</li>
+                    <li>Time management under pressure</li>
+                    <li>Attention to detail in high-stakes environment</li>
+                </ul>
+
+                <h2>Career Impact</h2>
+                <p>This experience at the Central Bank of Nepal has been transformative for my career trajectory:</p>
+                <ul>
+                    <li>Solidified interest in applied economic research with policy impact</li>
+                    <li>Gained credibility through publication in peer-reviewed journal</li>
+                    <li>Built network with central banking professionals and economists</li>
+                    <li>Demonstrated ability to contribute meaningfully to high-level policy discussions</li>
+                    <li>Acquired specialized knowledge in monetary economics and financial stability</li>
+                </ul>
+
+                <h2>Future Applications</h2>
+                <p>Skills and experiences gained are directly applicable to:</p>
+                <ul>
+                    <li>Graduate studies in economics or public policy</li>
+                    <li>Research positions at central banks, IMF, World Bank, or policy think tanks</li>
+                    <li>Economic consulting roles requiring policy analysis</li>
+                    <li>Financial sector positions in risk management or strategy</li>
+                    <li>Academic research in monetary economics or development economics</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
+                    <h3>Interested in My Central Banking Experience?</h3>
+                    <p>I'm eager to discuss my research findings, the policy formulation process, and how quantitative analysis informs economic decision-making at the highest levels. Whether you're a potential employer, academic collaborator, or simply curious about central banking, I'd love to connect.</p>
+                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Get in Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>

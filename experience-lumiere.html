@@ -1,0 +1,377 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lumiere Research Foundation Experience - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <nav>
+        <ul>
+            <li><a href="index.html">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#experience" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Economics Research Scholar</h1>
+                <p style="font-size: 1.3rem; margin-top: 0.5rem;">Lumiere Research Foundation</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>May - August 2025</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-laptop-house"></i>
+                        <span>Massachusetts, USA (Remote)</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-award"></i>
+                        <span>Top 5% Scholar</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Fellowship Overview</h2>
+                <p>The Lumiere Research Foundation offers a highly selective summer research program connecting undergraduate students with graduate-level mentors to conduct original academic research. As an Economics Research Scholar, I conducted independent research on Nepal's macroeconomic vulnerability to external shocks, culminating in an original research paper and presentation to an international audience of 200+ scholars.</p>
+
+                <div class="highlight-box">
+                    <strong>Recognition:</strong> Graduated among top 5% of research fellowship cohort (out of 150+ scholars globally) and received Individual Research Grant of $3,000 to support continued research.
+                </div>
+
+                <h2>Research Project</h2>
+
+                <h3>Title</h3>
+                <p><em>The Impact of Global Oil Price Shocks on Nepal's Foreign Exchange Reserves and Inflation</em></p>
+
+                <h3>Research Question</h3>
+                <p>How do global oil price shocks affect Nepal's foreign exchange reserves and inflation, and what are the implications for economic stability and policy?</p>
+
+                <h3>Motivation</h3>
+                <p>As a landlocked, oil-importing developing nation, Nepal faces significant vulnerability to global commodity price fluctuations. Understanding these transmission mechanisms is crucial for:</p>
+                <ul>
+                    <li>Foreign exchange reserve management</li>
+                    <li>Import policy formulation</li>
+                    <li>Inflation targeting strategies</li>
+                    <li>Economic security and resilience planning</li>
+                </ul>
+
+                <h2>Methodology</h2>
+
+                <h3>Data Collection</h3>
+                <p>Compiled comprehensive 43-year dataset (1980-2023) including:</p>
+                <ul>
+                    <li><strong>Oil Prices:</strong> Brent crude monthly averages (primary explanatory variable)</li>
+                    <li><strong>Foreign Exchange Reserves:</strong> Nepal's gross international reserves (dependent variable)</li>
+                    <li><strong>Inflation:</strong> Consumer Price Index year-over-year changes (dependent variable)</li>
+                    <li><strong>Control Variables:</strong> GDP growth, remittance inflows, exchange rate, trade balance</li>
+                </ul>
+
+                <h3>Econometric Techniques</h3>
+
+                <h4>1. Vector Autoregression (VAR) Modeling</h4>
+                <div class="code-block">
+                    <code># VAR(4) Model Specification<br>
+library(vars)<br>
+library(urca)<br><br>
+# Prepare time series data<br>
+data_ts <- ts(macro_data[, c("oil_price", "reserves", <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"cpi", "remittances", <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;"exchange_rate")],<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;start = c(1980, 1), frequency = 12)<br><br>
+# Test for optimal lag length<br>
+VARselect(data_ts, lag.max = 12)<br><br>
+# Estimate VAR(4) model<br>
+var_model <- VAR(data_ts, p = 4, type = "const")<br>
+summary(var_model)
+                    </code>
+                </div>
+
+                <p>VAR(4) model selected based on Akaike Information Criterion (AIC) and Bayesian Information Criterion (BIC), capturing:</p>
+                <ul>
+                    <li>Interdependencies between oil prices, reserves, and inflation</li>
+                    <li>Feedback effects and dynamic adjustments</li>
+                    <li>4-month lag structure in economic responses</li>
+                </ul>
+
+                <h4>2. Granger Causality Testing</h4>
+                <p>Tested causal relationships to establish direction of influence:</p>
+                <div class="code-block">
+                    <code># Granger causality tests<br>
+causality(var_model, cause = "oil_price")<br><br>
+# Results:<br>
+# Oil price -> Reserves: F-statistic = 8.42, p < 0.001<br>
+# Oil price -> Inflation: F-statistic = 6.17, p < 0.01<br>
+# Reserves -> Oil price: F-statistic = 1.23, p = 0.34
+                    </code>
+                </div>
+
+                <p><strong>Key Finding:</strong> Oil price changes Granger-cause both reserve levels and inflation, confirming unidirectional causal relationship.</p>
+
+                <h4>3. OLS-CUSUM Stability Testing</h4>
+                <p>Employed Cumulative Sum (CUSUM) test to check for structural breaks:</p>
+                <ul>
+                    <li>Identified 2008 financial crisis as potential structural break</li>
+                    <li>Tested model stability across different time periods</li>
+                    <li>Validated consistency of relationships over 43-year span</li>
+                </ul>
+
+                <h4>4. Impulse Response Functions</h4>
+                <p>Generated IRFs to visualize shock transmission:</p>
+                <div class="code-block">
+                    <code># Impulse response analysis<br>
+irf_oil <- irf(var_model, <br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;impulse = "oil_price",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;response = c("reserves", "cpi"),<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;n.ahead = 24,<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;boot = TRUE, runs = 1000)<br><br>
+plot(irf_oil)
+                    </code>
+                </div>
+
+                <h2>Key Findings</h2>
+
+                <div class="metrics-grid">
+                    <div class="metric-card">
+                        <div class="metric-value">43</div>
+                        <div class="metric-label">Years of Data</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">-0.42</div>
+                        <div class="metric-label">Oil-Reserves Correlation</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">+0.38</div>
+                        <div class="metric-label">Oil-Inflation Correlation</div>
+                    </div>
+                    <div class="metric-card">
+                        <div class="metric-value">6-8</div>
+                        <div class="metric-label">Month Impact Lag</div>
+                    </div>
+                </div>
+
+                <h3>Primary Results</h3>
+
+                <h4>1. Foreign Exchange Reserve Impact</h4>
+                <ul>
+                    <li><strong>Negative Correlation:</strong> 10% increase in oil prices associated with 4.2% decline in reserves after 6 months</li>
+                    <li><strong>Transmission Mechanism:</strong> Higher import costs → increased dollar demand → reserve depletion</li>
+                    <li><strong>Asymmetric Effects:</strong> Reserve losses during price spikes exceed gains during price drops</li>
+                    <li><strong>Threshold Effect:</strong> Impact intensifies when oil exceeds $80/barrel</li>
+                </ul>
+
+                <h4>2. Inflationary Pressure</h4>
+                <ul>
+                    <li><strong>Positive Correlation:</strong> 10% oil price increase leads to 3.8% higher inflation after 8 months</li>
+                    <li><strong>Pass-Through Channels:</strong> Transportation costs → production costs → consumer prices</li>
+                    <li><strong>Persistent Effects:</strong> Inflation remains elevated for 18-24 months post-shock</li>
+                    <li><strong>Broader Impact:</strong> Oil shocks affect food prices (agricultural inputs) and non-tradables</li>
+                </ul>
+
+                <h4>3. Moderating Factors</h4>
+                <p>Identified variables that cushion oil shock impacts:</p>
+                <ul>
+                    <li><strong>Remittance Inflows:</strong> Higher remittances partially offset reserve losses (elasticity: 0.28)</li>
+                    <li><strong>Exchange Rate Flexibility:</strong> NPR/USD adjustments help absorb 15-20% of shock</li>
+                    <li><strong>Tourism Receipts:</strong> Foreign exchange from tourism provides buffer</li>
+                </ul>
+
+                <h3>Policy Implications</h3>
+                <ol>
+                    <li><strong>Reserve Management:</strong> Maintain higher reserve buffer (6+ months import cover) given oil vulnerability</li>
+                    
+                    <li><strong>Energy Diversification:</strong> Accelerate hydroelectric development to reduce oil dependence</li>
+                    
+                    <li><strong>Hedging Strategies:</strong> Consider commodity hedging mechanisms for oil imports</li>
+                    
+                    <li><strong>Inflation Management:</strong> Monetary policy should anticipate 6-8 month lag in oil price transmission</li>
+                    
+                    <li><strong>Remittance Facilitation:</strong> Policies supporting remittance inflows enhance resilience</li>
+                </ol>
+
+                <h2>Research Process</h2>
+
+                <h3>Phase 1: Literature Review (Weeks 1-2)</h3>
+                <ul>
+                    <li>Reviewed 40+ academic papers on oil price shocks and macroeconomic impacts</li>
+                    <li>Studied VAR methodology and time series econometrics</li>
+                    <li>Examined prior research on developing economy vulnerabilities</li>
+                    <li>Identified gaps in Nepal-specific literature</li>
+                </ul>
+
+                <h3>Phase 2: Data Collection & Cleaning (Weeks 3-4)</h3>
+                <ul>
+                    <li>Compiled data from World Bank, IMF, Nepal Rastra Bank, and EIA databases</li>
+                    <li>Standardized different data frequencies and formats</li>
+                    <li>Handled missing values through interpolation and imputation</li>
+                    <li>Created comprehensive dataset spanning 516 months</li>
+                </ul>
+
+                <h3>Phase 3: Econometric Analysis (Weeks 5-8)</h3>
+                <ul>
+                    <li>Tested for stationarity using ADF and PP tests</li>
+                    <li>Selected optimal VAR lag length through information criteria</li>
+                    <li>Estimated VAR(4) model and conducted diagnostic tests</li>
+                    <li>Performed Granger causality and impulse response analysis</li>
+                    <li>Conducted robustness checks across different specifications</li>
+                </ul>
+
+                <h3>Phase 4: Writing & Revision (Weeks 9-11)</h3>
+                <ul>
+                    <li>Drafted research paper following academic journal format</li>
+                    <li>Created figures and tables visualizing key results</li>
+                    <li>Incorporated feedback from graduate mentor (University of Pittsburgh)</li>
+                    <li>Refined argumentation and policy recommendations</li>
+                </ul>
+
+                <h3>Phase 5: Presentation (Week 12)</h3>
+                <ul>
+                    <li>Prepared 15-minute conference-style presentation</li>
+                    <li>Created visual slides highlighting key findings</li>
+                    <li>Practiced delivery and Q&A responses</li>
+                    <li>Presented to audience of 200+ scholars via Zoom</li>
+                </ul>
+
+                <h2>Collaboration & Mentorship</h2>
+
+                <h3>Graduate Mentor</h3>
+                <p>Worked closely with PhD candidate from University of Pittsburgh's Economics Department:</p>
+                <ul>
+                    <li>Weekly one-on-one meetings discussing progress and challenges</li>
+                    <li>Guidance on econometric methodology and model specification</li>
+                    <li>Feedback on research design and empirical strategy</li>
+                    <li>Coaching on academic writing and presentation skills</li>
+                </ul>
+
+                <h3>Peer Collaboration</h3>
+                <ul>
+                    <li>Participated in cohort workshops with fellow research scholars</li>
+                    <li>Received peer feedback during draft presentations</li>
+                    <li>Engaged in intellectual discussions across disciplines</li>
+                    <li>Built network with talented undergraduate researchers globally</li>
+                </ul>
+
+                <h2>Skills Developed</h2>
+
+                <h3>Technical Skills</h3>
+                <div class="tech-stack">
+                    <span class="tech-badge">VAR Modeling</span>
+                    <span class="tech-badge">Time Series Analysis</span>
+                    <span class="tech-badge">Granger Causality</span>
+                    <span class="tech-badge">R Programming</span>
+                    <span class="tech-badge">Data Visualization</span>
+                    <span class="tech-badge">Statistical Testing</span>
+                </div>
+
+                <h3>Research Skills</h3>
+                <ul>
+                    <li>Independent research design and execution</li>
+                    <li>Academic literature review and synthesis</li>
+                    <li>Econometric methodology selection and application</li>
+                    <li>Research paper writing in academic style</li>
+                    <li>Peer review incorporation and revision</li>
+                </ul>
+
+                <h3>Communication Skills</h3>
+                <ul>
+                    <li>Conference-style presentation to academic audience</li>
+                    <li>Responding to technical questions under pressure</li>
+                    <li>Explaining complex econometric results to diverse audiences</li>
+                    <li>Creating compelling visual narratives with data</li>
+                </ul>
+
+                <h2>Achievements</h2>
+
+                <h3>Research Grant</h3>
+                <div class="highlight-box">
+                    <strong>Individual Research Grant: $3,000</strong><br>
+                    Awarded to top 5% of scholars based on research quality, presentation performance, and potential for future impact.
+                </div>
+
+                <h3>Publication Status</h3>
+                <p><strong>SSRN Working Paper (2025):</strong> Paper uploaded to Social Science Research Network, making research publicly accessible to academic and policy communities.</p>
+
+                <h3>Conference Presentation</h3>
+                <p>Successfully presented research findings to international audience of 200+ scholars, receiving positive feedback from faculty reviewers and peers.</p>
+
+                <h2>Impact & Future Directions</h2>
+
+                <h3>Academic Impact</h3>
+                <ul>
+                    <li>Contributes to limited literature on Nepal's macroeconomic vulnerabilities</li>
+                    <li>Provides empirical evidence for energy policy discussions</li>
+                    <li>Demonstrates application of advanced econometric methods to developing economy context</li>
+                </ul>
+
+                <h3>Policy Relevance</h3>
+                <ul>
+                    <li>Informs foreign exchange reserve management strategies</li>
+                    <li>Supports energy diversification policy arguments</li>
+                    <li>Provides quantitative basis for inflation forecasting</li>
+                </ul>
+
+                <h3>Future Research Extensions</h3>
+                <ul>
+                    <li>Expand analysis to include other commodity prices (food, metals)</li>
+                    <li>Investigate non-linear effects during extreme price movements</li>
+                    <li>Conduct comparative analysis across South Asian nations</li>
+                    <li>Examine impact of renewable energy adoption on oil vulnerability</li>
+                </ul>
+
+                <h2>Program Experience</h2>
+
+                <h3>Structure</h3>
+                <ul>
+                    <li>12-week intensive summer research program</li>
+                    <li>Remote/virtual format enabling global participation</li>
+                    <li>Weekly mentor meetings and cohort workshops</li>
+                    <li>Culminating symposium with presentations to scholars</li>
+                </ul>
+
+                <h3>What Made It Valuable</h3>
+                <ul>
+                    <li><strong>Graduate-Level Mentorship:</strong> Guidance from PhD candidate elevated research quality</li>
+                    <li><strong>Academic Rigor:</strong> Held to standards of publishable research</li>
+                    <li><strong>Intellectual Community:</strong> Engaged with brilliant peers across disciplines</li>
+                    <li><strong>Professional Development:</strong> Learned academic research workflow and presentation skills</li>
+                    <li><strong>Recognition:</strong> Top performer status validates research capabilities</li>
+                </ul>
+
+                <h2>Personal Growth</h2>
+                <ul>
+                    <li>Gained confidence in independent research abilities</li>
+                    <li>Developed resilience through challenging econometric problems</li>
+                    <li>Enhanced time management juggling research with other commitments</li>
+                    <li>Built self-motivation and discipline in remote work environment</li>
+                    <li>Strengthened commitment to pursuing research-oriented career path</li>
+                </ul>
+
+                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
+                    <h3>Interested in My Research?</h3>
+                    <p>I'm passionate about using rigorous quantitative methods to address real-world economic challenges in developing countries. Whether you're a potential employer, graduate program, or research collaborator, I'd love to discuss my work and explore opportunities to contribute to impactful economic research.</p>
+                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Let's Connect</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
