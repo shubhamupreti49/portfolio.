@@ -1,16 +1,1050 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>Your Name – Data Science Portfolio</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shubham Upreti - Economics & Data Science Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #3b82f6;
+            --dark-bg: #0f172a;
+            --light-bg: #1e293b;
+            --text-light: #f1f5f9;
+            --text-gray: #cbd5e1;
+            --gradient: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            --gradient-alt: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-light);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            padding: 1rem 0;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            list-style: none;
+            flex-wrap: wrap;
+        }
+
+        nav ul li {
+            margin: 0 1.5rem;
+        }
+
+        nav ul li a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 0.5rem 0;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent-color);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+        }
+
+        nav ul li a:hover {
+            color: var(--accent-color);
+        }
+
+        /* Hero Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--gradient);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('data:image/svg+xml,<svg width="100" height="100" xmlns="http://www.w3.org/2000/svg"><defs><pattern id="grid" width="100" height="100" patternUnits="userSpaceOnUse"><path d="M 100 0 L 0 0 0 100" fill="none" stroke="rgba(255,255,255,0.05)" stroke-width="1"/></pattern></defs><rect width="100%" height="100%" fill="url(%23grid)"/></svg>');
+            animation: gridMove 20s linear infinite;
+        }
+
+        @keyframes gridMove {
+            0% { transform: translate(0, 0); }
+            100% { transform: translate(100px, 100px); }
+        }
+
+        .hero-content {
+            text-align: center;
+            z-index: 1;
+            padding: 2rem;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s ease;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.5rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.2s both;
+            color: var(--text-light);
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s ease 0.4s both;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            animation: fadeInUp 1s ease 0.6s both;
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            border: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: var(--secondary-color);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            color: var(--text-light);
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background: var(--gradient);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+
+        .stat-card {
+            background: var(--light-bg);
+            padding: 1.5rem;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
+        }
+
+        .stat-card h3 {
+            font-size: 2rem;
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        /* Skills Section */
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-category {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .skill-category:hover {
+            border-color: var(--accent-color);
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.2);
+        }
+
+        .skill-category h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .skill-category ul {
+            list-style: none;
+        }
+
+        .skill-category li {
+            padding: 0.5rem 0;
+            color: var(--text-gray);
+            position: relative;
+            padding-left: 1.5rem;
+        }
+
+        .skill-category li::before {
+            content: '▹';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Experience Section */
+        .experience-timeline {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .experience-item {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            margin-bottom: 2rem;
+            position: relative;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .experience-header h3 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        .experience-header .company {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            font-weight: 600;
+        }
+
+        .experience-header .date {
+            color: var(--text-gray);
+            font-style: italic;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-item li {
+            color: var(--text-gray);
+            margin-bottom: 0.8rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .experience-item li::before {
+            content: '●';
+            position: absolute;
+            left: 0;
+            color: var(--accent-color);
+        }
+
+        /* Projects Section */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        .project-card {
+            background: var(--light-bg);
+            border-radius: 15px;
+            overflow: hidden;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .project-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--accent-color);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.4);
+        }
+
+        .project-header {
+            padding: 2rem;
+            background: var(--gradient);
+        }
+
+        .project-header h3 {
+            color: white;
+            margin-bottom: 0.5rem;
+        }
+
+        .project-content {
+            padding: 2rem;
+        }
+
+        .project-content p {
+            color: var(--text-gray);
+            margin-bottom: 1rem;
+        }
+
+        .project-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .tag {
+            background: var(--accent-color);
+            color: white;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.85rem;
+        }
+
+        /* Publications Section */
+        .publications-list {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .publication-item {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .publication-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .publication-item h3 {
+            color: var(--accent-color);
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+        }
+
+        .publication-meta {
+            color: var(--text-gray);
+            font-style: italic;
+            margin-top: 0.5rem;
+        }
+
+        /* Education Section */
+        .education-grid {
+            display: grid;
+            gap: 2rem;
+        }
+
+        .education-card {
+            background: var(--light-bg);
+            padding: 2rem;
+            border-radius: 15px;
+            border-left: 4px solid var(--accent-color);
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 40px rgba(59, 130, 246, 0.3);
+        }
+
+        .education-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .education-header h3 {
+            color: var(--accent-color);
+            font-size: 1.4rem;
+        }
+
+        .education-details {
+            margin-top: 1rem;
+        }
+
+        .education-details p {
+            color: var(--text-gray);
+            margin-bottom: 0.5rem;
+        }
+
+        .honors {
+            margin-top: 1rem;
+            padding: 1rem;
+            background: rgba(59, 130, 246, 0.1);
+            border-radius: 10px;
+        }
+
+        .honors h4 {
+            color: var(--accent-color);
+            margin-bottom: 0.5rem;
+        }
+
+        .honors ul {
+            list-style: none;
+        }
+
+        .honors li {
+            color: var(--text-gray);
+            padding: 0.3rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+
+        .honors li::before {
+            content: '🏆';
+            position: absolute;
+            left: 0;
+        }
+
+        /* Contact Section */
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+        }
+
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            color: var(--text-gray);
+            transition: all 0.3s ease;
+        }
+
+        .contact-item:hover {
+            transform: translateX(10px);
+            color: var(--accent-color);
+        }
+
+        .contact-item i {
+            font-size: 1.5rem;
+            color: var(--accent-color);
+        }
+
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .social-link {
+            width: 50px;
+            height: 50px;
+            background: var(--light-bg);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--accent-color);
+            font-size: 1.5rem;
+            transition: all 0.3s ease;
+            text-decoration: none;
+        }
+
+        .social-link:hover {
+            background: var(--accent-color);
+            color: white;
+            transform: translateY(-5px);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--light-bg);
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-gray);
+        }
+
+        /* Animations */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.6s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1.2rem;
+            }
+
+            .about-content,
+            .contact-content {
+                grid-template-columns: 1fr;
+            }
+
+            .stats {
+                grid-template-columns: 1fr;
+            }
+
+            nav ul {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            nav ul li {
+                margin: 0.5rem 0;
+            }
+
+            section {
+                padding: 3rem 1rem;
+            }
+        }
+
+        /* Scroll Progress Bar */
+        .progress-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 4px;
+            background: var(--gradient);
+            z-index: 9999;
+            transition: width 0.1s ease;
+        }
+    </style>
 </head>
 <body>
-  <h1>Your Name</h1>
-  <p>Data Science @ F&M | Economics & Data Science</p>
-  <h2>Projects</h2>
-  <ul>
-    <li>Project 1 – short one‑line description</li>
-  </ul>
+    <div class="progress-bar" id="progressBar"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#publications">Publications</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero">
+        <div class="hero-content">
+            <h1>Shubham Upreti</h1>
+            <p class="subtitle">Economics & Data Science Student | Research Analyst | Economics Club President</p>
+            <p>Passionate about quantitative policy research, data-driven insights, and leveraging advanced analytics to solve complex economic problems.</p>
+            <div class="cta-buttons">
+                <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                <a href="#projects" class="btn btn-secondary">View My Work</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="fade-in">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <div class="about-text">
+                <p>I'm a sophomore at Franklin & Marshall College pursuing a double major in Economics and Data Science, with a 3.9 GPA and Honor's List recognition. My academic journey combines rigorous quantitative training with hands-on research experience.</p>
+                <p>From conducting high-level policy research at the Central Bank of Nepal to analyzing complex datasets for international organizations, I bring a unique blend of economic theory, statistical rigor, and real-world application to every project.</p>
+                <p>I'm fluent in five languages (English, Nepali, Hindi, Urdu, Bangla) and have experience working across South Asia and remotely with US-based research institutions. As President of the Economics Club, I'm committed to promoting financial literacy and creating opportunities for fellow students.</p>
+            </div>
+            <div class="stats">
+                <div class="stat-card">
+                    <h3>3.9</h3>
+                    <p>GPA</p>
+                </div>
+                <div class="stat-card">
+                    <h3>2+</h3>
+                    <p>Publications</p>
+                </div>
+                <div class="stat-card">
+                    <h3>3</h3>
+                    <p>Research Positions</p>
+                </div>
+                <div class="stat-card">
+                    <h3>5</h3>
+                    <p>Languages</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills" class="fade-in">
+        <h2>Skills & Tools</h2>
+        <div class="skills-grid">
+            <div class="skill-category">
+                <h3><i class="fas fa-code"></i> Programming Languages</h3>
+                <ul>
+                    <li>Python</li>
+                    <li>R</li>
+                    <li>SQL</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-chart-line"></i> Data Analysis</h3>
+                <ul>
+                    <li>Time Series Analysis (SVAR | VAR)</li>
+                    <li>Data Visualization</li>
+                    <li>Statistical Modeling</li>
+                    <li>ETL Processes</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-tools"></i> Tools & Software</h3>
+                <ul>
+                    <li>Stata</li>
+                    <li>Tableau</li>
+                    <li>Power BI</li>
+                    <li>Excel (Advanced)</li>
+                    <li>Git</li>
+                    <li>MS Office</li>
+                </ul>
+            </div>
+            <div class="skill-category">
+                <h3><i class="fas fa-brain"></i> Specialized Skills</h3>
+                <ul>
+                    <li>Econometric Modeling</li>
+                    <li>Policy Research</li>
+                    <li>Financial Analysis</li>
+                    <li>CAD 3D Modeling</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="fade-in">
+        <h2>Professional Experience</h2>
+        <div class="experience-timeline">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Economic Research Summer Analyst</h3>
+                        <p class="company">Central Bank of Nepal</p>
+                    </div>
+                    <span class="date">May - June 2025</span>
+                </div>
+                <p><i class="fas fa-map-marker-alt"></i> Kathmandu, Nepal (Onsite)</p>
+                <ul>
+                    <li>Conducted high-level quantitative policy research (SVAR model in R/Excel) on Monetary Policy Transmission across 13 years of macroeconomic data, publishing findings in working papers used to inform financial stability models</li>
+                    <li>Structured and presented strategic policy briefs to central bank executive leadership, leveraging Power BI & Tableau to visualize analysis of commercial bank growth and risk factors for Monetary Policy of 2025/26</li>
+                    <li>Translated complex financial models for 7 South Asian economies into strategic insights and infographics for international forums in Bangladesh, supporting bilateral economic and international arbitration</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Economics Research Scholar</h3>
+                        <p class="company">Lumiere Research Foundation</p>
+                    </div>
+                    <span class="date">May - Aug 2025</span>
+                </div>
+                <p><i class="fas fa-laptop-house"></i> Massachusetts, USA (Remote)</p>
+                <ul>
+                    <li>Led a 43-year time-series analysis of Nepal's currency reserves, converting macroeconomic indicators (oil price, reserves, CPI) to model interdependencies using VAR(4) and OLS-CUSUM, Granger's Causality Test for policy discussion</li>
+                    <li>Authored a new research paper advancing international trade security insights, and graduated among the top 5% of research fellowship cohort and secured an Individual Research Grant of $3,000</li>
+                    <li>Collaborated with a graduate student from University of Pittsburgh and research mentors to present in front of 200+ scholars demonstrating advanced presentation skills, statistical rigor, editing skills, and professional teamwork</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Research Analyst</h3>
+                        <p class="company">Smart WASH Solutions (UNICEF)</p>
+                    </div>
+                    <span class="date">June - Aug 2025</span>
+                </div>
+                <p><i class="fas fa-building"></i> Lalitpur, Nepal (Hybrid)</p>
+                <ul>
+                    <li>Designed and executed a field research project in Nepal's $160M bottled water market, collecting and validating data from 10+ factories and 50+ retailers to analyze regulatory gaps and market inefficiencies</li>
+                    <li>Synthesized interviews into quantitative metrics and visual dashboards (Python, Tableau) enabling data-driven recommendations for collective investment and market strategy, learned about breach of contracts and their disputes</li>
+                    <li>Developed structured data pipelines from 80+ raw survey inputs, applying data wrangling methods in R Studio to identify demand-supply constraints and regional bottlenecks affecting market performance</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="fade-in">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Bank Branching Strategy Analysis</h3>
+                </div>
+                <div class="project-content">
+                    <p>Analyzed a large-scale dataset (70,000+ rows, 42 columns) using R and Python to identify the primary drivers of commercial bank branching strategy.</p>
+                    <p>Developed comprehensive insights into geographic expansion patterns and market penetration strategies in the banking sector.</p>
+                    <div class="project-tags">
+                        <span class="tag">R</span>
+                        <span class="tag">Python</span>
+                        <span class="tag">Big Data</span>
+                        <span class="tag">Banking</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>NHS-England Wait Time Analysis</h3>
+                </div>
+                <div class="project-content">
+                    <p>Diagnosed the NHS "Efficiency Paradox" by synthesizing 260,000+ records in R demonstrating ETL (Extract, Transform, Load) processes.</p>
+                    <p>Mathematically proved that London's record staffing density correlates with the nation's worst patient wait times, revealing systemic inefficiencies.</p>
+                    <div class="project-tags">
+                        <span class="tag">R</span>
+                        <span class="tag">ETL</span>
+                        <span class="tag">Healthcare Analytics</span>
+                        <span class="tag">Data Visualization</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <h3>Monetary Policy Transmission Research</h3>
+                </div>
+                <div class="project-content">
+                    <p>Conducted SVAR analysis on 13 years of macroeconomic data to understand monetary policy transmission mechanisms in Nepal.</p>
+                    <p>Findings published and cited in Central Bank working papers influencing financial stability models and policy decisions.</p>
+                    <div class="project-tags">
+                        <span class="tag">SVAR</span>
+                        <span class="tag">Econometrics</span>
+                        <span class="tag">Policy Research</span>
+                        <span class="tag">R</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Publications Section -->
+    <section id="publications" class="fade-in">
+        <h2>Publications</h2>
+        <div class="publications-list">
+            <div class="publication-item">
+                <h3>Monetary Policy Pass Through Considering the Reserve Ratio and Policy Rate in Nepal: An Empirical Gaze Using SVAR Analysis</h3>
+                <p><strong>Authors:</strong> Pokhrel, A., & Upreti, S.</p>
+                <p class="publication-meta">Economic Review of Nepal, 8(1), 34-52 (2025)</p>
+                <p>An empirical investigation into the effectiveness of monetary policy transmission in Nepal using Structural Vector Autoregression analysis, examining the relationship between reserve ratios, policy rates, and economic outcomes.</p>
+            </div>
+
+            <div class="publication-item">
+                <h3>The Impact of Global Oil Price Shocks on Nepal's Foreign Exchange Reserves and Inflation</h3>
+                <p><strong>Author:</strong> Upreti, S.</p>
+                <p class="publication-meta">SSRN Working Paper (2025)</p>
+                <p>A comprehensive 43-year time-series analysis examining how global oil price volatility affects Nepal's foreign exchange reserves and inflationary pressures, using VAR(4) modeling and advanced econometric techniques.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education" class="fade-in">
+        <h2>Education</h2>
+        <div class="education-grid">
+            <div class="education-card">
+                <div class="education-header">
+                    <div>
+                        <h3>Franklin & Marshall College</h3>
+                        <p>Bachelor of Arts in Economics & Data Science</p>
+                    </div>
+                    <span class="date">August 2024 - May 2028</span>
+                </div>
+                <div class="education-details">
+                    <p><strong>GPA:</strong> 3.9 | <strong>Status:</strong> Honor's List</p>
+                    <p><strong>Coursework:</strong> Data Science with R, CS with Python, Multivariable Calculus, Probability & Statistics, Microeconomics</p>
+                </div>
+                <div class="honors">
+                    <h4>Honors & Awards</h4>
+                    <ul>
+                        <li>Schapiro-Caldwell Summer Award</li>
+                        <li>Freshman Leadership Award (ASPIRE)</li>
+                        <li>F&M Music Grant (FLUTE)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="education-card">
+                <div class="education-header">
+                    <div>
+                        <h3>Advanced Studies in England</h3>
+                        <p>Study Abroad Program</p>
+                    </div>
+                    <span class="date">Aug - Dec 2024</span>
+                </div>
+                <div class="education-details">
+                    <p>Participated in an intensive study abroad program in the United Kingdom, gaining international academic experience and cross-cultural perspectives on economic policy and research methods.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="fade-in">
+        <h2>Get In Touch</h2>
+        <div class="contact-content">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <i class="fas fa-envelope"></i>
+                    <div>
+                        <strong>Email</strong>
+                        <p>supreti@fandm.edu</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-phone"></i>
+                    <div>
+                        <strong>Phone</strong>
+                        <p>(+1) 717-283-3521</p>
+                    </div>
+                </div>
+                <div class="contact-item">
+                    <i class="fas fa-map-marker-alt"></i>
+                    <div>
+                        <strong>Location</strong>
+                        <p>Lancaster, Pennsylvania, USA</p>
+                    </div>
+                </div>
+                <div>
+                    <h3 style="margin-bottom: 1rem;">Connect With Me</h3>
+                    <div class="social-links">
+                        <a href="https://www.linkedin.com/in/upreti-shubham/" target="_blank" class="social-link" title="LinkedIn">
+                            <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="https://github.com/yourusername" target="_blank" class="social-link" title="GitHub">
+                            <i class="fab fa-github"></i>
+                        </a>
+                        <a href="mailto:supreti@fandm.edu" class="social-link" title="Email">
+                            <i class="fas fa-envelope"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div style="background: var(--light-bg); padding: 2rem; border-radius: 15px;">
+                <h3 style="margin-bottom: 1.5rem; color: var(--accent-color);">Interested in collaborating?</h3>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem;">I'm always open to discussing research opportunities, data science projects, economic analysis, or potential collaborations in quantitative finance and policy research.</p>
+                <p style="color: var(--text-gray); margin-bottom: 1.5rem;">Whether you're looking for a research assistant, data analyst, or economics researcher, feel free to reach out!</p>
+                <a href="mailto:supreti@fandm.edu" class="btn btn-primary">Send Me an Email</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Built with passion for data and economics.</p>
+    </footer>
+
+    <script>
+        // Scroll Progress Bar
+        window.addEventListener('scroll', () => {
+            const winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            const scrolled = (winScroll / height) * 100;
+            document.getElementById('progressBar').style.width = scrolled + '%';
+        });
+
+        // Fade-in Animation on Scroll
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -100px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Active navigation highlighting
+        window.addEventListener('scroll', () => {
+            const sections = document.querySelectorAll('section');
+            const navLinks = document.querySelectorAll('nav a');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (scrollY >= sectionTop - 200) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.style.color = '';
+                if (link.getAttribute('href').slice(1) === current) {
+                    link.style.color = 'var(--accent-color)';
+                }
+            });
+        });
+    </script>
 </body>
 </html>
-
