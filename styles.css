@@ -90,6 +90,16 @@ nav ul li a:hover {
     background: var(--gradient); /* fallback if video doesn't load */
 }
 /* Fullscreen background video */
+.hero {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    background: var(--gradient); /* fallback only */
+}
+
 .hero-video {
     position: absolute;
     top: 50%;
@@ -103,7 +113,6 @@ nav ul li a:hover {
     z-index: 0;
 }
 
-/* Dark overlay above video to keep text legible */
 .hero-overlay {
     position: absolute;
     inset: 0;
@@ -111,7 +120,6 @@ nav ul li a:hover {
     z-index: 0;
 }
 
-/* Ensure content sits on top of video+overlay */
 .hero-content {
     position: relative;
     z-index: 1;
