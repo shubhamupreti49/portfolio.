@@ -112,6 +112,25 @@ nav ul li a:hover {
     padding: 2rem;
 }
 
+/* New: hero photo styles */
+.hero-photo {
+    width: 160px;
+    height: 160px;
+    margin: 0 auto 1.5rem auto;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 4px solid rgba(241, 245, 249, 0.9);
+    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.4);
+}
+
+.hero-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+
 .hero h1 {
     font-size: 4rem;
     margin-bottom: 1rem;
