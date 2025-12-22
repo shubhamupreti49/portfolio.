@@ -100,6 +100,7 @@ nav ul li a:hover {
     background: var(--gradient); /* fallback only */
 }
 
+/* Fullscreen background video */
 .hero-video {
     position: absolute;
     top: 50%;
