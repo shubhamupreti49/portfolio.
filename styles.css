@@ -908,3 +908,44 @@ footer {
     color: var(--text-gray);
     font-size: 0.9rem;
 }
+
+.contact-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.2rem;
+    margin-top: 1.5rem;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+    gap: 0.4rem;
+}
+
+.form-row label {
+    font-weight: 600;
+    color: var(--text-light);
+}
+
+.form-row input,
+.form-row textarea {
+    padding: 0.8rem 1rem;
+    border-radius: 8px;
+    border: 1px solid rgba(148, 163, 184, 0.7);
+    background: #0b1220;
+    color: var(--text-light);
+    font-size: 0.95rem;
+    outline: none;
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+}
+
+.form-row input:focus,
+.form-row textarea:focus {
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 1px rgba(59, 130, 246, 0.7);
+    background: #020617;
+}
+
+.form-row textarea {
+    resize: vertical;
+}
