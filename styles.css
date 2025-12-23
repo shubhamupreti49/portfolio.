@@ -117,9 +117,10 @@ nav ul li a:hover {
 .hero-overlay {
     position: absolute;
     inset: 0;
-    background: rgba(15, 23, 42, 0.55);
+    background: rgba(15, 23, 42, 0.7);  /* was 0.55 – make it darker */
     z-index: 0;
 }
+
 
 .hero-content {
     position: relative;
