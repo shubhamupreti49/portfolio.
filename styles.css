@@ -111,7 +111,7 @@ nav ul li a:hover {
     height: auto;
     transform: translate(-50%, -50%);
     object-fit: cover;
-    filter: blur(2px);          /* slight blur */
+    filter: blur(10px);          /* slight blur */
     transform-origin: center;
     z-index: 0;
 }
