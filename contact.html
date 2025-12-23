@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact – Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Reuse your navbar -->
+    <nav>
+        <ul>
+            <li><a href="index.html#home">Home</a></li>
+            <li><a href="index.html#about">About</a></li>
+            <li><a href="index.html#skills">Skills</a></li>
+            <li><a href="index.html#experience">Experience</a></li>
+            <li><a href="index.html#projects">Projects</a></li>
+            <li><a href="index.html#publications">Publications</a></li>
+            <li><a href="index.html#education">Education</a></li>
+            <li><a href="contact.html">Contact</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 800px; margin: 0 auto; padding: 6rem 1.5rem 3rem;">
+            <a href="index.html#contact" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to main page
+            </a>
+
+            <div class="detail-header">
+                <h1>Contact Me</h1>
+                <p style="font-size: 1.1rem; margin-top: 0.5rem;">
+                    Use this form to reach out with research opportunities, data science projects, or any professional inquiries.
+                </p>
+            </div>
+
+            <div class="detail-content">
+                <h2>Send a message</h2>
+
+                <!-- TODO: Replace FORM_ACTION_URL with your Formspree endpoint -->
+                <form class="contact-form" action="https://formspree.io/f/xojapywg" method="POST">
+                    <div class="form-row">
+                        <label for="name">Name</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="_replyto">Email</label>
+                        <input type="email" id="_replyto" name="_replyto" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="subject">Subject</label>
+                        <input type="text" id="subject" name="subject" required>
+                    </div>
+
+                    <div class="form-row">
+                        <label for="message">Message</label>
+                        <textarea id="message" name="message" rows="6" required></textarea>
+                    </div>
+
+                    <!-- Optional hidden field to customize email subject -->
+                    <input type="hidden" name="_subject" value="New message from portfolio website">
+
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+
+                <p style="color: var(--text-gray); margin-top: 1.5rem; font-size: 0.9rem;">
+                    You can also email me directly at <a href="mailto:shubhamupreti49@gmail.com">shubhamupreti49@gmail.com</a>.
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
