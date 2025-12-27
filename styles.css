@@ -266,10 +266,6 @@ nav ul li a:hover {
     color: var(--secondary-color);
     transform: translateY(-3px);
 }
-a[download]::after {
-    content: " ↓";
-    font-size: 0.9em;
-}
 
 /* Section Styles */
 section {
