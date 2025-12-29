@@ -1,5 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
+    <!-- Add LaTeX Math Support -->
+<script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+<script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+<script>
+  MathJax = {
+    tex: {
+      inlineMath: [['\\(', '\\)']],
+      displayMath: [['\\[', '\\]']]
+    }
+  };
+</script>
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -100,11 +112,30 @@
             </div>
 
             <!-- Add image placeholder for data workflow -->
+            <!-- Example 1: Single image with caption -->
             <div class="visualization-container">
-                <img src="images/bank-branching/data-workflow.png" alt="Data engineering workflow from raw Federal Reserve data to analytical dataset" class="project-image">
-                <p class="image-caption">Figure 1: Data engineering pipeline showing transformation from raw branch-level data to MSA-aggregated analytical features</p>
+                <img src="images/bank-branching/hhi-vs-radius.png" 
+                    alt="Scatter plot showing no relationship between HHI and lending radius" 
+                    class="project-image">
+                <p class="image-caption">Figure 2: Market Concentration (HHI) vs. Lending Radius - No systematic relationship (p = 0.502)</p>
             </div>
-        </section>
+
+            <!-- Example 2: Side-by-side comparison -->
+            <div class="visualization-grid">
+                <div class="visualization-item">
+                    <img src="images/bank-branching/hhi-vs-radius.png" 
+                        alt="HHI vs Lending Radius scatter plot" 
+                        class="project-image">
+                    <p class="image-caption">Figure 2: Market concentration shows no effect on spatial expansion</p>
+                </div>
+                <div class="visualization-item">
+                    <img src="images/bank-branching/deposits-vs-radius.png" 
+                        alt="Market size vs Lending Radius scatter plot" 
+                        class="project-image">
+                    <p class="image-caption">Figure 3: Market size drives geographic spread (R² = 0.68)</p>
+                </div>
+            </div>
+
 
         <!-- Statistical Analysis -->
         <section>
