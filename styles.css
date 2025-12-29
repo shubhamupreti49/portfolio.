@@ -1585,3 +1585,118 @@ footer {
     font-weight: bold;
     z-index: 10;
 }
+/* ===== GIF ANIMATION SPECIFIC STYLING ===== */
+
+/* Container for GIF with loading state */
+.gif-container {
+    position: relative;
+    width: 100%;
+    background: var(--dark-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* GIF images */
+.gif-animation {
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 8px;
+    /* Ensure GIF animations play */
+    image-rendering: auto;
+    -webkit-image-rendering: auto;
+}
+
+/* Loading state before GIF loads */
+.gif-container::before {
+    content: 'Loading animation...';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: var(--text-gray);
+    font-size: 1rem;
+    opacity: 0.6;
+    z-index: 1;
+}
+
+.gif-container:has(img.gif-animation[src*=".gif"]:not(.error-state))::before {
+    content: '';
+    opacity: 0;
+}
+
+/* Animated GIF badge */
+.gif-label {
+    position: absolute;
+    top: 15px;
+    left: 15px;
+    background: linear-gradient(135deg, #ef4444, #dc2626);
+    color: white;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+    box-shadow: 0 4px 12px rgba(239, 68, 68, 0.4);
+    z-index: 10;
+    animation: pulse-badge 2s ease-in-out infinite;
+}
+
+@keyframes pulse-badge {
+    0%, 100% { transform: scale(1); }
+    50% { transform: scale(1.05); }
+}
+
+/* Error state styling */
+.gif-animation.error-state {
+    border: 3px dashed #ef4444;
+    opacity: 0.7;
+}
+
+/* Hover effect for GIFs */
+.gif-container:hover {
+    transform: scale(1.02);
+    transition: transform 0.3s ease;
+}
+
+.gif-container:hover .gif-label {
+    background: linear-gradient(135deg, #dc2626, #b91c1c);
+}
+
+/* Ensure GIF plays on mobile */
+@media (max-width: 768px) {
+    .gif-container {
+        min-height: 300px;
+    }
+    
+    .gif-label {
+        font-size: 0.7rem;
+        padding: 0.4rem 0.8rem;
+    }
+}
+
+/* Force GIF animation (some browsers pause on scroll) */
+.gif-animation {
+    will-change: transform;
+}
+
+/* Loading spinner animation (optional enhancement) */
+.gif-container.loading::after {
+    content: '';
+    position: absolute;
+    width: 50px;
+    height: 50px;
+    border: 5px solid rgba(59, 130, 246, 0.3);
+    border-top-color: var(--accent-color);
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+    z-index: 5;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
