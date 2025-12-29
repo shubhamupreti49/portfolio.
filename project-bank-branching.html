@@ -114,7 +114,7 @@
             <!-- Add image placeholder for data workflow -->
             <!-- Example 1: Single image with caption -->
             <div class="visualization-container">
-                <img src="images/bank-branching/hhi-vs-radius.png" 
+                <img src="images/bank-branching/01_hhi_evolution_animated.gif" 
                     alt="Scatter plot showing no relationship between HHI and lending radius" 
                     class="project-image">
                 <p class="image-caption">Figure 2: Market Concentration (HHI) vs. Lending Radius - No systematic relationship (p = 0.502)</p>
@@ -122,7 +122,7 @@
 
             <!-- Example 2: Side-by-side comparison -->
                 <div class="visualization-item">
-                    <img src="images/bank-branching/deposits-vs-radius.png" 
+                    <img src="images/bank-branching/02_market_size_spatial_expansion.gif" 
                         alt="Market size vs Lending Radius scatter plot" 
                         class="project-image">
                     <p class="image-caption">Figure 3: Market size drives geographic spread (R² = 0.68)</p>
@@ -202,15 +202,20 @@
             </div>
         </section>
 
-        <!-- Model Diagnostics -->
+<!-- Model Diagnostics -->
         <section>
             <h2>Model Validation & Robustness</h2>
             
             <div class="visualization-container">
-                <img src="images/bank-branching/residual-plots.png" alt="Residual diagnostic plots showing model fit quality" class="project-image">
-                <p class="image-caption">Figure 4: Regression diagnostics - Residual plots indicate homoscedasticity and approximate normality</p>
+                <img src="images/bank-branching/03_hhi_null_effect_animated.gif" alt="Animated visualization showing flat relationship between HHI and lending radius" class="project-image">
+                <p class="image-caption">Figure 4: HHI vs Lending Radius - Animated demonstration of null relationship (β = 0.0012, p = 0.502)</p>
             </div>
-
+            
+            <div class="visualization-container">
+                <img src="images/bank-branching/04_hypothesis_comparison_animated.gif" alt="Side-by-side comparison of HHI null effect versus market size strong effect" class="project-image">
+                <p class="image-caption">Figure 5: Hypothesis Testing Comparison - Competition rejected vs Market Size confirmed</p>
+            </div>
+            
             <h3>Robustness Checks Performed</h3>
             <ul>
                 <li>Heteroskedasticity-robust standard errors (reported above)</li>
@@ -219,6 +224,7 @@
                 <li>Geographic fixed effects (regional dummy variables)</li>
             </ul>
         </section>
+
 
         <!-- Implications -->
         <section>
