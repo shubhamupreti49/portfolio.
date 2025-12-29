@@ -1700,3 +1700,98 @@ footer {
 @keyframes spin {
     to { transform: rotate(360deg); }
 }
+/* ===== RESPONSIVE IMAGE SIZING FIX ===== */
+
+/* All project images - constrain to container width */
+.project-image {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+    display: block;
+    margin: 0 auto;
+    object-fit: contain;
+}
+
+/* Visualization containers - prevent overflow */
+.visualization-container {
+    margin: 3rem auto;
+    max-width: 900px;
+    width: 100%;
+    overflow: hidden;
+}
+
+.visualization-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 2.5rem;
+    margin: 3rem 0;
+    max-width: 100%;
+}
+
+/* Individual visualization items */
+.visualization-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    max-width: 100%;
+    overflow: hidden;
+}
+
+.visualization-item img {
+    width: 100%;
+    height: auto;
+    max-width: 100%;
+    display: block;
+}
+
+/* GIF container sizing */
+.gif-container {
+    position: relative;
+    width: 100%;
+    max-width: 100%;
+    background: var(--dark-bg);
+    border-radius: 12px;
+    overflow: hidden;
+    min-height: 300px;
+}
+
+.gif-container img {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+/* Prevent images from breaking layout */
+.project-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Mobile responsive adjustments */
+@media (max-width: 768px) {
+    .visualization-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+    
+    .visualization-container {
+        max-width: 100%;
+        padding: 0 1rem;
+    }
+    
+    .visualization-item {
+        padding: 1rem;
+    }
+    
+    .gif-container {
+        min-height: 200px;
+    }
+}
+
+/* Tablet adjustments */
+@media (max-width: 1024px) {
+    .visualization-container {
+        max-width: 95%;
+    }
+}
