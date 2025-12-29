@@ -90,3 +90,89 @@ window.addEventListener('scroll', () => {
         }
     });
 });
+
+// Image lightbox functionality
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('.project-image');
+    
+    images.forEach(img => {
+        // Add click handler for lightbox
+        img.addEventListener('click', function() {
+            openLightbox(this);
+        });
+        
+        // Lazy loading
+        if ('loading' in HTMLImageElement.prototype) {
+            img.loading = 'lazy';
+        }
+    });
+});
+
+function openLightbox(imgElement) {
+    // Create lightbox overlay
+    const lightbox = document.createElement('div');
+    lightbox.className = 'lightbox';
+    
+    // Create close button
+    const closeBtn = document.createElement('span');
+    closeBtn.className = 'close-lightbox';
+    closeBtn.innerHTML = '&times;';
+    closeBtn.setAttribute('aria-label', 'Close lightbox');
+    
+    // Create enlarged image
+    const img = document.createElement('img');
+    img.src = imgElement.src;
+    img.alt = imgElement.alt;
+    
+    // Create caption from figure caption if exists
+    const caption = document.createElement('p');
+    caption.className = 'lightbox-caption';
+    const figCaption = imgElement.nextElementSibling;
+    caption.textContent = figCaption && figCaption.classList.contains('image-caption') 
+        ? figCaption.textContent 
+        : imgElement.alt;
+    
+    // Assemble lightbox
+    lightbox.appendChild(closeBtn);
+    lightbox.appendChild(img);
+    lightbox.appendChild(caption);
+    document.body.appendChild(lightbox);
+    document.body.style.overflow = 'hidden';
+    
+    // Close handlers
+    closeBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) {
+            closeLightbox();
+        }
+    });
+    
+    // Keyboard escape
+    document.addEventListener('keydown', function escHandler(e) {
+        if (e.key === 'Escape') {
+            closeLightbox();
+            document.removeEventListener('keydown', escHandler);
+        }
+    });
+    
+    function closeLightbox() {
+        lightbox.classList.add('fade-out');
+        setTimeout(() => {
+            document.body.removeChild(lightbox);
+            document.body.style.overflow = 'auto';
+        }, 300);
+    }
+}
+
+// Add fade out animation
+const style = document.createElement('style');
+style.textContent = `
+    .lightbox.fade-out {
+        animation: fadeOut 0.3s ease;
+    }
+    @keyframes fadeOut {
+        from { opacity: 1; }
+        to { opacity: 0; }
+    }
+`;
+document.head.appendChild(style);

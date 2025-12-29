@@ -1047,3 +1047,141 @@ footer {
         overflow: hidden;
     }
 }
+/* ===== PROJECT IMAGE STYLING ===== */
+
+/* Container for single images */
+.visualization-container {
+    margin: 3rem auto;
+    max-width: 900px;
+}
+
+/* Grid layout for multiple images */
+.visualization-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 2.5rem;
+    margin: 3rem 0;
+}
+
+@media (max-width: 768px) {
+    .visualization-grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Individual visualization card */
+.visualization-item {
+    background: #f8f9fa;
+    padding: 1.5rem;
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.visualization-item:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+}
+
+/* Image styling */
+.project-image {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.project-image:hover {
+    transform: scale(1.02);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Image captions */
+.image-caption {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+    text-align: center;
+    margin-top: 1rem;
+    line-height: 1.5;
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+    .visualization-item {
+        background: #2d3748;
+    }
+    
+    .image-caption {
+        color: #a0aec0;
+    }
+}
+
+/* Lightbox overlay */
+.lightbox {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.95);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    z-index: 10000;
+    animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.lightbox img {
+    max-width: 90%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 8px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+}
+
+.close-lightbox {
+    position: absolute;
+    top: 20px;
+    right: 40px;
+    font-size: 3rem;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+    font-weight: 300;
+    line-height: 1;
+}
+
+.close-lightbox:hover {
+    transform: scale(1.1);
+    color: #ff6b6b;
+}
+
+.lightbox-caption {
+    color: white;
+    margin-top: 1.5rem;
+    font-size: 1rem;
+    text-align: center;
+    max-width: 800px;
+    padding: 0 2rem;
+}
+
+/* Loading animation for images */
+.project-image.loading {
+    background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+    background-size: 200% 100%;
+    animation: shimmer 1.5s infinite;
+}
+
+@keyframes shimmer {
+    0% { background-position: 200% 0; }
+    100% { background-position: -200% 0; }
+}

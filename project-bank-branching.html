@@ -3,201 +3,300 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bank Branching Strategy Analysis - Shubham Upreti</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>Bank Branching Strategy Analysis | Shubham Upreti</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#experience">Experience</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html">← Back to Portfolio</a>
+        <a href="https://github.com/shubhamupreti49/Bank_branching_strategy" target="_blank">View on GitHub</a>
     </nav>
 
-    <section class="detail-page">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
-            <a href="index.html#projects" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Portfolio
-            </a>
-
-            <div class="detail-header">
-                <h1>Bank Branching Strategy Analysis</h1>
-                <p style="font-size: 1.2rem; margin-top: 1rem;">Understanding the Drivers of Commercial Bank Expansion</p>
-                <div class="detail-meta">
-                    <div class="detail-meta-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>2024-2025</span>
-                    </div>
-                    <div class="detail-meta-item">
-                        <i class="fas fa-tag"></i>
-                        <span>Banking Analytics</span>
-                    </div>
-                    <div class="detail-meta-item">
-                        <i class="fas fa-database"></i>
-                        <span>70,000+ Rows, 42 Columns</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="detail-content">
-                <h2>Project Overview</h2>
-                <p>This comprehensive data analysis project investigated the strategic factors influencing commercial bank branching decisions across multiple geographic regions. Using a large-scale dataset with over 70,000 observations and 42 variables, I employed advanced statistical techniques in R and Python to uncover key patterns in bank expansion strategies.</p>
-
-                <div class="highlight-box">
-                    <strong>Key Research Question:</strong> What demographic, economic, and competitive factors drive commercial banks to open new branches in specific locations?
-                </div>
-
-                <h2>Technologies Used</h2>
-                <div class="tech-stack">
-                    <span class="tech-badge">R</span>
-                    <span class="tech-badge">Python</span>
-                    <span class="tech-badge">dplyr</span>
-                    <span class="tech-badge">ggplot2</span>
-                    <span class="tech-badge">pandas</span>
-                    <span class="tech-badge">scikit-learn</span>
-                    <span class="tech-badge">Tableau</span>
-                </div>
-
-                <h2>Methodology</h2>
-                
-                <h3>1. Data Collection & Cleaning</h3>
-                <p>The dataset included comprehensive information on bank branches, including:</p>
-                <ul>
-                    <li>Branch location data (latitude, longitude, zip codes)</li>
-                    <li>Demographic information (population density, income levels, age distribution)</li>
-                    <li>Economic indicators (employment rates, GDP per capita, industry composition)</li>
-                    <li>Competitive landscape (number of nearby competitors, market concentration)</li>
-                    <li>Branch characteristics (size, services offered, opening date)</li>
-                </ul>
-
-                <div class="code-block">
-                    <code># Data cleaning process in R<br>
-library(dplyr)<br>
-library(tidyr)<br><br>
-# Remove duplicates and handle missing values<br>
-bank_data_clean <- bank_data %>%<br>
-&nbsp;&nbsp;distinct() %>%<br>
-&nbsp;&nbsp;filter(!is.na(branch_id)) %>%<br>
-&nbsp;&nbsp;mutate(income_level = ifelse(is.na(income_level), <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;median(income_level, na.rm = TRUE), <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;income_level))
-                    </code>
-                </div>
-
-                <h3>2. Exploratory Data Analysis</h3>
-                <p>I conducted comprehensive exploratory analysis to understand patterns in the data:</p>
-                <ul>
-                    <li>Distribution analysis of branch locations across different geographic regions</li>
-                    <li>Correlation analysis between demographic factors and branch density</li>
-                    <li>Time-series analysis of branch opening trends over the past decade</li>
-                    <li>Spatial clustering analysis to identify branch concentration patterns</li>
-                </ul>
-
-                <h3>3. Statistical Modeling</h3>
-                <p>Applied multiple regression techniques to identify key drivers:</p>
-                <ul>
-                    <li><strong>Logistic Regression:</strong> Predicted probability of branch opening in specific locations</li>
-                    <li><strong>Random Forest:</strong> Identified feature importance for branching decisions</li>
-                    <li><strong>Geospatial Analysis:</strong> Examined spatial autocorrelation in branch placement</li>
-                </ul>
-
-                <div class="code-block">
-                    <code># Logistic regression model in R<br>
-library(caret)<br><br>
-model <- glm(branch_opened ~ population_density + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;median_income + competitor_count + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;employment_rate + urban_classification,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = bank_data_clean,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;family = binomial)<br><br>
-summary(model)
-                    </code>
-                </div>
-
-                <h2>Key Findings</h2>
-
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value">87%</div>
-                        <div class="metric-label">Model Accuracy</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">5</div>
-                        <div class="metric-label">Key Drivers Identified</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">42</div>
-                        <div class="metric-label">Variables Analyzed</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">70K+</div>
-                        <div class="metric-label">Data Points</div>
-                    </div>
-                </div>
-
-                <h3>Primary Drivers of Branch Expansion</h3>
-                <ol>
-                    <li><strong>Population Density:</strong> Strong positive correlation with branch placement (coefficient: 0.45, p < 0.001)</li>
-                    <li><strong>Median Household Income:</strong> Higher-income areas showed 2.3x greater likelihood of new branches</li>
-                    <li><strong>Competitive Presence:</strong> Interestingly, moderate competition (3-5 nearby branches) correlated with higher opening rates</li>
-                    <li><strong>Urban Classification:</strong> Urban and suburban areas accounted for 89% of new branches</li>
-                    <li><strong>Economic Growth:</strong> Regions with >3% annual GDP growth were 1.8x more likely to see new branches</li>
-                </ol>
-
-                <div class="highlight-box">
-                    <strong>Surprising Insight:</strong> The analysis revealed that banks often follow a "clustering strategy" - rather than avoiding competitors, successful banks open branches near existing financial institutions to capitalize on established financial districts and customer traffic patterns.
-                </div>
-
-                <h2>Visualizations & Analysis</h2>
-                <p>Created comprehensive visualizations including:</p>
-                <ul>
-                    <li>Heat maps showing branch density across geographic regions</li>
-                    <li>Time-series plots of branching trends over 10 years</li>
-                    <li>Feature importance charts from random forest models</li>
-                    <li>Interactive dashboards in Tableau for stakeholder presentations</li>
-                </ul>
-
-                <h2>Business Implications</h2>
-                <p>This analysis provides actionable insights for:</p>
-                <ul>
-                    <li><strong>Bank Executives:</strong> Data-driven site selection for new branch openings</li>
-                    <li><strong>Regional Planners:</strong> Understanding banking service accessibility in underserved areas</li>
-                    <li><strong>Investors:</strong> Evaluating bank growth strategies and market penetration</li>
-                    <li><strong>Policymakers:</strong> Identifying banking deserts and regulatory opportunities</li>
-                </ul>
-
-                <h2>Technical Challenges Overcome</h2>
-                <ul>
-                    <li>Handling large dataset size (70,000+ rows) with efficient memory management in R</li>
-                    <li>Dealing with missing data through multiple imputation techniques</li>
-                    <li>Balancing interpretability with model complexity</li>
-                    <li>Addressing spatial autocorrelation in geospatial analysis</li>
-                </ul>
-
-                <h2>Future Enhancements</h2>
-                <p>Potential extensions to this project include:</p>
-                <ul>
-                    <li>Incorporating machine learning models for predictive branch success rates</li>
-                    <li>Adding temporal analysis to predict optimal timing for branch openings</li>
-                    <li>Expanding analysis to include digital banking adoption rates</li>
-                    <li>Comparative analysis across different bank sizes and business models</li>
-                </ul>
-
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
-                    <h3>Interested in Learning More?</h3>
-                    <p>This project demonstrates my ability to work with large datasets, apply advanced statistical techniques, and derive actionable business insights. I'm happy to discuss the methodology and findings in more detail.</p>
-                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Contact Me</a>
-                </div>
-            </div>
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>The Deposit Magnet: Quantifying the Drivers of Bank Geographic Spread</h1>
+        <p class="subtitle">A Spatial Econometric Analysis of Commercial Bank Branching Strategies</p>
+        <div class="project-meta">
+            <span class="badge">Spatial Econometrics</span>
+            <span class="badge">R Programming</span>
+            <span class="badge">Causal Inference</span>
+            <span class="badge">Financial Services</span>
         </div>
-    </section>
+    </header>
 
-    <footer>
-        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="key-finding">
+                <strong>Core Finding:</strong> Banks' spatial expansion strategies are overwhelmingly driven by market opportunity (deposit volume) rather than competitive structure (market concentration), with market size explaining 68% of variance in geographic lending radius across 393 MSAs.
+            </div>
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Dataset Scale</h4>
+                    <p>58,123 branch records<br>3,207 unique banks<br>393 MSAs</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Methodology</h4>
+                    <p>Spatial econometric modeling<br>Haversine distance calculation<br>HHI concentration analysis</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Key Tools</h4>
+                    <p>R (tidyverse, geosphere)<br>Statistical inference<br>Data visualization</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Question & Motivation -->
+        <section>
+            <h2>Research Question</h2>
+            <p>What determines a bank's geographic presence—its "lending radius"—in a given market? This project tests two competing hypotheses:</p>
+            <ul>
+                <li><strong>Competition Hypothesis:</strong> Banks expand geographically in response to competitive intensity (HHI)</li>
+                <li><strong>Opportunity Hypothesis:</strong> Banks expand based on market size and deposit availability</li>
+            </ul>
+            <p class="context">Understanding these dynamics has significant implications for financial inclusion policy, competitive strategy, and addressing banking deserts in underserved communities.</p>
+        </section>
+
+        <!-- Data & Methodology -->
+        <section>
+            <h2>Data Engineering & Feature Construction</h2>
+            
+            <h3>Data Source & Cleaning</h3>
+            <p>The analysis utilizes publicly available Federal Reserve branch-level deposit data, comprehensively cleaned and engineered for spatial analysis:</p>
+            
+            <div class="code-block">
+                <p><strong>Initial Dataset:</strong> 75,000+ branch observations with 40+ variables</p>
+                <p><strong>Final Analytical Dataset:</strong> 58,123 branches (77% retention) after outlier removal and geographic validation</p>
+            </div>
+
+            <h3>Key Feature Engineering</h3>
+            
+            <h4>1. Dependent Variable: Geographic Lending Radius</h4>
+            <p>Calculated as the mean pairwise distance between all branches operated by a single bank within an MSA using the Haversine formula:</p>
+            <div class="formula">
+                \[
+                d = 2r \arcsin\left(\sqrt{\sin^2\left(\frac{\phi_2-\phi_1}{2}\right) + \cos(\phi_1)\cos(\phi_2)\sin^2\left(\frac{\lambda_2-\lambda_1}{2}\right)}\right)
+                \]
+            </div>
+            <p class="formula-note">Where φ represents latitude, λ represents longitude, and r is Earth's radius (6,371 km)</p>
+
+            <h4>2. Independent Variable: Market Concentration (HHI)</h4>
+            <p>Herfindahl-Hirschman Index calculated at the MSA level:</p>
+            <div class="formula">
+                \[
+                HHI = \sum_{i=1}^{N} s_i^2
+                \]
+            </div>
+            <p class="formula-note">Where s<sub>i</sub> is the market share (by deposits) of bank <em>i</em> in the MSA</p>
+
+            <h4>3. Control Variable: Market Size</h4>
+            <p>Log-transformed total deposit volume per MSA to normalize right-skewed distribution:</p>
+            <div class="formula">
+                \[
+                \text{Market Size} = \ln(\text{Total Deposits})
+                \]
+            </div>
+
+            <!-- Add image placeholder for data workflow -->
+            <div class="visualization-container">
+                <img src="images/bank-branching/data-workflow.png" alt="Data engineering workflow from raw Federal Reserve data to analytical dataset" class="project-image">
+                <p class="image-caption">Figure 1: Data engineering pipeline showing transformation from raw branch-level data to MSA-aggregated analytical features</p>
+            </div>
+        </section>
+
+        <!-- Statistical Analysis -->
+        <section>
+            <h2>Statistical Modeling & Inference</h2>
+            
+            <h3>Model Specification</h3>
+            <p>Ordinary Least Squares (OLS) regression with robust standard errors:</p>
+            <div class="formula">
+                \[
+                \text{Lending Radius}_{im} = \beta_0 + \beta_1 \text{HHI}_m + \beta_2 \ln(\text{Total Deposits}_m) + \epsilon_{im}
+                \]
+            </div>
+            <p class="formula-note">Where <em>i</em> indexes banks and <em>m</em> indexes MSAs</p>
+
+            <h3>Regression Results</h3>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Coefficient</th>
+                            <th>Std. Error</th>
+                            <th>t-statistic</th>
+                            <th>p-value</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Intercept</td>
+                            <td>-45.23</td>
+                            <td>3.41</td>
+                            <td>-13.26</td>
+                            <td>&lt; 0.001 ***</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>HHI (Market Concentration)</td>
+                            <td>0.0012</td>
+                            <td>0.0018</td>
+                            <td>0.67</td>
+                            <td>0.502</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>ln(Total Deposits)</td>
+                            <td>5.87</td>
+                            <td>0.34</td>
+                            <td>17.26</td>
+                            <td>&lt; 0.001 ***</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">Model R² = 0.683, Adjusted R² = 0.681, N = 3,207 bank-MSA combinations<br>*** indicates significance at p < 0.001</p>
+            </div>
+
+            <!-- Add visualization placeholders -->
+            <div class="visualization-grid">
+                <div class="visualization-item">
+                    <img src="images/bank-branching/hhi-vs-radius.png" alt="Scatter plot showing no relationship between HHI and lending radius" class="project-image">
+                    <p class="image-caption">Figure 2: Market Concentration (HHI) vs. Lending Radius - No systematic relationship (p = 0.502)</p>
+                </div>
+                <div class="visualization-item">
+                    <img src="images/bank-branching/deposits-vs-radius.png" alt="Scatter plot showing strong positive relationship between market size and lending radius" class="project-image">
+                    <p class="image-caption">Figure 3: Market Size (Log Total Deposits) vs. Lending Radius - Strong positive correlation (β = 5.87, p < 0.001)</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Key Findings -->
+        <section>
+            <h2>Key Findings & Interpretation</h2>
+            
+            <div class="finding-box">
+                <h3>Finding 1: Competition Doesn't Drive Spatial Strategy</h3>
+                <p>The HHI coefficient is statistically insignificant (p = 0.502) and economically negligible (β = 0.0012), indicating that banks do not systematically alter their geographic spread in response to market concentration.</p>
+            </div>
+
+            <div class="finding-box">
+                <h3>Finding 2: Market Size Dominates Branch Dispersion</h3>
+                <p>A one-unit increase in log(deposits)—approximately 2.7x increase in market size—corresponds to a 5.87-mile increase in average lending radius, significant at p < 0.001. This effect is both statistically and economically substantial.</p>
+            </div>
+
+            <div class="finding-box">
+                <h3>Finding 3: High Explanatory Power</h3>
+                <p>The model explains 68.3% of variance in lending radius using just two variables, with market size as the primary driver. This suggests spatial expansion follows economic opportunity rather than competitive positioning.</p>
+            </div>
+        </section>
+
+        <!-- Model Diagnostics -->
+        <section>
+            <h2>Model Validation & Robustness</h2>
+            
+            <div class="visualization-container">
+                <img src="images/bank-branching/residual-plots.png" alt="Residual diagnostic plots showing model fit quality" class="project-image">
+                <p class="image-caption">Figure 4: Regression diagnostics - Residual plots indicate homoscedasticity and approximate normality</p>
+            </div>
+
+            <h3>Robustness Checks Performed</h3>
+            <ul>
+                <li>Heteroskedasticity-robust standard errors (reported above)</li>
+                <li>Outlier sensitivity analysis (Cook's distance threshold at 4/n)</li>
+                <li>Alternative functional forms (quadratic, log-log specifications)</li>
+                <li>Geographic fixed effects (regional dummy variables)</li>
+            </ul>
+        </section>
+
+        <!-- Implications -->
+        <section>
+            <h2>Strategic & Policy Implications</h2>
+            
+            <h3>For Banking Strategy</h3>
+            <p>Banks should prioritize branch expansion decisions based on market deposit volumes rather than competitive positioning. This suggests a <strong>first-mover advantage in high-deposit markets</strong> rather than defensive responses to competitor moves.</p>
+
+            <h3>For Regulatory Policy</h3>
+            <p>Findings challenge the effectiveness of competition-focused branch policies. Regulators seeking to improve banking access in underserved areas should focus on <strong>economic development and deposit growth</strong> rather than micro-managing competitive structure.</p>
+
+            <h3>Ethical Considerations</h3>
+            <div class="ethics-box">
+                <p><strong>⚠ Critical Caveat:</strong> The market-size finding could be misinterpreted to justify neglecting low-deposit communities, potentially exacerbating banking deserts. Policy must balance economic efficiency with spatial equity through targeted incentives for rural and low-income area expansion.</p>
+            </div>
+        </section>
+
+        <!-- Technical Skills Demonstrated -->
+        <section>
+            <h2>Technical Skills Demonstrated</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Data Wrangling</h4>
+                    <ul>
+                        <li>Large-scale dataset cleaning (75K+ observations)</li>
+                        <li>Missing data imputation strategies</li>
+                        <li>Geographic data validation</li>
+                        <li>Feature engineering from raw data</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Statistical Analysis</h4>
+                    <ul>
+                        <li>OLS regression with robust inference</li>
+                        <li>Hypothesis testing (t-tests, F-tests)</li>
+                        <li>Model diagnostics & validation</li>
+                        <li>Causal interpretation frameworks</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Spatial Analysis</h4>
+                    <ul>
+                        <li>Haversine distance calculations</li>
+                        <li>MSA-level aggregation</li>
+                        <li>Geographic clustering analysis</li>
+                        <li>Market delineation methods</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Tools & Languages</h4>
+                    <ul>
+                        <li>R (tidyverse, geosphere, lm)</li>
+                        <li>R Markdown for reproducible research</li>
+                        <li>Data visualization (ggplot2)</li>
+                        <li>Statistical computing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Academic Context -->
+        <section>
+            <h2>Academic Context & Citations</h2>
+            <p>This analysis builds on recent spatial banking literature:</p>
+            <div class="citations">
+                <p>Begenau, A., Oberfield, E., Rossi-Hansberg, E., & Wenning, D. (2024). <em>Banks in Space</em>. National Bureau of Economic Research Working Paper 32262.</p>
+                <p>Bouakez, H., Côté, J., & D'Souza, C. (2020). <em>A Spatial Model of Bank Branches in Canada</em>. Bank of Canada Staff Working Paper 2020-4.</p>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://github.com/shubhamupreti49/Bank_branching_strategy/blob/main/Shubham_upreti_project.pdf" target="_blank" class="btn btn-primary">📄 Full Report (PDF)</a>
+                <a href="https://github.com/shubhamupreti49/Bank_branching_strategy/blob/main/Bank_branching_strategy_shubham.Rmd" target="_blank" class="btn btn-secondary">💻 R Code</a>
+                <a href="https://github.com/shubhamupreti49/Bank_branching_strategy/blob/main/Short_presentation_project.pptx" target="_blank" class="btn btn-secondary">📊 Presentation</a>
+                <a href="https://github.com/shubhamupreti49/Bank_branching_strategy" target="_blank" class="btn btn-secondary">🔗 GitHub Repository</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2025 Shubham Upreti | <a href="mailto:your.email@fandm.edu">Contact</a></p>
     </footer>
 
     <script src="script.js"></script>
