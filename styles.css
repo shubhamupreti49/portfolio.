@@ -1541,3 +1541,47 @@ footer {
         padding: 0.8rem;
     }
 }
+/* ===== NHS PROJECT SPECIFIC ENHANCEMENTS ===== */
+
+/* Animated GIF containers */
+.visualization-item img[src$=".gif"] {
+    border: 3px solid var(--accent-color);
+    box-shadow: 0 6px 20px rgba(59, 130, 246, 0.4);
+}
+
+/* Code blocks with syntax highlighting */
+.code-block pre {
+    background: #1e1e1e;
+    color: #d4d4d4;
+    padding: 1.5rem;
+    border-radius: 8px;
+    overflow-x: auto;
+    font-family: 'Courier New', Consolas, monospace;
+    font-size: 0.9rem;
+    line-height: 1.6;
+}
+
+.code-block code {
+    color: inherit;
+}
+
+/* Highlight effect for important findings */
+.highlight-row {
+    background: linear-gradient(90deg, rgba(239, 68, 68, 0.15), rgba(239, 68, 68, 0.05));
+    border-left: 4px solid #ef4444;
+}
+
+/* Differentiate animated vs. static visualizations */
+.visualization-item:has(img[src$=".gif"])::before {
+    content: "🎬 ANIMATED";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: var(--accent-color);
+    color: white;
+    padding: 0.3rem 0.8rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: bold;
+    z-index: 10;
+}

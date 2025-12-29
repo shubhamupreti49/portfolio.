@@ -3,250 +3,403 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>NHS-England Wait Time Analysis - Shubham Upreti</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <title>NHS Efficiency Paradox Analysis | Shubham Upreti</title>
     <link rel="stylesheet" href="styles.css">
+    
+    <!-- LaTeX Math Support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        }
+      };
+    </script>
 </head>
 <body>
-    <nav>
-        <ul>
-            <li><a href="index.html">Home</a></li>
-            <li><a href="index.html#about">About</a></li>
-            <li><a href="index.html#skills">Skills</a></li>
-            <li><a href="index.html#experience">Experience</a></li>
-            <li><a href="index.html#projects">Projects</a></li>
-            <li><a href="index.html#contact">Contact</a></li>
-        </ul>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html">← Back to Portfolio</a>
+        <a href="https://github.com/shubhamupreti49/NHS-England-Waiting-Time-Analysis" target="_blank">View on GitHub</a>
     </nav>
 
-    <section class="detail-page">
-        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
-            <a href="index.html#projects" class="back-button">
-                <i class="fas fa-arrow-left"></i> Back to Portfolio
-            </a>
-
-            <div class="detail-header">
-                <h1>NHS-England Wait Time Analysis</h1>
-                <p style="font-size: 1.2rem; margin-top: 1rem;">Uncovering the "Efficiency Paradox" in Healthcare Delivery</p>
-                <div class="detail-meta">
-                    <div class="detail-meta-item">
-                        <i class="fas fa-calendar"></i>
-                        <span>2024</span>
-                    </div>
-                    <div class="detail-meta-item">
-                        <i class="fas fa-tag"></i>
-                        <span>Healthcare Analytics</span>
-                    </div>
-                    <div class="detail-meta-item">
-                        <i class="fas fa-database"></i>
-                        <span>260,000+ Records</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="detail-content">
-                <h2>Project Overview</h2>
-                <p>This comprehensive healthcare analytics project investigated a puzzling phenomenon in the National Health Service (NHS) of England: despite London having the highest staffing density in the country, it consistently reports the longest patient wait times. Through rigorous statistical analysis of over 260,000 patient records, I uncovered systemic inefficiencies and provided data-driven recommendations for improvement.</p>
-
-                <div class="highlight-box">
-                    <strong>Central Discovery:</strong> London's record staffing density paradoxically correlates with the nation's worst patient wait times, revealing fundamental operational inefficiencies rather than resource shortages.
-                </div>
-
-                <h2>Technologies Used</h2>
-                <div class="tech-stack">
-                    <span class="tech-badge">R</span>
-                    <span class="tech-badge">RStudio</span>
-                    <span class="tech-badge">dplyr</span>
-                    <span class="tech-badge">ggplot2</span>
-                    <span class="tech-badge">tidyr</span>
-                    <span class="tech-badge">lubridate</span>
-                    <span class="tech-badge">ETL</span>
-                </div>
-
-                <h2>Research Context</h2>
-                <p>The NHS faces ongoing criticism for long wait times, with conventional wisdom suggesting that more staff equals better service. However, preliminary data suggested a more complex relationship. This project aimed to:</p>
-                <ul>
-                    <li>Quantify the relationship between staffing levels and patient wait times</li>
-                    <li>Identify regional variations in healthcare delivery efficiency</li>
-                    <li>Uncover systemic factors contributing to wait time disparities</li>
-                    <li>Provide evidence-based policy recommendations</li>
-                </ul>
-
-                <h2>Data & Methodology</h2>
-
-                <h3>1. Data Collection & ETL Pipeline</h3>
-                <p>Developed a comprehensive ETL (Extract, Transform, Load) pipeline to process NHS patient data:</p>
-
-                <div class="code-block">
-                    <code># ETL Process in R<br>
-library(dplyr)<br>
-library(tidyr)<br>
-library(lubridate)<br><br>
-# Extract: Load multiple data sources<br>
-patient_data <- read.csv("nhs_patient_records.csv")<br>
-staffing_data <- read.csv("nhs_staffing_levels.csv")<br>
-facility_data <- read.csv("nhs_facilities.csv")<br><br>
-# Transform: Clean and merge datasets<br>
-nhs_combined <- patient_data %>%<br>
-&nbsp;&nbsp;left_join(staffing_data, by = "facility_id") %>%<br>
-&nbsp;&nbsp;left_join(facility_data, by = "facility_id") %>%<br>
-&nbsp;&nbsp;mutate(<br>
-&nbsp;&nbsp;&nbsp;&nbsp;wait_time_days = as.numeric(difftime(treatment_date, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;referral_date, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;units = "days")),<br>
-&nbsp;&nbsp;&nbsp;&nbsp;staff_per_1000 = (total_staff / population) * 1000<br>
-&nbsp;&nbsp;) %>%<br>
-&nbsp;&nbsp;filter(wait_time_days >= 0 & wait_time_days <= 365)
-                    </code>
-                </div>
-
-                <h3>2. Data Quality & Validation</h3>
-                <p>Rigorous data quality procedures included:</p>
-                <ul>
-                    <li>Removing duplicate patient records (3.2% of dataset)</li>
-                    <li>Handling missing values through multiple imputation</li>
-                    <li>Validating date ranges and eliminating outliers</li>
-                    <li>Cross-referencing staffing data with official NHS reports</li>
-                    <li>Standardizing regional classifications across datasets</li>
-                </ul>
-
-                <h3>3. Statistical Analysis</h3>
-                <p>Applied multiple analytical techniques:</p>
-                <ul>
-                    <li><strong>Regression Analysis:</strong> Modeled relationship between staffing density and wait times</li>
-                    <li><strong>ANOVA:</strong> Compared wait times across different regions</li>
-                    <li><strong>Time Series Analysis:</strong> Examined temporal trends in wait times</li>
-                    <li><strong>Correlation Analysis:</strong> Investigated relationships between multiple efficiency metrics</li>
-                </ul>
-
-                <div class="code-block">
-                    <code># Statistical modeling<br>
-# Multiple regression analysis<br>
-model <- lm(wait_time_days ~ staff_per_1000 + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;facility_capacity + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;patient_complexity_score + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;region + <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;emergency_admissions_rate,<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;data = nhs_combined)<br><br>
-# Test for efficiency paradox<br>
-london_data <- filter(nhs_combined, region == "London")<br>
-cor.test(london_data$staff_per_1000, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;london_data$wait_time_days)
-                    </code>
-                </div>
-
-                <h2>Key Findings</h2>
-
-                <div class="metrics-grid">
-                    <div class="metric-card">
-                        <div class="metric-value">260K+</div>
-                        <div class="metric-label">Patient Records</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">47%</div>
-                        <div class="metric-label">Longer London Waits</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">1.8x</div>
-                        <div class="metric-label">London Staff Density</div>
-                    </div>
-                    <div class="metric-card">
-                        <div class="metric-value">12</div>
-                        <div class="metric-label">Regions Analyzed</div>
-                    </div>
-                </div>
-
-                <h3>The Efficiency Paradox Explained</h3>
-                <ol>
-                    <li><strong>Staffing Density vs. Wait Times:</strong> London has 1.8x the national average in healthcare staff per capita, yet patients wait 47% longer than the national median</li>
-                    
-                    <li><strong>Administrative Overhead:</strong> Statistical analysis revealed that London facilities allocate 34% more staff to administrative roles compared to direct patient care</li>
-                    
-                    <li><strong>Patient Complexity:</strong> London treats 2.1x more complex cases, but staffing allocation doesn't account for this increased demand</li>
-                    
-                    <li><strong>Facility Utilization:</strong> Despite high staffing, London facilities operate at 97% capacity vs. 78% nationally, creating bottlenecks</li>
-                    
-                    <li><strong>Coordination Inefficiency:</strong> Larger facilities in London showed worse patient flow coordination, with average processing delays of 42 minutes vs. 18 minutes in smaller regional hospitals</li>
-                </ol>
-
-                <div class="highlight-box">
-                    <strong>Mathematical Proof:</strong> Regression analysis showed a statistically significant positive correlation (r = 0.31, p < 0.001) between staffing density and wait times in London, controlling for patient complexity and facility size. This counterintuitive finding suggests systemic operational inefficiencies rather than resource constraints.
-                </div>
-
-                <h2>Visualizations Created</h2>
-                <p>Developed comprehensive data visualizations including:</p>
-                <ul>
-                    <li>Regional heat maps comparing staffing density to average wait times</li>
-                    <li>Time-series plots showing wait time trends over 24 months</li>
-                    <li>Scatter plots demonstrating the efficiency paradox with regression lines</li>
-                    <li>Box plots comparing wait time distributions across regions</li>
-                    <li>Flow diagrams illustrating patient journey bottlenecks</li>
-                </ul>
-
-                <div class="code-block">
-                    <code># Visualization example<br>
-library(ggplot2)<br><br>
-ggplot(nhs_combined, aes(x = staff_per_1000, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y = wait_time_days, <br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;color = region)) +<br>
-&nbsp;&nbsp;geom_point(alpha = 0.5) +<br>
-&nbsp;&nbsp;geom_smooth(method = "lm", se = TRUE) +<br>
-&nbsp;&nbsp;facet_wrap(~region) +<br>
-&nbsp;&nbsp;labs(title = "Staffing Density vs Patient Wait Times",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;x = "Healthcare Staff per 1,000 Population",<br>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;y = "Average Wait Time (Days)") +<br>
-&nbsp;&nbsp;theme_minimal()
-                    </code>
-                </div>
-
-                <h2>Policy Recommendations</h2>
-                <p>Based on the analysis, I developed data-driven recommendations:</p>
-                <ol>
-                    <li><strong>Restructure Staffing Allocation:</strong> Shift resources from administrative to direct patient care roles</li>
-                    <li><strong>Optimize Facility Capacity:</strong> Implement dynamic scheduling to reduce bottlenecks at peak times</li>
-                    <li><strong>Improve Coordination:</strong> Invest in digital patient flow management systems</li>
-                    <li><strong>Regional Learning:</strong> Adopt best practices from high-performing smaller regional hospitals</li>
-                    <li><strong>Targeted Interventions:</strong> Focus improvement efforts on high-complexity departments</li>
-                </ol>
-
-                <h2>Technical Challenges</h2>
-                <ul>
-                    <li>Processing and cleaning 260,000+ records with complex interdependencies</li>
-                    <li>Merging multiple datasets with inconsistent identifiers</li>
-                    <li>Accounting for confounding variables in causal analysis</li>
-                    <li>Ensuring statistical validity with non-normal distributions</li>
-                    <li>Communicating complex statistical findings to non-technical stakeholders</li>
-                </ul>
-
-                <h2>Skills Demonstrated</h2>
-                <ul>
-                    <li>Large-scale data processing and ETL pipeline development</li>
-                    <li>Advanced statistical modeling and hypothesis testing</li>
-                    <li>Data visualization for policy communication</li>
-                    <li>Healthcare analytics and operational efficiency analysis</li>
-                    <li>R programming for data science applications</li>
-                </ul>
-
-                <h2>Impact & Applications</h2>
-                <p>This analysis has implications for:</p>
-                <ul>
-                    <li>NHS policymakers seeking evidence-based efficiency improvements</li>
-                    <li>Hospital administrators optimizing operational workflows</li>
-                    <li>Healthcare economists studying resource allocation</li>
-                    <li>Public health researchers investigating service delivery disparities</li>
-                </ul>
-
-                <div style="margin-top: 3rem; padding-top: 2rem; border-top: 2px solid var(--accent-color);">
-                    <h3>Want to Discuss This Research?</h3>
-                    <p>This project demonstrates my ability to tackle complex policy questions through rigorous quantitative analysis. I'm eager to discuss the methodology, findings, and potential applications in other healthcare systems.</p>
-                    <a href="mailto:supreti@fandm.edu" class="btn btn-primary" style="margin-top: 1rem;">Get in Touch</a>
-                </div>
-            </div>
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>The Efficiency Paradox: Forensic Analysis of NHS England's Healthcare Crisis</h1>
+        <p class="subtitle">Exposing the Resource-Performance Gap Through Longitudinal Healthcare Analytics</p>
+        <div class="project-meta">
+            <span class="badge">Healthcare Analytics</span>
+            <span class="badge">R Programming</span>
+            <span class="badge">Policy Analysis</span>
+            <span class="badge">Data Visualization</span>
         </div>
-    </section>
+    </header>
 
-    <footer>
-        <p>&copy; 2025 Shubham Upreti. All rights reserved.</p>
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="key-finding">
+                <strong>Core Finding:</strong> Despite London having the highest staffing density in NHS England (76 FTE per 1,000 patients), it suffers the worst patient wait times (42.5% exceeding 18-week threshold). This counterintuitive "Efficiency Paradox" reveals that healthcare crisis is structural—not simply a resource shortage.
+            </div>
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Dataset Scale</h4>
+                    <p>260,000+ records<br>7 NHS Regions<br>15-year longitudinal span</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Methodology</h4>
+                    <p>Time-series analysis<br>Regex-based entity mapping<br>Efficiency frontier modeling</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Key Tools</h4>
+                    <p>R (tidyverse, ggplot2)<br>gganimate for temporal viz<br>Regex pattern matching</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Question & Motivation -->
+        <section>
+            <h2>Research Question</h2>
+            <p>Does increasing NHS workforce automatically reduce patient waiting times? With over 7 million patients on NHS waiting lists—triple the 2020 level—this question has profound policy implications.</p>
+            
+            <h3>Motivation</h3>
+            <p>Conventional wisdom suggests the solution is straightforward: hire more staff. However, preliminary regional data revealed a puzzling anomaly: London, with the highest staffing density, paradoxically exhibited the longest wait times. This project rigorously tests whether resource allocation predicts healthcare performance.</p>
+            
+            <p class="context">This analysis challenges the dominant narrative that NHS failures stem purely from underfunding, suggesting instead that systemic inefficiencies and process failures explain the crisis.</p>
+        </section>
+
+        <!-- Data Engineering & Methodology -->
+        <section>
+            <h2>Data Engineering & Integration</h2>
+            
+            <h3>Data Sources & Scale</h3>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dataset</th>
+                            <th>Description</th>
+                            <th>Dimensions</th>
+                            <th>Timeframe</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>NHS_cleaned.csv</td>
+                            <td>Longitudinal referral time-series</td>
+                            <td>240 × 45</td>
+                            <td>2007-2025</td>
+                        </tr>
+                        <tr>
+                            <td>RTT_NHS_March.csv</td>
+                            <td>Regional wait-time distribution snapshot</td>
+                            <td>185,000 × 121</td>
+                            <td>March 2025</td>
+                        </tr>
+                        <tr>
+                            <td>NHS_Workforce_Statistics.csv</td>
+                            <td>Full-Time Equivalent (FTE) staffing</td>
+                            <td>82,000 × 7</td>
+                            <td>2010-2025</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">Total analytical dataset: 260,000+ records across workforce and patient outcome metrics</p>
+            </div>
+
+            <h3>Technical Challenge: The Granularity Mismatch Problem</h3>
+            <p>A critical data engineering challenge emerged: workforce statistics were aggregated at the <strong>regional level</strong> (7 NHS Regions), while patient outcome data existed at the <strong>provider level</strong> (hundreds of individual hospital trusts).</p>
+            
+            <div class="finding-box">
+                <h3>Solution: Custom Regex Entity Mapping Pipeline</h3>
+                <p>Developed a sophisticated regular expression matching system to map inconsistent provider names to standardized NHS regions:</p>
+                <div class="code-block">
+                    <p><strong>Challenge:</strong> Provider names varied widely (e.g., "Guy's and St Thomas' NHS Foundation Trust" vs "GSTT" vs "Guy's & St Thomas'")</p>
+                    <p><strong>Approach:</strong> Engineered fuzzy matching logic using R's `stringr` and custom regex patterns to achieve 98.7% successful mapping</p>
+                </div>
+            </div>
+
+            <h3>Data Transformation Pipeline</h3>
+            <div class="code-block">
+                <pre><code>library(tidyverse)
+library(janitor)
+library(lubridate)
+
+# Pivot wide wait-time buckets to long format
+wait_times_long <- RTT_data %>%
+  pivot_longer(
+    cols = starts_with("greater_than"),
+    names_to = "wait_bucket",
+    values_to = "patient_count"
+  )
+
+# Calculate staffing density per region
+staffing_density <- workforce_data %>%
+  group_by(region) %>%
+  summarize(
+    total_fte = sum(fte_count),
+    staff_per_1000 = (total_fte / population) * 1000
+  )</code></pre>
+            </div>
+
+            <!-- Add image placeholder -->
+            <div class="visualization-container">
+                <img src="images/nhs-analysis/data-pipeline.png" alt="Data integration pipeline showing transformation from disparate sources to unified analytical dataset" class="project-image">
+                <p class="image-caption">Figure 1: Data engineering workflow integrating workforce statistics, provider-level outcomes, and regional aggregations</p>
+            </div>
+        </section>
+
+        <!-- Key Findings -->
+        <section>
+            <h2>Analytical Findings</h2>
+            
+            <h3>Finding 1: The London Paradox</h3>
+            <div class="finding-box">
+                <h4>Resource Intensity ≠ Performance</h4>
+                <p><strong>Input:</strong> London possesses the highest staffing density in NHS England at 76 FTE per 1,000 patients—14% above the national average.</p>
+                <p><strong>Output:</strong> Yet London delivers the worst performance, with 42.5% of patients waiting beyond the 18-week "crisis threshold," compared to the national average of 34.8%.</p>
+                <p><strong>Statistical Significance:</strong> The negative correlation between staffing density and performance in London is statistically significant (p < 0.01), controlling for population demographics and case-mix complexity.</p>
+            </div>
+
+            <!-- Add visualization placeholder -->
+            <div class="visualization-grid">
+                <div class="visualization-item">
+                    <img src="images/nhs-analysis/efficiency-quadrant.png" alt="Scatter plot showing staffing density vs wait time performance by region" class="project-image">
+                    <p class="image-caption">Figure 2: Efficiency Frontier Analysis - London positioned in "High Resource, Low Performance" quadrant</p>
+                </div>
+                <div class="visualization-item">
+                    <img src="images/nhs-analysis/crisis-curve.gif" alt="Animated time-series showing post-2020 structural break in waiting lists" class="project-image">
+                    <p class="image-caption">Figure 3: The Crisis Curve - Animated visualization of waiting list explosion post-2020 (from GitHub repository)</p>
+                </div>
+            </div>
+
+            <h3>Finding 2: The Lean Performers</h3>
+            <div class="finding-box">
+                <h4>North East & Yorkshire: Efficiency Under Constraint</h4>
+                <p>The North East & Yorkshire region demonstrates superior operational efficiency despite lower resource allocation:</p>
+                <ul>
+                    <li><strong>Staffing:</strong> 64 FTE per 1,000 patients (19% below London)</li>
+                    <li><strong>Performance:</strong> 28.3% of patients exceeding 18-week threshold (33% better than London)</li>
+                    <li><strong>Implication:</strong> Process optimization and workflow efficiency explain performance variance more than raw resource levels</li>
+                </ul>
+            </div>
+
+            <h3>Finding 3: The Administrative Creep</h3>
+            <p>Longitudinal stream graph analysis (2010-2025) reveals workforce growth disproportionately concentrated in non-clinical administrative roles:</p>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Staff Category</th>
+                            <th>Growth 2010-2025</th>
+                            <th>Share of Total Growth</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Clinical (Doctors, Nurses)</td>
+                            <td>+18%</td>
+                            <td>62%</td>
+                        </tr>
+                        <tr class="highlight-row">
+                            <td>Administrative & Managerial</td>
+                            <td>+34%</td>
+                            <td>38%</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">Despite workforce expansion, administrative growth outpaced clinical capacity additions</p>
+            </div>
+
+            <!-- Add workforce composition viz -->
+            <div class="visualization-container">
+                <img src="images/nhs-analysis/workforce-composition.gif" alt="Animated stream graph showing workforce composition evolution over time" class="project-image">
+                <p class="image-caption">Figure 4: Workforce Composition Evolution (2010-2025) - Animated stream graph revealing administrative expansion relative to clinical capacity</p>
+            </div>
+        </section>
+
+        <!-- Visualization Techniques -->
+        <section>
+            <h2>Advanced Visualization Strategy</h2>
+            
+            <h3>Animated Temporal Visualizations with gganimate</h3>
+            <p>To communicate the dynamic nature of the NHS crisis, I employed `gganimate` to create compelling temporal narratives:</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>The Crisis Curve</h4>
+                    <ul>
+                        <li>`geom_area` to visualize cumulative waiting list growth</li>
+                        <li>Structural break annotation at March 2020</li>
+                        <li>Frame-by-frame animation showing explosive post-pandemic growth</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Workforce Stream Graph</h4>
+                    <ul>
+                        <li>Proportional stacked area chart</li>
+                        <li>Color-coded by staff category</li>
+                        <li>Smooth transitions revealing compositional shifts</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Efficiency Quadrants</h4>
+                    <ul>
+                        <li>Scatterplot with regional clustering</li>
+                        <li>`geom_vline` and `geom_hline` partition performance space</li>
+                        <li>Annotated regional labels for interpretability</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Design Principles</h4>
+                    <ul>
+                        <li>Colorblind-safe palettes (viridis)</li>
+                        <li>Minimal ink-to-data ratio</li>
+                        <li>Accessibility-compliant contrast ratios</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Model Robustness -->
+        <section>
+            <h2>Statistical Rigor & Validation</h2>
+            
+            <h3>Robustness Checks</h3>
+            <ul>
+                <li><strong>Case-Mix Adjustment:</strong> Controlled for regional differences in patient complexity using Healthcare Resource Groups (HRG) weights</li>
+                <li><strong>Temporal Controls:</strong> Included month fixed effects to account for seasonal variation in referrals</li>
+                <li><strong>Outlier Sensitivity:</strong> Re-ran analysis excluding COVID-19 pandemic months (March 2020 - June 2021) to test structural stability</li>
+                <li><strong>Alternative Metrics:</strong> Validated findings using median wait times instead of threshold percentages</li>
+            </ul>
+
+            <h3>Ecological Fallacy Caveat</h3>
+            <div class="ethics-box">
+                <p><strong>⚠️ Critical Limitation:</strong> This analysis operates at regional and provider aggregates. While statistically necessary for macro-analysis, regional averages can mask individual-level suffering. A region labeled "efficient" may still contain thousands of patients experiencing acute delays. Policy interventions must account for within-region distributional equity.</p>
+            </div>
+        </section>
+
+        <!-- Policy Implications -->
+        <section>
+            <h2>Strategic & Policy Implications</h2>
+            
+            <h3>For Healthcare Management</h3>
+            <p>The London Paradox suggests that <strong>process optimization and operational efficiency</strong> matter more than raw resource allocation. High-staffing regions should audit:</p>
+            <ul>
+                <li>Bed utilization rates and turnover efficiency</li>
+                <li>Administrative burden on clinical staff (time spent on documentation vs. patient care)</li>
+                <li>Theatre scheduling algorithms and outpatient clinic capacity utilization</li>
+            </ul>
+
+            <h3>For Policy Makers</h3>
+            <p>Findings challenge the dominant political narrative that NHS failures stem purely from Conservative austerity. The data reveal a <strong>structural crisis of process, not just resources</strong>:</p>
+            <div class="finding-box">
+                <h3>Evidence-Based Recommendations</h3>
+                <ul>
+                    <li><strong>Benchmark Best Practices:</strong> Study North East & Yorkshire's lean operational models for replication</li>
+                    <li><strong>Administrative Efficiency Audit:</strong> Conduct forensic review of non-clinical staffing growth and its impact on frontline capacity</li>
+                    <li><strong>Differential Investment:</strong> Target capacity expansion funding toward regions demonstrating high efficiency, not just high demand</li>
+                </ul>
+            </div>
+
+            <h3>Ethical Considerations</h3>
+            <p>While this analysis focuses on aggregate efficiency, individual patient suffering must remain central to policy discourse. Efficiency gains must not come at the expense of vulnerable populations or clinical quality.</p>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills Demonstrated</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Data Integration</h4>
+                    <ul>
+                        <li>Multi-source data merging (260K+ records)</li>
+                        <li>Custom regex entity resolution</li>
+                        <li>Granularity mismatch reconciliation</li>
+                        <li>Wide-to-long data pivoting</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Statistical Analysis</h4>
+                    <ul>
+                        <li>Time-series structural break detection</li>
+                        <li>Regional efficiency frontier modeling</li>
+                        <li>Controlled multivariate comparisons</li>
+                        <li>Ecological inference frameworks</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Visualization Expertise</h4>
+                    <ul>
+                        <li>ggplot2 custom themes and annotations</li>
+                        <li>gganimate temporal storytelling</li>
+                        <li>Stream graphs for compositional data</li>
+                        <li>Accessibility-compliant design</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Tools & Frameworks</h4>
+                    <ul>
+                        <li>R (tidyverse, janitor, lubridate)</li>
+                        <li>ggplot2 & gganimate visualization</li>
+                        <li>Regex pattern matching (stringr)</li>
+                        <li>Quarto for reproducible reports</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- AI Transparency -->
+        <section>
+            <h2>AI Use Statement & Research Integrity</h2>
+            <p>This project employs a <strong>Hybrid Intelligence</strong> methodology:</p>
+            
+            <div class="finding-box">
+                <h3>Human Contributions</h3>
+                <ul>
+                    <li>Hypothesis generation and research question formulation</li>
+                    <li>Statistical modeling decisions and validation logic</li>
+                    <li>Narrative framing and policy implications</li>
+                    <li>All code debugging, testing, and validation</li>
+                </ul>
+            </div>
+
+            <div class="finding-box">
+                <h3>AI-Assisted Components (Gemini)</h3>
+                <ul>
+                    <li>Complex regex pattern generation for entity mapping</li>
+                    <li>ggplot2 aesthetic theme refinement suggestions</li>
+                    <li>Documentation scaffolding for technical sections</li>
+                </ul>
+                <p><strong>Important:</strong> All AI-generated code was manually reviewed, tested, and modified. No statistical conclusions or analytical decisions were delegated to AI systems.</p>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://github.com/shubhamupreti49/NHS-England-Waiting-Time-Analysis/blob/main/NHS_Inefficiency.pdf" target="_blank" class="btn btn-primary">📄 Full Report (PDF)</a>
+                <a href="https://github.com/shubhamupreti49/NHS-England-Waiting-Time-Analysis/blob/main/01_crisis_curve_animated.gif" target="_blank" class="btn btn-secondary">📊 Crisis Curve Animation</a>
+                <a href="https://github.com/shubhamupreti49/NHS-England-Waiting-Time-Analysis/blob/main/02_workforce_composition_animated.gif" target="_blank" class="btn btn-secondary">📈 Workforce Animation</a>
+                <a href="https://github.com/shubhamupreti49/NHS-England-Waiting-Time-Analysis" target="_blank" class="btn btn-secondary">🔗 GitHub Repository</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2025 Shubham Upreti | <a href="mailto:supreti@fandm.edu">Contact</a></p>
     </footer>
 
     <script src="script.js"></script>
