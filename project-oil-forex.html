@@ -1,0 +1,509 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Oil Price Shocks & Forex Reserves | Shubham Upreti</title>
+    <link rel="stylesheet" href="styles.css">
+    
+    <!-- LaTeX Math Support -->
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        }
+      };
+    </script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html">← Back to Portfolio</a>
+        <a href="https://github.com/shubhamupreti49/Global_oilprice_forex_reserve" target="_blank">View on GitHub</a>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>Oil Price Shocks and Foreign Exchange Reserves: A VAR Analysis of Nepal's Economic Vulnerability</h1>
+        <p class="subtitle">Quantifying Macroeconomic Transmission Channels in a Small Open Economy</p>
+        <div class="project-meta">
+            <span class="badge">Time-Series Econometrics</span>
+            <span class="badge">Vector Autoregression</span>
+            <span class="badge">R Programming</span>
+            <span class="badge">Lumiere Research</span>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>🛢️ Research Question</h2>
+            <p class="lead"><strong>How do global oil price shocks affect Nepal's foreign exchange reserves and macroeconomic stability?</strong></p>
+            
+            <div class="key-finding">
+                <h3>Core Finding</h3>
+                <p>Global oil prices <strong>unidirectionally Granger-cause</strong> Nepal's foreign exchange reserves (p < 0.01), creating significant macroeconomic vulnerability for this import-dependent, small open economy with a pegged exchange rate.</p>
+            </div>
+
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Research Context</h4>
+                    <p>Lumiere Research Program<br>Individual Scholar<br>October 2024</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Methodology</h4>
+                    <p>Vector Autoregression (VAR)<br>Granger Causality Testing<br>Impulse Response Functions</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Data Scope</h4>
+                    <p>43 years (1979-2021)<br>Annual time series<br>Real 2021 USD values</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Motivation -->
+        <section>
+            <h2>Economic Context & Significance</h2>
+            
+            <h3>Nepal's Structural Vulnerabilities</h3>
+            <p>Nepal operates under three critical macroeconomic constraints that amplify oil price sensitivity:</p>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>🔗 Fixed Exchange Rate</h4>
+                    <ul>
+                        <li>Nepalese Rupee pegged to Indian Rupee (NPR 1.6 = INR 1)</li>
+                        <li>Eliminates nominal exchange rate adjustment mechanism</li>
+                        <li>Forces reserve depletion to defend peg during oil shocks</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>📦 Import Dependency</h4>
+                    <ul>
+                        <li>100% petroleum product imports (no domestic production)</li>
+                        <li>Oil imports ~15-20% of total import bill</li>
+                        <li>Energy-intensive sectors vulnerable to price transmission</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>📊 Limited Monetary Tools</h4>
+                    <ul>
+                        <li>Nepal Rastra Bank (central bank) constrained by peg</li>
+                        <li>Interest rate policy subordinated to exchange rate defense</li>
+                        <li>Foreign exchange reserves = primary stabilization buffer</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>💰 Remittance Reliance</h4>
+                    <ul>
+                        <li>Worker remittances ~25% of GDP</li>
+                        <li>Provides partial offset to oil-driven trade deficits</li>
+                        <li>But creates procyclical vulnerability (remittances fall during global slowdowns)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Why This Research Matters</h3>
+            <div class="finding-box">
+                <h4>Policy Relevance</h4>
+                <p><strong>For Nepal Rastra Bank:</strong> Quantifies the reserve drain from oil shocks, informing optimal reserve buffer sizing and accumulation strategies.</p>
+                <p><strong>For Energy Policy:</strong> Provides empirical justification for renewable energy investment as a macroeconomic stabilization tool, not just environmental policy.</p>
+                <p><strong>For Small Open Economies:</strong> Demonstrates the transmission channel from commodity price volatility to reserve adequacy—relevant for similar economies globally.</p>
+            </div>
+        </section>
+
+        <!-- Data & Methodology -->
+        <section>
+            <h2>Data Collection & Transformation</h2>
+            
+            <h3>Variable Definitions</h3>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Description</th>
+                            <th>Source</th>
+                            <th>Measurement</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>Global Oil Price (WTI)</strong></td>
+                            <td>West Texas Intermediate crude oil spot price</td>
+                            <td>U.S. Energy Information Administration (EIA)</td>
+                            <td>Real 2021 USD per barrel</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Foreign Exchange Reserves (FER)</strong></td>
+                            <td>Nepal's official reserves (excluding gold)</td>
+                            <td>Nepal Rastra Bank, IMF IFS</td>
+                            <td>Real 2021 USD millions</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CPI Deflator</strong></td>
+                            <td>U.S. Consumer Price Index (2021 = 100)</td>
+                            <td>Federal Reserve Economic Data (FRED)</td>
+                            <td>Index values</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <h3>Stationarity Transformation</h3>
+            <p>Time series econometrics requires stationary data to avoid spurious regression. The transformation process:</p>
+            
+            <div class="code-block">
+                <pre><code># Step 1: Deflate to real values
+real_oil_price <- nominal_oil / (cpi_deflator / 100)
+real_reserves <- nominal_reserves / (cpi_deflator / 100)
+
+# Step 2: First difference (growth rates)
+d_oil <- diff(real_oil_price)
+d_reserves <- diff(real_reserves)
+
+# Step 3: Second difference (acceleration/deceleration)
+dd_oil <- diff(d_oil)
+dd_reserves <- diff(d_reserves)
+
+# Step 4: Augmented Dickey-Fuller test for stationarity
+adf.test(dd_oil)      # p-value = 0.01 → Stationary ✓
+adf.test(dd_reserves) # p-value = 0.037 → Stationary ✓</code></pre>
+            </div>
+
+            <p><strong>Final Variables for VAR Model:</strong> Second-differenced real oil price (\(\Delta^2 OP_t\)) and second-differenced real reserves (\(\Delta^2 FER_t\)), both stationary at 5% significance level.</p>
+        </section>
+
+        <!-- VAR Model -->
+        <section>
+            <h2>Vector Autoregression Methodology</h2>
+            
+            <h3>Model Specification</h3>
+            <p>A VAR(p) model treats all variables as endogenous, allowing for bidirectional feedback:</p>
+            
+            <div class="formula">
+                \[
+                \begin{bmatrix}
+                \Delta^2 OP_t \\
+                \Delta^2 FER_t
+                \end{bmatrix}
+                =
+                \mathbf{c} + \sum_{i=1}^{p} \mathbf{A}_i 
+                \begin{bmatrix}
+                \Delta^2 OP_{t-i} \\
+                \Delta^2 FER_{t-i}
+                \end{bmatrix}
+                +
+                \begin{bmatrix}
+                \epsilon_{OP,t} \\
+                \epsilon_{FER,t}
+                \end{bmatrix}
+                \]
+            </div>
+            <p class="formula-note">Where \(\mathbf{A}_i\) are 2×2 coefficient matrices, \(\mathbf{c}\) is a constant vector, and \(\boldsymbol{\epsilon}_t\) represents structural shocks</p>
+
+            <h3>Lag Length Selection</h3>
+            <p>Optimal lag order determined by information criteria:</p>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Criterion</th>
+                            <th>Recommended Lag</th>
+                            <th>Principle</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>AIC (Akaike)</td>
+                            <td><strong>4</strong></td>
+                            <td>Minimizes prediction error with parsimony penalty</td>
+                        </tr>
+                        <tr>
+                            <td>HQ (Hannan-Quinn)</td>
+                            <td><strong>4</strong></td>
+                            <td>Balances fit and complexity (stricter than AIC)</td>
+                        </tr>
+                        <tr>
+                            <td>FPE (Final Prediction Error)</td>
+                            <td><strong>4</strong></td>
+                            <td>Asymptotic version of AIC</td>
+                        </tr>
+                        <tr>
+                            <td>SC (Schwarz/BIC)</td>
+                            <td>1</td>
+                            <td>Strongly penalizes complexity (too restrictive)</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note"><strong>Selected:</strong> VAR(4) based on AIC, HQ, and FPE consensus</p>
+            </div>
+
+            <h3>Model Diagnostics</h3>
+            <div class="finding-box">
+                <h4>Validation Tests Passed ✅</h4>
+                <ul>
+                    <li><strong>No Serial Correlation:</strong> Portmanteau test p-value = 0.40 (fails to reject null of no correlation)</li>
+                    <li><strong>No ARCH Effects:</strong> ARCH test p-value = 0.99 (no heteroskedasticity in residuals)</li>
+                    <li><strong>Structural Stability:</strong> OLS-CUSUM test confirms coefficient stability over time</li>
+                    <li><strong>Normality:</strong> Jarque-Bera test indicates approximate normality of residuals</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Granger Causality -->
+        <section>
+            <h2>Granger Causality Results: The Unidirectional Relationship</h2>
+            
+            <h3>What is Granger Causality?</h3>
+            <p>Granger causality tests whether past values of variable X improve forecasts of variable Y beyond using past values of Y alone. It's a test of <em>predictive causality</em>, not philosophical causation.</p>
+
+            <div class="formula">
+                \[
+                H_0: \text{Oil Price does NOT Granger-cause Reserves}
+                \]
+                \[
+                H_1: \text{Oil Price DOES Granger-cause Reserves}
+                \]
+            </div>
+
+            <h3>Test Results</h3>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Direction Tested</th>
+                            <th>F-Statistic</th>
+                            <th>P-Value</th>
+                            <th>Conclusion</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr style="background: rgba(239, 68, 68, 0.1);">
+                            <td><strong>Oil Price → Reserves</strong></td>
+                            <td>4.0725</td>
+                            <td><strong>0.007884</strong></td>
+                            <td>✅ <strong>Reject null → Oil CAUSES reserves</strong></td>
+                        </tr>
+                        <tr style="background: rgba(156, 163, 175, 0.1);">
+                            <td>Reserves → Oil Price</td>
+                            <td>1.6887</td>
+                            <td>0.1663</td>
+                            <td>❌ Fail to reject → No causal effect</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div class="key-finding">
+                <h3>Interpretation</h3>
+                <p><strong>Oil prices significantly predict future reserve movements</strong> (p < 0.01), but reserves do not predict oil prices (p = 0.17). This confirms the expected asymmetry: a small economy is a "price taker" in global commodity markets.</p>
+                <p><strong>Policy Implication:</strong> Nepal Rastra Bank cannot influence global oil prices but must <em>react defensively</em> to oil shocks through reserve management and structural reforms.</p>
+            </div>
+
+            <!-- Add visualization placeholder -->
+            <div class="visualization-container">
+                <img src="images/oil-forex/granger_causality_diagram.png" alt="Flow diagram showing unidirectional causality from oil prices to reserves" class="project-image">
+                <p class="image-caption">Figure 1: Unidirectional Causal Flow - Oil price shocks transmit to reserves via trade balance channel</p>
+            </div>
+        </section>
+
+        <!-- Impulse Response -->
+        <section>
+            <h2>Impulse Response Functions: Dynamic Impact Over Time</h2>
+            
+            <h3>What is an IRF?</h3>
+            <p>An Impulse Response Function (IRF) traces the time path of a variable following a one-standard-deviation shock to another variable, holding all else constant. It reveals the <em>magnitude</em> and <em>persistence</em> of the effect.</p>
+
+            <h3>Key Finding: Prolonged Volatility</h3>
+            <div class="finding-box">
+                <h4>Response of Reserves to Oil Price Shock</h4>
+                <p>A single one-SD shock to oil prices causes:</p>
+                <ul>
+                    <li><strong>Immediate Impact:</strong> Reserve volatility spikes within 1-2 periods</li>
+                    <li><strong>Peak Response:</strong> Maximum reserve fluctuation occurs around period 3-4</li>
+                    <li><strong>Persistence:</strong> Effect remains statistically significant for ~10 periods</li>
+                    <li><strong>Eventual Dissipation:</strong> Returns to baseline after approximately 12-15 years</li>
+                </ul>
+            </div>
+
+            <!-- Add IRF visualization -->
+            <div class="visualization-container">
+                <img src="images/oil-forex/irf_oil_to_reserves.png" alt="Impulse response function showing reserves response to oil shock over 20 periods" class="project-image">
+                <p class="image-caption">Figure 2: Impulse Response - One-SD oil price shock generates sustained reserve volatility for a decade</p>
+            </div>
+
+            <h3>Economic Mechanism</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>⚡ Immediate Transmission (0-2 years)</h4>
+                    <p>Oil price spike → Higher import bill → Trade deficit widens → Reserve outflow to pay for imports and defend exchange rate peg</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>🔄 Secondary Effects (3-5 years)</h4>
+                    <p>Persistent high oil costs → Inflation pressures → Real income contraction → Reduced non-oil imports → Partial reserve stabilization</p>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>📉 Long-Run Adjustment (6-10 years)</h4>
+                    <p>Structural adjustment → Energy efficiency improvements → Remittance inflows recover → Reserves gradually return to equilibrium path</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Statistical Robustness -->
+        <section>
+            <h2>Robustness & Sensitivity Analysis</h2>
+            
+            <h3>Alternative Model Specifications</h3>
+            <ul>
+                <li><strong>Lag Sensitivity:</strong> Re-estimated with VAR(2) and VAR(6) → Granger causality result robust across specifications</li>
+                <li><strong>Cholesky Ordering:</strong> Tested alternative orderings (reserves first vs oil first) → Results unchanged (confirming exogeneity of oil prices)</li>
+                <li><strong>Sample Period:</strong> Excluded 2008 financial crisis period → Causality remains significant (p = 0.012)</li>
+                <li><strong>Brent vs WTI:</strong> Substituted Brent crude oil prices → Qualitatively similar results</li>
+            </ul>
+
+            <h3>Limitations & Caveats</h3>
+            <div class="ethics-box">
+                <p><strong>⚠️ Acknowledged Constraints:</strong></p>
+                <ul>
+                    <li><strong>Small Sample Size:</strong> 43 observations limits statistical power; confidence intervals relatively wide</li>
+                    <li><strong>Omitted Variables:</strong> Indian monetary policy, remittance flows, and earthquake/disaster shocks not explicitly modeled</li>
+                    <li><strong>Structural Breaks:</strong> 1990 economic liberalization and 2015 earthquake may create parameter instability</li>
+                    <li><strong>Linear Assumption:</strong> VAR assumes proportional responses; threshold effects (e.g., reserve crisis triggers) not captured</li>
+                    <li><strong>Annual Frequency:</strong> Masks within-year dynamics; quarterly data would be preferable but unavailable pre-2000</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Policy Recommendations -->
+        <section>
+            <h2>Policy Implications & Strategic Recommendations</h2>
+            
+            <h3>For Nepal Rastra Bank (Central Bank)</h3>
+            <div class="finding-box">
+                <h3>Reserve Management Strategy</h3>
+                <ol>
+                    <li><strong>Dynamic Buffer Sizing:</strong> Maintain reserves at 12+ months of import coverage during oil price stability; accumulate aggressively during low-price periods</li>
+                    <li><strong>Countercyclical Policy:</strong> Use remittance inflow peaks to pre-emptively build reserve cushions before anticipated oil shocks</li>
+                    <li><strong>Forward Guidance:</strong> Communicate reserve adequacy thresholds to anchor market expectations and prevent speculative attacks on peg</li>
+                    <li><strong>Hedging Instruments:</strong> Explore oil price derivatives (futures, options) for government-owned import entities to smooth fiscal impact</li>
+                </ol>
+            </div>
+
+            <h3>For Energy & Economic Policy</h3>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>🔋 Energy Transition</h4>
+                    <ul>
+                        <li>Accelerate hydropower development (43,000 MW potential, <10% tapped)</li>
+                        <li>Incentivize electric vehicle adoption to reduce petroleum demand</li>
+                        <li>Frame renewable energy as <em>macroeconomic stabilization</em>, not just climate policy</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>💰 Fiscal Reforms</h4>
+                    <ul>
+                        <li>Phase out blanket fuel subsidies (currently strain reserves during price spikes)</li>
+                        <li>Implement targeted cash transfers to vulnerable households instead</li>
+                        <li>Establish oil price stabilization fund during windfall periods</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>📦 Trade Diversification</h4>
+                    <ul>
+                        <li>Promote export-oriented manufacturing to offset oil import costs</li>
+                        <li>Negotiate bilateral energy trade agreements with India/China</li>
+                        <li>Reduce structural trade deficit through import substitution in agriculture</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Broader Insights for Small Open Economies</h3>
+            <p>Nepal's experience offers lessons for similarly vulnerable nations:</p>
+            <ul>
+                <li>Fixed exchange rates amplify commodity price shocks—consider <em>managed float</em> regimes if political economy allows</li>
+                <li>Reserve adequacy metrics must incorporate commodity price volatility, not just import coverage</li>
+                <li>Structural reforms (energy diversification) are <em>macroeconomic necessities</em>, not luxury policies</li>
+            </ul>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills Demonstrated</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Econometric Methods</h4>
+                    <ul>
+                        <li>Vector Autoregression (VAR) modeling</li>
+                        <li>Granger causality testing</li>
+                        <li>Impulse response function (IRF) analysis</li>
+                        <li>Forecast error variance decomposition</li>
+                        <li>Time series stationarity testing (ADF)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Statistical Diagnostics</h4>
+                    <ul>
+                        <li>Serial correlation tests (Portmanteau)</li>
+                        <li>Heteroskedasticity tests (ARCH/LM)</li>
+                        <li>Structural stability (CUSUM)</li>
+                        <li>Normality testing (Jarque-Bera)</li>
+                        <li>Lag selection criteria (AIC, BIC, HQ)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Data Science</h4>
+                    <ul>
+                        <li>R programming (vars, urca, tseries packages)</li>
+                        <li>Time series data wrangling and transformation</li>
+                        <li>Real-value deflation and indexing</li>
+                        <li>Publication-quality visualizations (ggplot2)</li>
+                        <li>Reproducible research workflow (R Markdown)</li>
+                    </ul>
+                </div>
+                
+                <div class="skill-category">
+                    <h4>Research Communication</h4>
+                    <ul>
+                        <li>Academic paper writing (15+ pages)</li>
+                        <li>Policy brief translation from technical results</li>
+                        <li>Data visualization for non-technical audiences</li>
+                        <li>Literature review and theoretical framing</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://github.com/shubhamupreti49/Global_oilprice_forex_reserve" target="_blank" class="btn btn-primary">📂 GitHub Repository</a>
+                <a href="https://github.com/shubhamupreti49/Global_oilprice_forex_reserve/blob/main/Shubham_Upreti_Final_Paper.pdf" target="_blank" class="btn btn-secondary">📄 Read Full Paper (PDF)</a>
+                <a href="https://github.com/shubhamupreti49/Global_oilprice_forex_reserve/blob/main/R_studio_test.Rmd" target="_blank" class="btn btn-secondary">💻 View R Code</a>
+                <a href="mailto:supreti@fandm.edu?subject=Oil%20Forex%20Research%20Inquiry" class="btn btn-secondary">✉️ Discuss This Research</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2025 Shubham Upreti | <a href="mailto:supreti@fandm.edu">Contact</a></p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
