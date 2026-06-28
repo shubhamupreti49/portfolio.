@@ -12,6 +12,11 @@
 
     <!-- Navigation -->
     <nav>
+        <div class="tab-bar-dots" aria-hidden="true">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+        </div>
         <!-- Add this hamburger button -->
     <button class="menu-toggle" aria-label="Toggle menu">
         <span></span>
@@ -19,14 +24,14 @@
         <span></span>
     </button>
         <ul>
-            <li><a href="#home">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Skills</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#publications">Publications</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <li><a href="#home" class="tab-link active"><i class="fas fa-house"></i>home.tsx</a></li>
+            <li><a href="#about" class="tab-link"><i class="fas fa-user"></i>about.tsx</a></li>
+            <li><a href="#skills" class="tab-link"><i class="fas fa-code"></i>skills.tsx</a></li>
+            <li><a href="#experience" class="tab-link"><i class="fas fa-briefcase"></i>experience.tsx</a></li>
+            <li><a href="#projects" class="tab-link"><i class="fas fa-folder-open"></i>projects.tsx</a></li>
+            <li><a href="#publications" class="tab-link"><i class="fas fa-file-lines"></i>publications.tsx</a></li>
+            <li><a href="#education" class="tab-link"><i class="fas fa-graduation-cap"></i>education.tsx</a></li>
+            <li><a href="#contact" class="tab-link"><i class="fas fa-envelope"></i>contact.tsx</a></li>
         </ul>
     </nav>
 
@@ -52,6 +57,16 @@
             <div class="cta-buttons">
                 <a href="#contact" class="btn btn-primary">Get In Touch</a>
                 <a href="shubham_resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Resume</a>
+            </div>
+
+            <div class="hero-terminal" id="heroTerminal">
+                <div class="terminal-header">
+                    <span class="dot dot-red"></span>
+                    <span class="dot dot-yellow"></span>
+                    <span class="dot dot-green"></span>
+                    <span class="terminal-title">research.log</span>
+                </div>
+                <div class="terminal-body" id="terminalBody" aria-live="polite"></div>
             </div>
         </div>
     </section>

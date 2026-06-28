@@ -55,41 +55,102 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Smooth scroll for navigation links
+// Tab-panel navigation: each top-level section is a "tab" shown one at a time
+const panels = document.querySelectorAll('body > section');
+const tabLinks = document.querySelectorAll('.tab-link');
+
+function activatePanel(id) {
+    let matched = false;
+    panels.forEach(panel => {
+        const isMatch = panel.id === id;
+        panel.classList.toggle('active-panel', isMatch);
+        if (isMatch) {
+            matched = true;
+            panel.classList.add('visible'); // skip fade-in scroll animation, show immediately
+        }
+    });
+    if (!matched && panels.length) {
+        panels[0].classList.add('active-panel', 'visible');
+        id = panels[0].id;
+    }
+    tabLinks.forEach(link => {
+        link.classList.toggle('active', link.getAttribute('href').slice(1) === id);
+    });
+    window.scrollTo(0, 0);
+}
+
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
     anchor.addEventListener('click', function (e) {
+        const id = this.getAttribute('href').slice(1);
+        if (!document.getElementById(id)) return;
         e.preventDefault();
-        const target = document.querySelector(this.getAttribute('href'));
-        if (target) {
-            target.scrollIntoView({
-                behavior: 'smooth',
-                block: 'start'
-            });
-        }
+        activatePanel(id);
+        history.pushState(null, '', '#' + id);
     });
 });
 
-// Active navigation highlighting
-window.addEventListener('scroll', () => {
-    const sections = document.querySelectorAll('section');
-    const navLinks = document.querySelectorAll('nav a');
-    let current = '';
-    
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop;
-        const sectionHeight = section.clientHeight;
-        if (scrollY >= sectionTop - 200) {
-            current = section.getAttribute('id');
-        }
-    });
-    
-    navLinks.forEach(link => {
-        link.style.color = '';
-        if (link.getAttribute('href').slice(1) === current) {
-            link.style.color = 'var(--accent-color)';
-        }
-    });
+window.addEventListener('popstate', () => {
+    activatePanel(location.hash.slice(1) || 'home');
 });
+
+activatePanel(location.hash.slice(1) || 'home');
+
+// Hero terminal typewriter effect
+function runTerminal() {
+    const body = document.getElementById('terminalBody');
+    if (!body) return;
+
+    const lines = [
+        { prompt: '$ ', text: 'whoami' },
+        { prompt: '> ', text: 'Shubham Upreti — Economics & Data Science' },
+        { prompt: '$ ', text: 'cat research_interests.txt' },
+        { prompt: '> ', text: 'Monetary policy transmission, time-series econometrics, macro-financial linkages' },
+        { prompt: '$ ', text: './status --check' },
+        { prompt: '> ', text: '2 publications · 3 research positions · GPA 3.9' },
+        { prompt: '$ ', text: './seeking --positions' },
+        { prompt: '> ', text: 'PhD pre-doc / RA roles in empirical macro & econometrics' }
+    ];
+
+    let lineIndex = 0;
+    let charIndex = 0;
+    body.innerHTML = '';
+
+    function typeNextChar() {
+        if (lineIndex >= lines.length) {
+            const cursor = document.createElement('span');
+            cursor.className = 'term-cursor';
+            body.appendChild(cursor);
+            return;
+        }
+
+        const current = lines[lineIndex];
+
+        if (charIndex === 0) {
+            const promptSpan = document.createElement('span');
+            promptSpan.className = 'term-prompt';
+            promptSpan.textContent = current.prompt;
+            body.appendChild(promptSpan);
+            body.appendChild(document.createTextNode(''));
+        }
+
+        const lastNode = body.lastChild;
+        lastNode.textContent += current.text[charIndex];
+        charIndex++;
+
+        if (charIndex < current.text.length) {
+            setTimeout(typeNextChar, 18);
+        } else {
+            body.appendChild(document.createElement('br'));
+            lineIndex++;
+            charIndex = 0;
+            setTimeout(typeNextChar, 450);
+        }
+    }
+
+    typeNextChar();
+}
+
+document.addEventListener('DOMContentLoaded', runTerminal);
 
 // Image lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
