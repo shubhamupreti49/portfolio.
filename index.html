@@ -6,8 +6,15 @@
     <title>Shubham Upreti - Economics & Data Science Portfolio</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
 </head>
-<body>
+<body class="tabbed">
+    <!-- Indicator ticker tape -->
+    <div class="ticker" aria-hidden="true">
+        <span class="ticker-label">UPRETI&nbsp;INDEX</span>
+        <div class="ticker-track" id="tickerTrack"></div>
+    </div>
+
     <div class="progress-bar" id="progressBar"></div>
 
     <!-- Navigation -->
@@ -37,36 +44,68 @@
 
     <!-- Hero Section -->
     <section id="home" class="hero">
-        <!-- Background video -->
-        <video class="hero-video" autoplay muted loop playsinline>
-            <source src="hero-bg.mp4" type="video/mp4">
-            Your browser does not support the video tag.
-        </video>
-
-        <!-- Dark overlay so text stays readable -->
-        <div class="hero-overlay"></div>
-
-        <!-- Existing content -->
         <div class="hero-content">
-            <div class="hero-photo">
-                <img src="Shubham_portfolio.jpeg" alt="Photo of Shubham Upreti">
-            </div>
-            <h1>Shubham Upreti</h1>
-            <p class="subtitle">Economics & Data Science| Research Analyst | Data Visualization</p>
-            <p>Passionate about quantitative policy research, data-driven insights, and leveraging advanced analytics to solve complex economic problems.</p>
-            <div class="cta-buttons">
-                <a href="#contact" class="btn btn-primary">Get In Touch</a>
-                <a href="shubham_resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">Resume</a>
+            <!-- Left: intro -->
+            <div>
+                <div class="hero-photo">
+                    <img src="Shubham_portfolio.jpeg" alt="Photo of Shubham Upreti">
+                </div>
+                <div class="status-pill"><span class="live-dot"></span> AVAILABLE FOR RESEARCH &amp; PhD OPPORTUNITIES</div>
+                <h1>Shubham <span class="accentword">Upreti</span></h1>
+                <p class="subtitle">// Economics &amp; Data Science · Quantitative Policy Research</p>
+                <p>I turn macroeconomic data into evidence — building econometric models on monetary policy, foreign reserves, and financial systems, from the Central Bank of Nepal to peer-reviewed journals.</p>
+                <div class="cta-buttons">
+                    <a href="#projects" class="btn btn-primary"><i class="fas fa-chart-line"></i> Explore Research</a>
+                    <a href="shubham_resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary"><i class="fas fa-file-arrow-down"></i> Resume</a>
+                </div>
             </div>
 
-            <div class="hero-terminal" id="heroTerminal">
-                <div class="terminal-header">
-                    <span class="dot dot-red"></span>
-                    <span class="dot dot-yellow"></span>
-                    <span class="dot dot-green"></span>
-                    <span class="terminal-title">research.log</span>
+            <!-- Right: live dashboard -->
+            <div class="hero-dash">
+                <div class="dash-head">
+                    <h3>Researcher Dashboard</h3>
+                    <span class="dash-dots">
+                        <span class="dot dot-red"></span>
+                        <span class="dot dot-yellow"></span>
+                        <span class="dot dot-green"></span>
+                    </span>
                 </div>
-                <div class="terminal-body" id="terminalBody" aria-live="polite"></div>
+                <div class="kpi-grid">
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="2"><span>0</span></div>
+                        <div class="kpi-label">Publications</div>
+                        <div class="kpi-trend">▲ peer-reviewed</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="3"><span>0</span></div>
+                        <div class="kpi-label">Research Roles</div>
+                        <div class="kpi-trend">▲ central bank · NGO</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="3.9" data-decimals="1"><span>0</span></div>
+                        <div class="kpi-label">GPA</div>
+                        <div class="kpi-trend">▲ honor's list</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="43"><span>0</span><span class="suffix">yr</span></div>
+                        <div class="kpi-label">Data Span</div>
+                        <div class="kpi-trend">▲ time-series</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="70" data-suffix="K+"><span>0</span><span class="suffix">K+</span></div>
+                        <div class="kpi-label">Rows Modeled</div>
+                        <div class="kpi-trend">▲ big data</div>
+                    </div>
+                    <div class="kpi">
+                        <div class="kpi-val" data-count="4"><span>0</span></div>
+                        <div class="kpi-label">Languages</div>
+                        <div class="kpi-trend">▲ Py · R · SQL</div>
+                    </div>
+                </div>
+                <div class="dash-chart">
+                    <div class="chart-cap"><span>Cumulative Research Output</span><span>2023 → 2025</span></div>
+                    <canvas id="trajectoryChart" height="170"></canvas>
+                </div>
             </div>
         </div>
     </section>
@@ -104,7 +143,22 @@
 
     <!-- Skills Section -->
     <section id="skills" class="fade-in">
-        <h2>Skills & Tools</h2>
+        <h2>Skills &amp; Tools</h2>
+
+        <div class="skills-viz">
+            <div class="skills-radar-wrap">
+                <canvas id="skillsRadar"></canvas>
+            </div>
+            <div class="prof-list" id="profList">
+                <div class="prof" data-val="90"><span class="prof-name">Python</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">90</span></div>
+                <div class="prof" data-val="88"><span class="prof-name">R</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">88</span></div>
+                <div class="prof" data-val="78"><span class="prof-name">SQL</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">78</span></div>
+                <div class="prof" data-val="85"><span class="prof-name">Econometrics</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">85</span></div>
+                <div class="prof" data-val="82"><span class="prof-name">Time-Series</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">82</span></div>
+                <div class="prof" data-val="80"><span class="prof-name">Data Viz</span><span class="prof-track"><span class="prof-fill"></span></span><span class="prof-val">80</span></div>
+            </div>
+        </div>
+
         <div class="skills-grid">
             <div class="skill-category">
                 <h3><i class="fas fa-code"></i> Programming Languages</h3>

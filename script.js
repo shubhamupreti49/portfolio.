@@ -1,3 +1,7 @@
+// State (hoisted so panel switching, which runs early, can reference these safely)
+let trajectoryChart = null, skillsRadar = null;
+let countersDone = false, profDone = false;
+
 // Mobile Menu Toggle
 const menuToggle = document.querySelector('.menu-toggle');
 const navMenu = document.querySelector('nav ul');
@@ -55,7 +59,9 @@ const observer = new IntersectionObserver((entries) => {
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 
-// Tab-panel navigation: each top-level section is a "tab" shown one at a time
+// Tab-panel navigation: each top-level section is a "tab" shown one at a time.
+// Only active on the index page (body.tabbed); detail/contact pages scroll normally.
+const isTabbed = document.body.classList.contains('tabbed');
 const panels = document.querySelectorAll('body > section');
 const tabLinks = document.querySelectorAll('.tab-link');
 
@@ -77,80 +83,178 @@ function activatePanel(id) {
         link.classList.toggle('active', link.getAttribute('href').slice(1) === id);
     });
     window.scrollTo(0, 0);
+
+    // trigger panel-specific animations
+    if (id === 'home') { runCounters(); if (trajectoryChart) trajectoryChart.resize(); }
+    if (id === 'skills') { runProf(); if (skillsRadar) skillsRadar.resize(); }
 }
 
-document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-        const id = this.getAttribute('href').slice(1);
-        if (!document.getElementById(id)) return;
-        e.preventDefault();
-        activatePanel(id);
-        history.pushState(null, '', '#' + id);
+if (isTabbed) {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const id = this.getAttribute('href').slice(1);
+            if (!document.getElementById(id)) return;
+            e.preventDefault();
+            activatePanel(id);
+            history.pushState(null, '', '#' + id);
+        });
     });
-});
 
-window.addEventListener('popstate', () => {
+    window.addEventListener('popstate', () => {
+        activatePanel(location.hash.slice(1) || 'home');
+    });
+
     activatePanel(location.hash.slice(1) || 'home');
-});
-
-activatePanel(location.hash.slice(1) || 'home');
-
-// Hero terminal typewriter effect
-function runTerminal() {
-    const body = document.getElementById('terminalBody');
-    if (!body) return;
-
-    const lines = [
-        { prompt: '$ ', text: 'whoami' },
-        { prompt: '> ', text: 'Shubham Upreti — Economics & Data Science' },
-        { prompt: '$ ', text: 'cat research_interests.txt' },
-        { prompt: '> ', text: 'Monetary policy transmission, time-series econometrics, macro-financial linkages' },
-        { prompt: '$ ', text: './status --check' },
-        { prompt: '> ', text: '2 publications · 3 research positions · GPA 3.9' },
-        { prompt: '$ ', text: './seeking --positions' },
-        { prompt: '> ', text: 'PhD pre-doc / RA roles in empirical macro & econometrics' }
-    ];
-
-    let lineIndex = 0;
-    let charIndex = 0;
-    body.innerHTML = '';
-
-    function typeNextChar() {
-        if (lineIndex >= lines.length) {
-            const cursor = document.createElement('span');
-            cursor.className = 'term-cursor';
-            body.appendChild(cursor);
-            return;
-        }
-
-        const current = lines[lineIndex];
-
-        if (charIndex === 0) {
-            const promptSpan = document.createElement('span');
-            promptSpan.className = 'term-prompt';
-            promptSpan.textContent = current.prompt;
-            body.appendChild(promptSpan);
-            body.appendChild(document.createTextNode(''));
-        }
-
-        const lastNode = body.lastChild;
-        lastNode.textContent += current.text[charIndex];
-        charIndex++;
-
-        if (charIndex < current.text.length) {
-            setTimeout(typeNextChar, 18);
-        } else {
-            body.appendChild(document.createElement('br'));
-            lineIndex++;
-            charIndex = 0;
-            setTimeout(typeNextChar, 450);
-        }
-    }
-
-    typeNextChar();
 }
 
-document.addEventListener('DOMContentLoaded', runTerminal);
+// ============================================================
+//  THE UPRETI INDEX — interactive dashboard widgets
+// ============================================================
+
+// --- Indicator ticker tape ---
+function buildTicker() {
+    const track = document.getElementById('tickerTrack');
+    if (!track) return;
+    const items = [
+        ['GPA', '3.9', 'up'],
+        ['PUBLICATIONS', '2', 'up'],
+        ['RESEARCH ROLES', '3', 'up'],
+        ['DATA SPAN', '43 YRS', 'up'],
+        ['ROWS MODELED', '70K+', 'up'],
+        ['LANGUAGES', 'PY·R·SQL', ''],
+        ['MODELS', 'SVAR · VAR(4)', ''],
+        ['RESEARCH GRANT', '$3,000', 'up'],
+        ['SYMPOSIUM', '200+ SCHOLARS', 'up'],
+        ['FOCUS', 'MONETARY POLICY', ''],
+        ['STATUS', 'OPEN TO PhD', 'up']
+    ];
+    const one = items.map(([k, v, d]) =>
+        `<span class="ticker-item"><span class="tk">${k}</span>` +
+        `<span class="tv ${d}">${d === 'up' ? '▲ ' : ''}${v}</span></span>` +
+        `<span class="ticker-sep">•</span>`
+    ).join('');
+    // duplicate for seamless -50% loop
+    track.innerHTML = one + one;
+}
+buildTicker();
+
+// --- Animated KPI counters (run when hero is shown) ---
+function runCounters() {
+    if (countersDone) return;
+    countersDone = true;
+    document.querySelectorAll('.kpi-val[data-count]').forEach(el => {
+        const target = parseFloat(el.getAttribute('data-count'));
+        const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
+        const numSpan = el.querySelector('span');
+        const duration = 1300;
+        const start = performance.now();
+        function tick(now) {
+            const p = Math.min((now - start) / duration, 1);
+            const eased = 1 - Math.pow(1 - p, 3);
+            numSpan.textContent = (target * eased).toFixed(decimals);
+            if (p < 1) requestAnimationFrame(tick);
+            else numSpan.textContent = target.toFixed(decimals);
+        }
+        requestAnimationFrame(tick);
+        // fallback: guarantee the final value even if rAF is throttled (background tab)
+        setTimeout(() => { numSpan.textContent = target.toFixed(decimals); }, duration + 250);
+    });
+}
+
+// --- Proficiency bars (run when skills tab is shown) ---
+function runProf() {
+    if (profDone) return;
+    profDone = true;
+    document.querySelectorAll('#profList .prof').forEach((row, i) => {
+        const val = row.getAttribute('data-val');
+        setTimeout(() => {
+            const fill = row.querySelector('.prof-fill');
+            if (fill) fill.style.width = val + '%';
+        }, 120 * i);
+    });
+}
+
+// --- Charts (Chart.js) ---
+const chartInk = '#15223B', chartSoft = '#8A93A3', chartGrid = 'rgba(21,34,59,0.07)';
+const chartPrimary = '#0E7C66', chartAccent = '#C2410C';
+
+function initTrajectoryChart() {
+    const ctx = document.getElementById('trajectoryChart');
+    if (!ctx || trajectoryChart || typeof Chart === 'undefined') return;
+    const grad = ctx.getContext('2d').createLinearGradient(0, 0, 0, 170);
+    grad.addColorStop(0, 'rgba(14,124,102,0.28)');
+    grad.addColorStop(1, 'rgba(14,124,102,0.0)');
+    trajectoryChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: ['2023', 'Q1 \'24', 'Q3 \'24', 'Q1 \'25', 'Q2 \'25', 'Q3 \'25'],
+            datasets: [{
+                label: 'Research milestones',
+                data: [0, 1, 2, 4, 6, 9],
+                borderColor: chartPrimary,
+                backgroundColor: grad,
+                fill: true,
+                tension: 0.4,
+                borderWidth: 2.5,
+                pointBackgroundColor: chartAccent,
+                pointRadius: 3,
+                pointHoverRadius: 6
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: false,
+            plugins: { legend: { display: false },
+                tooltip: { backgroundColor: chartInk, titleFont: { family: 'JetBrains Mono' }, bodyFont: { family: 'JetBrains Mono' } } },
+            scales: {
+                x: { grid: { color: chartGrid }, ticks: { color: chartSoft, font: { family: 'JetBrains Mono', size: 9 } } },
+                y: { grid: { color: chartGrid }, ticks: { color: chartSoft, font: { family: 'JetBrains Mono', size: 9 }, stepSize: 3 }, beginAtZero: true }
+            }
+        }
+    });
+}
+
+function initSkillsRadar() {
+    const ctx = document.getElementById('skillsRadar');
+    if (!ctx || skillsRadar || typeof Chart === 'undefined') return;
+    skillsRadar = new Chart(ctx, {
+        type: 'radar',
+        data: {
+            labels: ['Econometrics', 'Programming', 'Data Viz', 'Policy Research', 'Statistics', 'Data Engineering'],
+            datasets: [{
+                label: 'Proficiency',
+                data: [88, 90, 80, 86, 84, 76],
+                borderColor: chartPrimary,
+                backgroundColor: 'rgba(14,124,102,0.15)',
+                borderWidth: 2,
+                pointBackgroundColor: chartAccent,
+                pointRadius: 3
+            }]
+        },
+        options: {
+            responsive: true, maintainAspectRatio: true,
+            plugins: { legend: { display: false },
+                tooltip: { backgroundColor: chartInk } },
+            scales: {
+                r: {
+                    angleLines: { color: chartGrid },
+                    grid: { color: chartGrid },
+                    suggestedMin: 0, suggestedMax: 100,
+                    ticks: { display: false, stepSize: 25 },
+                    pointLabels: { color: chartInk, font: { family: 'JetBrains Mono', size: 10 } }
+                }
+            }
+        }
+    });
+}
+
+document.addEventListener('DOMContentLoaded', () => {
+    initTrajectoryChart();
+    initSkillsRadar();
+    // if home is the active panel on load, animate counters
+    if (document.getElementById('home') && document.getElementById('home').classList.contains('active-panel')) {
+        runCounters();
+    }
+});
 
 // Image lightbox functionality
 document.addEventListener('DOMContentLoaded', function() {
