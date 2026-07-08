@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Institutional Economics Research Assistant - Shubham Upreti</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="styles.css?v=20260708">
+</head>
+<body>
+    <nav>
+        <div class="tab-bar-dots" aria-hidden="true">
+            <span class="dot dot-red"></span>
+            <span class="dot dot-yellow"></span>
+            <span class="dot dot-green"></span>
+        </div>
+        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+        <ul>
+            <li><a href="index.html#home" class="tab-link"><i class="fas fa-house"></i>home.tsx</a></li>
+            <li><a href="index.html#about" class="tab-link"><i class="fas fa-user"></i>about.tsx</a></li>
+            <li><a href="index.html#skills" class="tab-link"><i class="fas fa-code"></i>skills.tsx</a></li>
+            <li><a href="index.html#experience" class="tab-link active"><i class="fas fa-briefcase"></i>experience.tsx</a></li>
+            <li><a href="index.html#projects" class="tab-link"><i class="fas fa-folder-open"></i>projects.tsx</a></li>
+            <li><a href="index.html#publications" class="tab-link"><i class="fas fa-file-lines"></i>publications.tsx</a></li>
+            <li><a href="index.html#education" class="tab-link"><i class="fas fa-graduation-cap"></i>education.tsx</a></li>
+            <li><a href="index.html#contact" class="tab-link"><i class="fas fa-envelope"></i>contact.tsx</a></li>
+        </ul>
+    </nav>
+
+    <section class="detail-page">
+        <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
+            <a href="index.html#experience" class="back-button">
+                <i class="fas fa-arrow-left"></i> Back to Portfolio
+            </a>
+
+            <div class="detail-header">
+                <h1>Institutional Economics Research Assistant</h1>
+                <p style="font-size: 1.3rem; margin-top: 0.5rem;">Franklin &amp; Marshall College — with Prof. David Brennan</p>
+                <div class="detail-meta">
+                    <div class="detail-meta-item">
+                        <i class="fas fa-calendar"></i>
+                        <span>May 2025 – Present</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-map-marker-alt"></i>
+                        <span>Lancaster, PA (Onsite)</span>
+                    </div>
+                    <div class="detail-meta-item">
+                        <i class="fas fa-book"></i>
+                        <span>Target: Cambridge Journal of Economics</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="detail-content">
+                <h2>Overview</h2>
+                <p>I support Professor David Brennan's research applying Marxian and Kaleckian profit frameworks to the U.S. economy — a paper now being revised for submission to the <em>Cambridge Journal of Economics</em>. My central contribution is an interactive data layer that lets readers explore the paper's empirical backbone rather than read it off static tables.</p>
+
+                <div class="highlight-box">
+                    <strong>Signature deliverable:</strong> An R Shiny dashboard visualizing 52 years (1973–2025) of quarterly U.S. macroeconomic data — GDP components and capital/profit-share series — built independently so readers can immerse themselves in the evidence behind the argument.
+                </div>
+
+                <h2>What I Do</h2>
+
+                <h3>1. Interactive Data Visualization</h3>
+                <ul>
+                    <li>Designed and built, independently, an Excel-backed R Shiny dashboard spanning 52 years of quarterly U.S. macro data</li>
+                    <li>Visualized GDP components and capital/profit-share series to make the paper's institutional argument tangible and explorable</li>
+                    <li>Engineered the underlying data pipeline in SQL and R</li>
+                </ul>
+
+                <h3>2. Theoretical &amp; Literature Support</h3>
+                <ul>
+                    <li>Conducting literature review and theoretical analysis of Marxian and Kaleckian profit frameworks</li>
+                    <li>Helping strengthen the paper's empirical grounding ahead of journal submission</li>
+                </ul>
+
+                <div class="code-block">
+                    <code># R Shiny dashboard — reactive macro explorer (illustrative)<br>
+library(shiny)<br>
+library(tidyverse)<br><br>
+server &lt;- function(input, output) {<br>
+&nbsp;&nbsp;output$profit_share &lt;- renderPlot({<br>
+&nbsp;&nbsp;&nbsp;&nbsp;macro %&gt;% filter(year &gt;= input$range[1], year &lt;= input$range[2]) %&gt;%<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ggplot(aes(quarter, profit_share)) + geom_line()<br>
+&nbsp;&nbsp;})<br>
+}</code>
+                </div>
+
+                <h2>Methods &amp; Tools</h2>
+                <div class="tech-stack">
+                    <span class="tech-badge">R Shiny</span>
+                    <span class="tech-badge">R / tidyverse</span>
+                    <span class="tech-badge">SQL</span>
+                    <span class="tech-badge">Time-Series Macro Data</span>
+                    <span class="tech-badge">Data Visualization</span>
+                    <span class="tech-badge">Heterodox / Institutional Theory</span>
+                </div>
+
+                <h2>Why It Matters</h2>
+                <p>This role sharpened two things at once: the software craft to build research-grade interactive tools, and the economic literacy to know which series actually carry an institutional argument. It is a direct bridge between my data-visualization work and serious economic theory.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Shubham Upreti. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js?v=20260708"></script>
+</body>
+</html>

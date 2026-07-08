@@ -116,17 +116,17 @@ function buildTicker() {
     const track = document.getElementById('tickerTrack');
     if (!track) return;
     const items = [
-        ['GPA', '3.9', 'up'],
-        ['PUBLICATIONS', '2', 'up'],
-        ['RESEARCH ROLES', '3', 'up'],
-        ['DATA SPAN', '43 YRS', 'up'],
-        ['ROWS MODELED', '70K+', 'up'],
-        ['LANGUAGES', 'PY·R·SQL', ''],
-        ['MODELS', 'SVAR · VAR(4)', ''],
-        ['RESEARCH GRANT', '$3,000', 'up'],
-        ['SYMPOSIUM', '200+ SCHOLARS', 'up'],
-        ['FOCUS', 'MONETARY POLICY', ''],
-        ['STATUS', 'OPEN TO PhD', 'up']
+        ['GPA', '3.92 / 4.0', 'up'],
+        ['RESEARCH ROLES', '8', 'up'],
+        ['PAPERS', '5', 'up'],
+        ['PUBLISHED', '1 PEER-REVIEWED', 'up'],
+        ['GRANT FACILITATED', '$3.8M', 'up'],
+        ['DATA SPAN', '52 YRS', 'up'],
+        ['LANGUAGES', '5', ''],
+        ['METHODS', 'SVAR · VAR · DiD', ''],
+        ['FIELDS', 'MONETARY · DEV · LABOR', ''],
+        ['MAJOR', 'ECON · MATH', ''],
+        ['STATUS', 'OPEN TO PhD / PREDOC', 'up']
     ];
     const one = items.map(([k, v, d]) =>
         `<span class="ticker-item"><span class="tk">${k}</span>` +
@@ -145,7 +145,7 @@ function runCounters() {
     document.querySelectorAll('.kpi-val[data-count]').forEach(el => {
         const target = parseFloat(el.getAttribute('data-count'));
         const decimals = parseInt(el.getAttribute('data-decimals') || '0', 10);
-        const numSpan = el.querySelector('span');
+        const numSpan = el.querySelector('span:not(.suffix)');
         const duration = 1300;
         const start = performance.now();
         function tick(now) {
@@ -187,10 +187,10 @@ function initTrajectoryChart() {
     trajectoryChart = new Chart(ctx, {
         type: 'line',
         data: {
-            labels: ['2023', 'Q1 \'24', 'Q3 \'24', 'Q1 \'25', 'Q2 \'25', 'Q3 \'25'],
+            labels: ['2024', 'H1 \'25', 'H2 \'25', 'H1 \'26', 'H2 \'26'],
             datasets: [{
                 label: 'Research milestones',
-                data: [0, 1, 2, 4, 6, 9],
+                data: [0, 3, 6, 9, 13],
                 borderColor: chartPrimary,
                 backgroundColor: grad,
                 fill: true,
@@ -219,10 +219,10 @@ function initSkillsRadar() {
     skillsRadar = new Chart(ctx, {
         type: 'radar',
         data: {
-            labels: ['Econometrics', 'Programming', 'Data Viz', 'Policy Research', 'Statistics', 'Data Engineering'],
+            labels: ['Econometrics', 'Programming', 'Data Viz', 'Development Econ', 'Time-Series', 'Policy Research'],
             datasets: [{
                 label: 'Proficiency',
-                data: [88, 90, 80, 86, 84, 76],
+                data: [88, 84, 84, 82, 86, 85],
                 borderColor: chartPrimary,
                 backgroundColor: 'rgba(14,124,102,0.15)',
                 borderWidth: 2,
