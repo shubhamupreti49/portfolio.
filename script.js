@@ -645,7 +645,7 @@ const SECTIONS = [
     ['Section', 'Experience', homeHref + '#experience', 'roles timeline'],
     ['Section', 'Publications', homeHref + '#publications', 'papers cite'],
     ['Section', 'About & skills', homeHref + '#about', 'bio skills languages'],
-    ['Section', 'Education', homeHref + '#education', 'Franklin Marshall Bocconi'],
+    ['Section', 'Education', homeHref + '#education', 'Franklin Marshall Bath England'],
     ['Section', 'Contact', homeHref + '#contact', 'email phone LinkedIn']
 ];
 function buildIndex() {
