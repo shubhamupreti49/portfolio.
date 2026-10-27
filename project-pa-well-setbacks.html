@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pennsylvania Well Setbacks &amp; Health | Shubham Upreti</title>
+    <link rel="stylesheet" href="styles.css?v=20260708d">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html#projects">← Back to Portfolio</a>
+        <a href="https://shubhamupreti49.github.io/PA-Well-Watch/" target="_blank" rel="noopener noreferrer">View PA Well Watch</a>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>Who Sets Stricter Well Setbacks? Local Oil &amp; Gas Regulation in Pennsylvania</h1>
+        <p class="subtitle">Hackman Summer Scholars research with Prof. Meyer, Franklin &amp; Marshall College (Summer 2026)</p>
+        <div class="project-meta">
+            <span class="badge">Environmental Economics</span>
+            <span class="badge">R Programming</span>
+            <span class="badge">Geospatial Analysis</span>
+            <span class="badge">Logistic Regression</span>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="key-finding">
+                <strong>Preliminary Finding:</strong> Pennsylvania sets a statewide minimum distance between a gas well and nearby buildings and water, but municipalities can go further. In the municipalities coded so far, townships have 2.58 times the odds of adopting a stricter-than-state setback compared with boroughs and cities, and the odds rise with population density and with the number of unconventional wells, holding region fixed (all p &lt; 0.05).
+            </div>
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Data Scale</h4>
+                    <p>2,180 municipalities in the setback database<br>940+ coded so far<br>223,912 DEP well records</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Methodology</h4>
+                    <p>Hand-coded ordinance database<br>Logistic regression<br>Spatial joins &amp; crosswalks</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Key Tools</h4>
+                    <p>R (sf, tigris, data.table, ggplot2)<br>PA DEP / PASDA well data<br>Census TIGER/Line boundaries</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Research Question -->
+        <section>
+            <h2>Research Question</h2>
+            <p>Pennsylvania's Oil and Gas Act (58 Pa.C.S. § 3215) fixes minimum distances between a well and buildings, water supplies, streams and wetlands. Local governments can set stricter limits through zoning, and many have. This project asks two connected questions:</p>
+            <ul>
+                <li>Which Pennsylvania municipalities adopt setbacks stricter than the state minimum, and what predicts that choice?</li>
+                <li>Does living closer to oil and gas wells relate to asthma and other lung-disease prevalence?</li>
+            </ul>
+            <p class="context">The first question is answered on the data collected so far. The second needs the health data merged onto the same geography, which is the current stage of the project.</p>
+        </section>
+
+        <!-- Data Engineering -->
+        <section>
+            <h2>Data Engineering &amp; Integration</h2>
+
+            <h3>Data Sources</h3>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Dataset</th>
+                            <th>Description</th>
+                            <th>Unit</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>PA Municipal Setback Database</td>
+                            <td>Hand-collected local setback rules for public water, wetlands, streams, property lines, businesses, residences and protected buildings</td>
+                            <td>Municipality</td>
+                        </tr>
+                        <tr>
+                            <td>PA DEP oil &amp; gas wells</td>
+                            <td>Every permitted well with type, configuration, status, location, and spud and plug dates</td>
+                            <td>Well</td>
+                        </tr>
+                        <tr>
+                            <td>ZIP–municipality crosswalk</td>
+                            <td>Each ZIP code assigned to the municipality holding the largest share of its land area</td>
+                            <td>ZIP code</td>
+                        </tr>
+                        <tr>
+                            <td>Asthma panel (in preparation)</td>
+                            <td>Asthma cases by ZIP code and quarter, keyed to nearby wells</td>
+                            <td>ZIP × quarter</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">The sources are brought onto one row per municipality per quarter (2000 Q1 – 2026 Q3). The merge pipeline is built and tested on simulated placeholder asthma data until the health data are in hand.</p>
+            </div>
+
+            <h3>Technical Challenge: Three Geographies That Don't Line Up</h3>
+            <p>Setback rules are set by <strong>municipalities</strong>, wells are recorded as <strong>points</strong>, and health data are reported by <strong>ZIP code</strong>. ZIP codes cross municipal lines, so none of the sources can be joined directly.</p>
+            <div class="finding-box">
+                <h3>Solution: A Land-Area Crosswalk and a Quarterly Panel</h3>
+                <p>I built a ZIP-to-municipality crosswalk in R using the 2020 Census boundaries, assigning each ZIP code to the municipality that holds the plurality of its land (water areas removed), and tested the rule against a population-weighted alternative. Wells were matched to their municipality and ZIP code and expanded into a quarterly panel from their spud and plug dates, so each municipality-quarter carries its well counts and setback rules, ready for the health data.</p>
+            </div>
+
+            <div class="visualization-container">
+                <img src="images/pa-well-setbacks/Fig2_statewide_map.png" alt="Map of Pennsylvania municipalities colored by whether their local oil and gas setback is stricter than, at, or below the state minimum" class="project-image" loading="lazy">
+                <p class="image-caption">Figure 1: Local oil &amp; gas setback regulations across Pennsylvania municipalities. Source: Upreti &amp; Meyer, PA Municipal Setback Database (2026).</p>
+            </div>
+        </section>
+
+        <!-- Findings -->
+        <section>
+            <h2>Preliminary Findings</h2>
+
+            <h3>Finding 1: Stricter Setbacks Cluster in the Southwest and North Central Regions</h3>
+            <p>The Southwest region has the most complete coverage and the largest share of municipalities with stricter-than-state rules. Coverage elsewhere is still being built, and South Central data collection has not started.</p>
+            <div class="visualization-container">
+                <img src="images/pa-well-setbacks/Fig1_status_by_region.png" alt="Stacked bar chart of setback regulation status by DEP region" class="project-image" loading="lazy">
+                <p class="image-caption">Figure 2: Setback regulation status by region, as a share of municipalities</p>
+            </div>
+
+            <h3>Finding 2: Townships, Denser Places and Drilling Areas Regulate More</h3>
+            <div class="finding-box">
+                <h4>Logistic model of adopting a stricter-than-state setback</h4>
+                <ul>
+                    <li><strong>Township (vs. borough/city):</strong> odds ratio 2.58</li>
+                    <li><strong>Population density (×10):</strong> odds ratio 2.16</li>
+                    <li><strong>Unconventional wells (ln 1 + count):</strong> odds ratio 1.16</li>
+                    <li><strong>Region effects:</strong> lower odds in the Northwest, Southern Alleghenies and Northeast, and higher odds in North Central, relative to the Southwest</li>
+                </ul>
+            </div>
+            <div class="visualization-grid">
+                <div class="visualization-item">
+                    <img src="images/pa-well-setbacks/Fig6_odds_ratios.png" alt="Odds ratios with 95% confidence intervals for adopting a stricter-than-state setback" class="project-image" loading="lazy">
+                    <p class="image-caption">Figure 3: Odds ratios with 95% confidence intervals</p>
+                </div>
+                <div class="visualization-item">
+                    <img src="images/pa-well-setbacks/Fig7_predicted_probability.png" alt="Predicted probability of a stricter setback by population density and by number of unconventional wells, for townships and boroughs" class="project-image" loading="lazy">
+                    <p class="image-caption">Figure 4: Predicted probability of a stricter setback, townships vs. boroughs/cities</p>
+                </div>
+            </div>
+
+            <h3>Companion Project: PA Well Watch</h3>
+            <p>To describe the drilling side of the story, I published <a href="https://shubhamupreti49.github.io/PA-Well-Watch/" target="_blank" rel="noopener noreferrer">PA Well Watch</a>, an interactive site mapping gas-well activity across five periods from 2000 to 2023. Of the 34,518 gas wells spudded in that window, the horizontal share rose from 0% in 2000–2004 to 99.7% in 2020–2023, drilling peaked in 2010–2014, and annual volume has since fallen by about 73% as activity consolidated into the northeastern and southwestern Marcellus corridors.</p>
+        </section>
+
+        <!-- Limitations -->
+        <section>
+            <h2>Status &amp; Limitations</h2>
+            <div class="ethics-box">
+                <p><strong>⚠️ Work in progress:</strong> Data collection is ongoing, so the regional picture will change as more municipalities are coded. The model shows associations, not causes: a municipality may regulate because drilling arrived, or drilling may avoid places that regulate. The health analysis is still being built and no health results are reported here.</p>
+            </div>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills Demonstrated</h2>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Data Collection</h4>
+                    <ul>
+                        <li>Coding municipal ordinances into a structured database</li>
+                        <li>Codebook design and tracking by county</li>
+                        <li>Cleaning 220,000+ DEP well records</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Geospatial Analysis</h4>
+                    <ul>
+                        <li>Spatial joins with sf and tigris</li>
+                        <li>ZIP-to-municipality crosswalk by land share</li>
+                        <li>Spatial scan tests for well clustering</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Statistical Modeling</h4>
+                    <ul>
+                        <li>Logistic regression with region effects</li>
+                        <li>Odds ratios and predicted probabilities</li>
+                        <li>Municipality × quarter panel construction</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Communication</h4>
+                    <ul>
+                        <li>Research poster figures in ggplot2</li>
+                        <li>Colour-blind-safe map palettes</li>
+                        <li>Interactive site on GitHub Pages</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://shubhamupreti49.github.io/PA-Well-Watch/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🗺️ PA Well Watch</a>
+                <a href="https://github.com/shubhamupreti49/PA-Well-Watch" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🔗 GitHub Repository</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2026 Shubham Upreti | <a href="mailto:supreti@fandm.edu">Contact</a></p>
+    </footer>
+
+    <script src="script.js?v=20260708d"></script>
+</body>
+</html>

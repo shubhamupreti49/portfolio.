@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Unbonded Archive | Shubham Upreti</title>
+    <link rel="stylesheet" href="styles.css?v=20260708d">
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html#projects">← Back to Portfolio</a>
+        <a href="https://unbondedarchive.org/" target="_blank" rel="noopener noreferrer">Visit unbondedarchive.org</a>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>Unbonded Archive: Nepal's Bonded-Labour Evidence Repository</h1>
+        <p class="subtitle">A student-led research archive I lead, started with Team Unbonded at the Uunchai Summer Mentorship Program</p>
+        <div class="project-meta">
+            <span class="badge">Development Economics</span>
+            <span class="badge">Open Research Data</span>
+            <span class="badge">React &amp; TypeScript</span>
+            <span class="badge">Bilingual (EN / नेपाली)</span>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="key-finding">
+                <strong>The Problem:</strong> Evidence on Nepal's Kamaiya, Haliya, Haruwa-Charuwa and Kamlari bonded-labour systems is scattered across journal articles, NGO and government reports, theses, laws and news, in English and Nepali, and some of it is disappearing from the web. Unbonded Archive brings it into one searchable place, records what each source studied and how, and links to the original.
+            </div>
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Holdings</h4>
+                    <p>61 catalogued source records<br>Timeline of abolition &amp; policy<br>District map linked to records</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Method</h4>
+                    <p>Find → Screen → Verify<br>→ Catalogue → Correct<br>Public corrections log</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Build</h4>
+                    <p>React, TypeScript, Vite, Tailwind<br>i18next (English &amp; Nepali)<br>GitHub Pages via Actions</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Why -->
+        <section>
+            <h2>Why It Exists</h2>
+            <p>Nepal freed Kamaiya labourers in 2000 and Haliya labourers in 2008. What happened to them afterwards has been studied by many people in many places, but rarely in one place. With the archive, a researcher, journalist or student can find in an afternoon what would otherwise take weeks.</p>
+            <p class="context">The archive complements my political-economy research on debt bondage in Nepal with Prof. Danish Khan.</p>
+
+            <div class="visualization-container">
+                <img src="images/unbonded-archive/og-image.png" alt="Unbonded Archive banner: Nepal's bonded-labour evidence repository" class="project-image" loading="lazy">
+                <p class="image-caption">Unbonded Archive, live at unbondedarchive.org</p>
+            </div>
+        </section>
+
+        <!-- How -->
+        <section>
+            <h2>How Sources Are Added</h2>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Step</th>
+                            <th>What happens</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Find</td>
+                            <td>Researchers search academic databases, university repositories and the publications of government bodies and organisations</td>
+                        </tr>
+                        <tr>
+                            <td>Screen</td>
+                            <td>Each candidate is checked for relevance and duplicates, with the decision and reason recorded</td>
+                        </tr>
+                        <tr>
+                            <td>Verify</td>
+                            <td>Title, authors, year and publication details come from the source or publisher, never from a search listing</td>
+                        </tr>
+                        <tr>
+                            <td>Catalogue</td>
+                            <td>A researcher reads the source and records its population, place, sample, method and findings</td>
+                        </tr>
+                        <tr>
+                            <td>Correct</td>
+                            <td>Every addition and correction is logged publicly with its reason</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">The catalogue is shared as an open dataset under CC BY 4.0, with citation metadata for the website and the data.</p>
+            </div>
+        </section>
+
+        <!-- Features -->
+        <section>
+            <h2>What Readers Can Do</h2>
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Policymakers</h4>
+                    <ul>
+                        <li>Legal texts and policy submissions</li>
+                        <li>Rehabilitation evidence</li>
+                        <li>District figures on the map</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Researchers</h4>
+                    <ul>
+                        <li>Filter by labour system, method and place</li>
+                        <li>Sample and method behind every source</li>
+                        <li>Citable catalogue dataset</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Public &amp; Educators</h4>
+                    <ul>
+                        <li>Timeline of abolition and policy</li>
+                        <li>Map of affected districts</li>
+                        <li>Articles written by volunteers</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Nepali Readers</h4>
+                    <ul>
+                        <li>Full interface in Nepali</li>
+                        <li>Original-language notices on sources</li>
+                        <li>Nepali-language searching being added</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Role -->
+        <section>
+            <h2>My Role</h2>
+            <div class="finding-box">
+                <h3>Project Lead</h3>
+                <ul>
+                    <li><strong>Research design:</strong> set the cataloguing schema, screening rules and verification standard the team follows</li>
+                    <li><strong>Team leadership:</strong> coordinated the student researchers who completed phase one, and lead the archive into its next phase</li>
+                    <li><strong>Engineering:</strong> built the bilingual website, search and filters, timeline, district map and pre-rendered source pages, deployed automatically from GitHub</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Limits -->
+        <section>
+            <h2>Limits</h2>
+            <div class="ethics-box">
+                <p><strong>⚠️ Read with care:</strong> This is a curated collection, not a systematic review. Coverage is uneven across labour systems and languages, figures from different sources are not comparable, and the map shows where evidence exists, not how common bonded labour is.</p>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://unbondedarchive.org/" target="_blank" rel="noopener noreferrer" class="btn btn-primary">🌐 unbondedarchive.org</a>
+                <a href="https://github.com/shubhamupreti49/Project-Unbonded" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">🔗 GitHub Repository</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2026 Shubham Upreti | <a href="mailto:supreti@fandm.edu">Contact</a></p>
+    </footer>
+
+    <script src="script.js?v=20260708d"></script>
+</body>
+</html>

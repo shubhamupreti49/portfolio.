@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>US Profit Realization Dashboard | Shubham Upreti</title>
+    <link rel="stylesheet" href="styles.css?v=20260708d">
+
+    <!-- LaTeX Math Support -->
+    <script>
+      MathJax = {
+        tex: {
+          inlineMath: [['\\(', '\\)']],
+          displayMath: [['\\[', '\\]']]
+        }
+      };
+    </script>
+    <script id="MathJax-script" async src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="project-nav">
+        <a href="index.html#projects">← Back to Portfolio</a>
+        <a href="experience-institutional-economics.html">About the Role</a>
+    </nav>
+
+    <!-- Project Header -->
+    <header class="project-header">
+        <h1>US Profit Realization, 1964–2024: A Marxian &amp; Kaleckian Dashboard</h1>
+        <p class="subtitle">Summer research with Prof. David Brennan, Franklin &amp; Marshall College (Summer 2026)</p>
+        <div class="project-meta">
+            <span class="badge">Political Economy</span>
+            <span class="badge">R Shiny</span>
+            <span class="badge">Macroeconomic Data</span>
+            <span class="badge">Data Visualization</span>
+        </div>
+    </header>
+
+    <main class="project-content">
+        <!-- Executive Summary -->
+        <section class="executive-summary">
+            <h2>Executive Summary</h2>
+            <div class="key-finding">
+                <strong>Core Contribution:</strong> Prof. Brennan's work explains where U.S. corporate profits come from by combining Kalecki's profit equation with Marx's rates of surplus and profit. I built an interactive R Shiny dashboard on the quarterly accounts, which now run through 2024 Q4, so readers of the paper can explore 61 years of the evidence themselves.
+            </div>
+            <div class="project-specs">
+                <div class="spec-item">
+                    <h4>Dataset Scale</h4>
+                    <p>244 quarters (1964 Q1 – 2024 Q4)<br>Profit components &amp; Marxian ratios<br>Constant 2017 dollars</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Methodology</h4>
+                    <p>Kaleckian profit accounting<br>Marxian ratio construction<br>GDP-deflator adjustment</p>
+                </div>
+                <div class="spec-item">
+                    <h4>Key Tools</h4>
+                    <p>R Shiny &amp; bslib<br>plotly, DT, tidyr, dplyr<br>Excel-backed data pipeline</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Background -->
+        <section>
+            <h2>Research Background</h2>
+            <p>Kalecki's insight is that, in aggregate, firms' profits are determined by spending. Rearranging the national accounts, gross profits equal the sum of the expenditures that realize them:</p>
+            <div class="code-block">
+                \[ \Pi = I + (X - M) + (G - T) + (C_k - S_w) \]
+            </div>
+            <p>where \( I \) is gross private domestic investment, \( X - M \) the export surplus, \( G - T \) the government deficit, and \( C_k - S_w \) capitalists' consumption net of workers' saving. Prof. Brennan's earlier papers used this framework to show that, after the early 1980s, capitalists' consumption and household borrowing became the main sources of profit realization in the United States.</p>
+            <p>On the Marxian side, the dashboard tracks three ratios built from surplus \( S \), wages \( V \) and capital \( C \):</p>
+            <div class="results-table">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Ratio</th>
+                            <th>Formula</th>
+                            <th>What it measures</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Rate of surplus</td>
+                            <td>\( S / V \)</td>
+                            <td>Profits relative to employee compensation</td>
+                        </tr>
+                        <tr>
+                            <td>Rate of profit</td>
+                            <td>\( S / (C + V) \)</td>
+                            <td>Profits relative to total capital advanced</td>
+                        </tr>
+                        <tr>
+                            <td>Organic composition</td>
+                            <td>\( C / V \)</td>
+                            <td>Capital intensity relative to wages</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p class="table-note">Brennan (2014), <em>Cambridge Journal of Economics</em>, covered 1964–2009; Brennan (2018), <em>Review of Radical Political Economics</em>, covered 1964–2013. The dashboard covers 1964–2024.</p>
+            </div>
+        </section>
+
+        <!-- Dashboard -->
+        <section>
+            <h2>The Dashboard</h2>
+            <div class="visualization-container">
+                <img src="images/marxian-profits/dashboard-about.png" alt="Screenshot of the US Profit Realization Shiny dashboard showing the About tab with series definitions and navigation tabs" class="project-image" loading="lazy">
+                <p class="image-caption">Figure 1: The US Profit Realization dashboard (About tab)</p>
+            </div>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Animated</h4>
+                    <ul>
+                        <li>Quarter-by-quarter reveal of every profit component</li>
+                        <li>Adjustable speed and series toggles</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Components</h4>
+                    <ul>
+                        <li>Filter by series and year range</li>
+                        <li>NBER recession shading</li>
+                        <li>Raw, log, or index-to-100 views</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Marxian Rates</h4>
+                    <ul>
+                        <li>Rate of surplus, rate of profit and organic composition</li>
+                        <li>Optional panel of the dollar inputs behind each ratio</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Data</h4>
+                    <ul>
+                        <li>All three source sheets in scrollable tables</li>
+                        <li>Download any sheet as CSV or Excel</li>
+                    </ul>
+                </div>
+            </div>
+
+            <h3>Engineering Notes</h3>
+            <ul>
+                <li><strong>Wide-to-long reshaping:</strong> the source workbooks store one column per quarter; the app pivots them to long format and builds a continuous time index for plotting.</li>
+                <li><strong>Fast start-up:</strong> parsed data are cached to an RDS file and rebuilt only when either source workbook changes.</li>
+                <li><strong>Readable on any screen:</strong> light and dark themes, and recession bands drawn as full-height shapes so they stay correct when the y-axis rescales.</li>
+            </ul>
+        </section>
+
+        <!-- Technical Skills -->
+        <section>
+            <h2>Technical Skills Demonstrated</h2>
+
+            <div class="skills-grid">
+                <div class="skill-category">
+                    <h4>Economic Data</h4>
+                    <ul>
+                        <li>National income &amp; product accounts</li>
+                        <li>Deflating to constant dollars</li>
+                        <li>Quarterly series construction</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Application Development</h4>
+                    <ul>
+                        <li>R Shiny with bslib layouts</li>
+                        <li>Interactive plotly charts</li>
+                        <li>Reactive filters and downloads</li>
+                    </ul>
+                </div>
+
+                <div class="skill-category">
+                    <h4>Research Support</h4>
+                    <ul>
+                        <li>Literature review on profit realization</li>
+                        <li>Working with national-accounts datasets</li>
+                        <li>Translating theory into visual evidence</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Project Links -->
+        <section class="project-links">
+            <h2>Project Resources</h2>
+            <div class="resource-buttons">
+                <a href="https://doi.org/10.1177/0486613417749596" target="_blank" rel="noopener noreferrer" class="btn btn-primary">📄 Brennan (2018), RRPE</a>
+                <a href="https://doi.org/10.1093/cje/bet043" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">📄 Brennan (2014), CJE</a>
+                <a href="experience-institutional-economics.html" class="btn btn-secondary">🔗 Research Assistant Role</a>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="project-footer">
+        <p>© 2026 Shubham Upreti | <a href="mailto:supreti@fandm.edu">Contact</a></p>
+    </footer>
+
+    <script src="script.js?v=20260708d"></script>
+</body>
+</html>
