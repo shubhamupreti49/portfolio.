@@ -4,29 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Institutional Economics Research Assistant - Shubham Upreti</title>
+    <meta name="theme-color" content="#012740">
+    <script>try{var t=localStorage.getItem('theme')||(matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light');document.documentElement.dataset.theme=t;}catch(e){}</script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@400;700;800&amp;family=Open+Sans:wght@400;600;700&amp;display=swap">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="styles.css?v=20260708d">
+    <link rel="stylesheet" href="styles.css?v=20261027">
 </head>
 <body>
-    <nav>
-        <div class="tab-bar-dots" aria-hidden="true">
-            <span class="dot dot-red"></span>
-            <span class="dot dot-yellow"></span>
-            <span class="dot dot-green"></span>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <div class="progress-bar" id="progressBar"></div>
+    <div class="utility-bar">
+        <div class="container">
+            <p>Economics &amp; Mathematics · Franklin &amp; Marshall College · Lancaster, PA</p>
+            <ul class="utility-links">
+                <li class="hide-sm"><a href="shubham_resume.pdf" target="_blank" rel="noopener noreferrer">Resume</a></li>
+                <li class="hide-sm"><a href="contact.html">Contact</a></li>
+                <li><a class="pill-link" href="index.html#contact">Work With Me</a></li>
+                <li><button class="icon-btn" data-theme-toggle aria-label="Switch color theme"><i class="fas fa-moon"></i></button></li>
+            </ul>
         </div>
-        <button class="menu-toggle" aria-label="Toggle menu"><span></span><span></span><span></span></button>
-        <ul>
-            <li><a href="index.html#home" class="tab-link"><i class="fas fa-house"></i>home</a></li>
-            <li><a href="index.html#about" class="tab-link"><i class="fas fa-user"></i>about</a></li>
-            <li><a href="index.html#skills" class="tab-link"><i class="fas fa-code"></i>skills</a></li>
-            <li><a href="index.html#experience" class="tab-link active"><i class="fas fa-briefcase"></i>experience</a></li>
-            <li><a href="index.html#projects" class="tab-link"><i class="fas fa-folder-open"></i>projects</a></li>
-            <li><a href="index.html#publications" class="tab-link"><i class="fas fa-file-lines"></i>publications</a></li>
-            <li><a href="index.html#education" class="tab-link"><i class="fas fa-graduation-cap"></i>education</a></li>
-            <li><a href="index.html#contact" class="tab-link"><i class="fas fa-envelope"></i>contact</a></li>
-        </ul>
-    </nav>
+    </div>
+    <header class="site-header" id="siteHeader">
+        <div class="container">
+            <a class="brand" href="index.html" aria-label="Shubham Upreti — home">
+                <span class="brand-mark" aria-hidden="true">SU</span>
+                <span class="brand-text"><span class="brand-name">Shubham Upreti</span><span class="brand-tag">Economics Research Portfolio</span></span>
+            </a>
+            <nav class="main-nav" id="mainNav" aria-label="Main">
+                <ul>
+                    <li><a href="index.html#research">Research</a></li>
+                    <li><a href="index.html#field">In the Field</a></li>
+                    <li><a href="index.html#experience" class="active">Experience</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#education">Education</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="header-actions">
+                <button class="icon-btn" data-search-open aria-label="Search the site (press /)"><i class="fas fa-magnifying-glass"></i></button>
+                <button class="icon-btn menu-toggle" aria-label="Open menu" aria-expanded="false" aria-controls="mainNav"><i class="fas fa-bars"></i></button>
+            </div>
+        </div>
+    </header>
 
+
+    <main id="main">
     <section class="detail-page">
         <div style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
             <a href="index.html#experience" class="back-button">
@@ -102,11 +127,40 @@ server &lt;- function(input, output) {<br>
             </div>
         </div>
     </section>
+    </main>
 
-    <footer>
-        <p>&copy; 2026 Shubham Upreti. All rights reserved.</p>
+    <footer class="site-footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a class="brand" href="index.html"><span class="brand-mark" aria-hidden="true">SU</span><span class="brand-text"><span class="brand-name">Shubham Upreti</span><span class="brand-tag">Economics Research Portfolio</span></span></a>
+                    <p>Economics &amp; Mathematics at Franklin &amp; Marshall College. Turning data into evidence for policy.</p>
+                    <div class="social-row">
+                        <a href="https://www.linkedin.com/in/upreti-shubham/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+                        <a href="https://github.com/shubhamupreti49" target="_blank" rel="noopener noreferrer" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        <a href="mailto:supreti@fandm.edu" aria-label="Email"><i class="fas fa-envelope"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h4>Explore</h4>
+                    <ul><li><a href="index.html#research">Research &amp; projects</a></li><li><a href="index.html#field">In the field</a></li><li><a href="index.html#experience">Experience</a></li><li><a href="index.html#publications">Publications</a></li></ul>
+                </div>
+                <div>
+                    <h4>Latest work</h4>
+                    <ul><li><a href="project-pa-well-setbacks.html">PA well setbacks</a></li><li><a href="project-marxian-profits.html">Profit realization dashboard</a></li><li><a href="project-unbonded-archive.html">Unbonded Archive</a></li></ul>
+                </div>
+                <div>
+                    <h4>About</h4>
+                    <ul><li><a href="index.html#about">About me</a></li><li><a href="index.html#education">Education</a></li><li><a href="shubham_resume.pdf" target="_blank" rel="noopener noreferrer">Resume (PDF)</a></li><li><a href="contact.html">Contact form</a></li></ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Shubham Upreti. All rights reserved.</p>
+                <p>Press <span class="kbd">/</span> to search</p>
+            </div>
+        </div>
     </footer>
 
-    <script src="script.js?v=20260708d"></script>
+    <script src="script.js?v=20261027"></script>
 </body>
 </html>
